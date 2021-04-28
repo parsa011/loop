@@ -21,3 +21,33 @@
 
 # Loop
 Loop is a object orientated programming language
+
+## Before opening an issue
+Please see the [issue policy](documentation/CONTRIBUTING.md#issue-policy).
+
+## How do I contribute?
+See the Loop [contribution guidelines](documentation/CONTRIBUTING.md).
+
+## How do I build and run this?
+Make sure, you installed the requirements for g++ and make:
+```shell
+$ sudo apt install build-essential
+```
+
+Build and run:
+```shell
+$ make
+
+$ ./loop examples/example.loop
+```
+
+## About
+### Authors: 
+- [Ali Chraghi](https://github.com/AliChraghi)
+- [Jonas Ampferl](https://github.com/Ampferl)
+### Contact
+- [Discord](https://discord.gg/a23N3Gdy)
+
+## License
+
+Loop is licensed under a [MIT license](LICENSE).
