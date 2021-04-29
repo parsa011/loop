@@ -37,6 +37,31 @@ enum TOKENS
     T_EQUAL_PIPE,            // |=
     T_EQUAL_LESSER_BRACKET,  // <=
     T_EQUAL_GREETER_BRACKET, // >=
+    
+    T_NAMESPACE,             // namespace
+    T_CLASS,                 // class
+    T_ENUM,                  // enum
+    T_INTERFACE,             // interface
+    T_EXTENDS,               // extends
+    T_IMPLEMENTS,            // implements
+    T_ABSTRACT,              // abstract
+    T_PUBLIC,                // public
+    T_PRIVATE,               // private
+    T_PROTECTED,             // protected
+    T_STATIC,                // static
+    T_IF,                    // if
+    T_ELIF,                  // elif
+    T_ELSE,                  // else
+    T_FOR,                   // for
+    T_WHILE,                 // while
+    T_RETURN,                // return
+    T_BREAK,                 // break
+    T_CONTINUE,              // continue
+    T_USING,                 // using
+    T_FINAL,                 // final
+    T_TRUE,                  // true
+    T_FALSE,                 // false
+    T_THIS                   // this
 };
 
 struct Token

@@ -349,7 +349,120 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         }
         else
         {
-            errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
+            std::string value;
+            value += lastChar;
+            advance(1);
+            while (isspace(lastChar))
+            {
+                value += lastChar;
+                advance(1);
+            }
+            value += lastChar;
+            if (value == "namespace")
+            {
+                lastToken.kind = T_NAMESPACE;
+            }
+            else if (value == "class")
+            {
+                lastToken.kind = T_CLASS;
+            }
+            else if (value == "enum")
+            {
+                lastToken.kind = T_ENUM;
+            }
+            else if (value == "interface")
+            {
+                lastToken.kind = T_INTERFACE;
+            }
+            else if (value == "extends")
+            {
+                lastToken.kind = T_EXTENDS;
+            }
+            else if (value == "implements")
+            {
+                lastToken.kind = T_IMPLEMENTS;
+            }
+            else if (value == "abstract")
+            {
+                lastToken.kind = T_ABSTRACT;
+            }
+            else if (value == "public")
+            {
+                lastToken.kind = T_PUBLIC;
+            }
+            else if (value == "private")
+            {
+                lastToken.kind = T_PRIVATE;
+            }
+            else if (value == "protected")
+            {
+                lastToken.kind = T_PROTECTED;
+            }
+            else if (value == "static")
+            {
+                lastToken.kind = T_STATIC;
+            }
+            else if (value == "if")
+            {
+                lastToken.kind = T_IF;
+            }
+            else if (value == "elif")
+            {
+                lastToken.kind = T_ELIF;
+            }
+            else if (value == "else")
+            {
+                lastToken.kind = T_ELSE;
+            }
+            else if (value == "for")
+            {
+                lastToken.kind = T_FOR;
+            }
+            else if (value == "while")
+            {
+                lastToken.kind = T_WHILE;
+            }
+            else if (value == "return")
+            {
+                lastToken.kind = T_RETURN;
+            }
+            else if (value == "break")
+            {
+                lastToken.kind = T_BREAK;
+            }
+            else if (value == "continue")
+            {
+                lastToken.kind = T_CONTINUE;
+            }
+            else if (value == "using")
+            {
+                lastToken.kind = T_USING;
+            }
+            else if (value == "final")
+            {
+                lastToken.kind = T_FINAL;
+            }
+            else if (value == "true")
+            {
+                lastToken.kind = T_TRUE;
+            }
+            else if (value == "false")
+            {
+                lastToken.kind = T_FALSE;
+            }
+            else if (value == "this")
+            {
+                lastToken.kind = T_THIS;
+            }
+            else
+            {
+                errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
+            }
+            lastToken.value += value;
+            lastToken.index = index - lastToken.value.length();
+            tokens.push_back(lastToken);
+            advance(1);
+            continue;
         }
         lastToken.value += lastChar;
         lastToken.index = index - lastToken.value.length();

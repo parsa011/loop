@@ -21,3 +21,4 @@
 ()
 {} // this will be ignored
 []
+if(){}
