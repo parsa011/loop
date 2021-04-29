@@ -1,12 +1,16 @@
 GCC = g++
 src = $(wildcard src/*.cpp)
-flags = -Wall -Wextra -Wpedantic -Wconversion -Wnon-virtual-dtor -Werror -std=c++17
+flags = -ggdb -O0 -Wall -Wextra -Wpedantic -Wconversion -Wnon-virtual-dtor -Werror -std=c++17
+flags_release =  -O3 -Wall -Wextra -Wpedantic -Wconversion -Wnon-virtual-dtor -Werror -std=c++17
 
 
-build: 
+debug: 
 	$(GCC) $(src) $(flags) -o loop
 
-all: build
+release:
+	$(GCC) $(src) $(flags_release) -o loop
+
+all: debug
 
 clean:
 	rm loop
