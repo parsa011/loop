@@ -51,6 +51,7 @@ char Tokenizer::peek(int offset)
 
 Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(error)
 {
+
     lastChar = src[0];
     while (!isEOF())
     {
@@ -59,6 +60,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             advance(1);
         }
+
         if (lastChar == '/' && peek(1) == '*')
         {
             advance(2);
@@ -77,7 +79,25 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             }
             continue;
         }
-        else if (lastChar == '"') // Notice String Parser Is't Stable; That's Next Todo
+        else if (lastChar == '/' && peek(1) == '/')
+        {
+            advance(2);
+            while (!isEOF())
+            {
+                advance(1);
+                if (lastChar == '\n')
+                {
+                    advance(2);
+                    break;
+                }
+                if (isEOF())
+                {
+                    continue;
+                }
+            }
+            continue;
+        }
+        if (lastChar == '"') // Notice String Parser Is't Stable; That's Next Todo
         {
             size_t startIndex = 0;
             while (!isEOF())

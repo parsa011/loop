@@ -17,5 +17,5 @@
 ||
 &&
 ()
-{}
+{} // this will be ignored
 []
