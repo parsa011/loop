@@ -43,4 +43,7 @@ EQUAL_MINUS             : '-='
 EQUAL_PIPE              : '|='
 EQUAL_LESSER_BRACKET    : '<='
 EQUAL_GREETER_BRACKET   : '>='
+
+// Identifiers
+ID                      : [_]*[a-z][A-Za-z0-9_]* ;
 ```
