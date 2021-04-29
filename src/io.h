@@ -13,13 +13,13 @@ struct File
     std::string data;
 };
 
-
 struct IO
 {
+    Error errorHandler;
     std::vector<File> reads;
+    IO(Error error) : errorHandler(error){};
     void read(std::string path);
     void write(File file);
 };
-
 
 #endif

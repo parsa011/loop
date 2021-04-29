@@ -39,29 +39,27 @@ enum TOKENS
     T_EQUAL_GREETER_BRACKET, // >=
 };
 
-struct TokenPosition
-{
-    size_t line = 1;
-    size_t column = 1;
-};
-
 struct Token
 {
     std::string value;
     TOKENS kind;
-    TokenPosition position;
+    size_t index;
 };
 
 struct Tokenizer
 {
     size_t index = 0;
+    size_t tokenIndex = 0;
     std::string src;
     char lastChar;
     Token lastToken;
+    std::vector<Token> tokens;
+    Error errorHandler;
     bool isEOF();
     bool isLCOF();
     char peek(int offset);
     void advance(int offset);
+    Tokenizer(std::string data, Error &error);
 };
 
 std::vector<Token> tokenize(std::string data);

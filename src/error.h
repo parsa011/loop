@@ -4,8 +4,9 @@
 #include <iomanip>
 #include <limits>
 
-namespace Error
+struct Error
 {
+    bool abort = false;
     enum ERRORS
     {
         FILE_NOT_FOUND,
@@ -19,6 +20,6 @@ namespace Error
     };
     void syntax(ERRORS code, const char *message, const char *file_path, size_t index);
     void compiler(ERRORS code, const char *message);
-}
+};
 
-#endif //ERROR_H
+#endif

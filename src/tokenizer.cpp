@@ -49,239 +49,244 @@ char Tokenizer::peek(int offset)
     }
 }
 
-std::vector<Token> tokenize(std::string data)
+Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(error)
 {
-    std::vector<Token> tokens;
-    Tokenizer tokenizer;
-    tokenizer.src = data;
-    tokenizer.lastChar = tokenizer.src[0];
-    while (!tokenizer.isEOF())
+    lastChar = src[0];
+    while (!isEOF())
     {
-        tokenizer.lastToken.value.clear();
-        while (isspace(tokenizer.lastChar))
+        lastToken.value.clear();
+        while (isspace(lastChar))
         {
-            tokenizer.advance(1);
+            advance(1);
         }
-        if (tokenizer.lastChar == '"')
-        {
-            if (tokenizer.isLCOF())
-            {
-                Error::syntax(Error::MISSING_QUOTATION_MARK, "Quated String Must Be Finished", tokenizer.src.c_str(), tokenizer.index);
-            }
-            tokenizer.lastToken.value += tokenizer.lastChar;
-            tokenizer.advance(1);
-            while (!tokenizer.isEOF())
-            {
-                if (tokenizer.lastChar == '"')
-                {
-                    tokenizer.lastToken.kind = T_STRING;
-                    break;
-                }
-                else
-                {
-                    if (tokenizer.lastChar == '\\' && tokenizer.peek(1) == '"')
-                    {
-                        tokenizer.lastToken.value += tokenizer.lastChar;
-                        tokenizer.advance(1);
-                    }
-                    tokenizer.lastToken.value += tokenizer.lastChar;
-                    tokenizer.advance(1);
-                }
-            }
-        }
-        else if (tokenizer.lastChar == '\'')
+        if (lastChar == '"') // Notice String Parser Is't Stable; That's Next Todo
         {
             size_t startIndex = 0;
-            while (!tokenizer.isEOF())
+            while (!isEOF())
             {
-                if (tokenizer.isLCOF() && tokenizer.lastChar != '\'')
+                if (isLCOF() && lastChar != '\'')
                 {
-                    Error::syntax(Error::MISSING_QUOTATION_MARK, "Quated Char Must Be Finished", tokenizer.src.c_str(), tokenizer.index);
+                    errorHandler.syntax(Error::MISSING_QUOTATION_MARK, "Quated Char Must Be Finished", src.c_str(), index);
                 }
-                else if (startIndex == 1 && tokenizer.lastChar == '\'')
+                else if (startIndex == 1 && lastChar == '\'')
                 {
-                    Error::syntax(Error::NO_NULL_CHAR, "Char Type Must Be Initialized", tokenizer.src.c_str(), tokenizer.index);
+                    errorHandler.syntax(Error::NO_NULL_CHAR, "Char Type Must Be Initialized", src.c_str(), index);
                 }
-                else if (startIndex > 1 && tokenizer.lastChar != '\'')
+                else if (startIndex > 1 && lastChar != '\'')
                 {
-                    if (tokenizer.peek(-1) == '\\')
+                    if (peek(-1) == '\\')
                     {
-                        tokenizer.lastToken.value += tokenizer.lastChar;
-                        tokenizer.advance(1);
+                        lastToken.value += lastChar;
+                        advance(1);
                         startIndex++;
                     }
                     else
                     {
-                        Error::syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Cannot Give More Than 1 Byte", tokenizer.src.c_str(), tokenizer.index);
+                        errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Cannot Give More Than 1 Byte", src.c_str(), index);
                     }
                 }
-                else if (tokenizer.lastChar == '\'' && startIndex > 0)
+                else if (lastChar == '\'' && startIndex > 0)
                 {
-                    tokenizer.lastToken.kind = T_CHAR;
+                    lastToken.kind = T_CHAR;
                     break;
                 }
                 else
                 {
-                    tokenizer.lastToken.value += tokenizer.lastChar;
-                    tokenizer.advance(1);
+                    lastToken.value += lastChar;
+                    advance(1);
                     startIndex++;
                 }
             }
         }
-        else if (tokenizer.lastChar == '=')
+        else if (lastChar == '\'')
         {
-            if (tokenizer.peek(1) == '=')
+            size_t startIndex = 0;
+            while (true)
             {
-                tokenizer.lastToken.kind = T_DOUBLE_EQUAL;
-                tokenizer.lastToken.value = '=';
-                tokenizer.advance(1);
+                if (startIndex > 0)
+                {
+                    if (isLCOF() && lastChar != '\'')
+                    {
+                        errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
+                        break;
+                    }
+                    else if (startIndex == 1 && lastChar == '\'')
+                    {
+                        errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
+                        break;
+                    }
+                    else if (lastChar == '\'' && peek(-1) != '\\')
+                    {
+                        lastToken.kind = T_CHAR;
+                        break;
+                    }
+                    else
+                    {
+                        lastToken.value += lastChar;
+                        advance(1);
+                        startIndex++;
+                    }
+                }
+                else
+                {
+                    lastToken.value += lastChar;
+                    advance(1);
+                    startIndex++;
+                }
+            }
+        }
+        else if (lastChar == '=')
+        {
+            if (peek(1) == '=')
+            {
+                lastToken.kind = T_DOUBLE_EQUAL;
+                lastToken.value = '=';
+                advance(1);
             }
             else
             {
-                tokenizer.lastToken.kind = T_EQUAL;
+                lastToken.kind = T_EQUAL;
             }
         }
-        else if (tokenizer.lastChar == '+')
+        else if (lastChar == '+')
         {
-            if (tokenizer.peek(1) == '=')
+            if (peek(1) == '=')
             {
-                tokenizer.lastToken.kind = T_EQUAL_PLUS;
-                tokenizer.lastToken.value = '+';
-                tokenizer.advance(1);
+                lastToken.kind = T_EQUAL_PLUS;
+                lastToken.value = '+';
+                advance(1);
             }
-            else if (tokenizer.peek(1) == '+')
+            else if (peek(1) == '+')
             {
-                tokenizer.lastToken.kind = T_DOUBLE_PLUS;
-                tokenizer.lastToken.value = '+';
-                tokenizer.advance(1);
+                lastToken.kind = T_DOUBLE_PLUS;
+                lastToken.value = '+';
+                advance(1);
             }
             else
             {
-                tokenizer.lastToken.kind = T_PLUS;
+                lastToken.kind = T_PLUS;
             }
         }
-        else if (tokenizer.lastChar == '-')
+        else if (lastChar == '-')
         {
-            if (tokenizer.peek(1) == '=')
+            if (peek(1) == '=')
             {
-                tokenizer.lastToken.kind = T_EQUAL_MINUS;
-                tokenizer.lastToken.value = '-';
-                tokenizer.advance(1);
+                lastToken.kind = T_EQUAL_MINUS;
+                lastToken.value = '-';
+                advance(1);
             }
-            else if (tokenizer.peek(1) == '-')
+            else if (peek(1) == '-')
             {
-                tokenizer.lastToken.kind = T_DOUBLE_MINUS;
-                tokenizer.lastToken.value = '-';
-                tokenizer.advance(1);
+                lastToken.kind = T_DOUBLE_MINUS;
+                lastToken.value = '-';
+                advance(1);
             }
             else
             {
-                tokenizer.lastToken.kind = T_MINUS;
+                lastToken.kind = T_MINUS;
             }
         }
-        else if (tokenizer.lastChar == '|')
+        else if (lastChar == '|')
         {
-            if (tokenizer.peek(1) == '=')
+            if (peek(1) == '=')
             {
-                tokenizer.lastToken.kind = T_EQUAL_PIPE;
-                tokenizer.lastToken.value = '|';
-                tokenizer.advance(1);
+                lastToken.kind = T_EQUAL_PIPE;
+                lastToken.value = '|';
+                advance(1);
             }
-            else if (tokenizer.peek(1) == '|')
+            else if (peek(1) == '|')
             {
-                tokenizer.lastToken.kind = T_DOUBLE_PIPE;
-                tokenizer.lastToken.value = '|';
-                tokenizer.advance(1);
+                lastToken.kind = T_DOUBLE_PIPE;
+                lastToken.value = '|';
+                advance(1);
             }
             else
             {
-                tokenizer.lastToken.kind = T_PIPE;
+                lastToken.kind = T_PIPE;
             }
         }
-        else if (tokenizer.lastChar == '<')
+        else if (lastChar == '<')
         {
-            if (tokenizer.peek(1) == '=')
+            if (peek(1) == '=')
             {
-                tokenizer.lastToken.kind = T_EQUAL_LESSER_BRACKET;
-                tokenizer.lastToken.value = '<';
-                tokenizer.advance(1);
+                lastToken.kind = T_EQUAL_LESSER_BRACKET;
+                lastToken.value = '<';
+                advance(1);
             }
             else
             {
-                tokenizer.lastToken.kind = T_LEFT_ANGLE_BRACKET;
+                lastToken.kind = T_LEFT_ANGLE_BRACKET;
             }
         }
-        else if (tokenizer.lastChar == '>')
+        else if (lastChar == '>')
         {
-            if (tokenizer.peek(1) == '=')
+            if (peek(1) == '=')
             {
-                tokenizer.lastToken.kind = T_EQUAL_GREETER_BRACKET;
-                tokenizer.lastToken.value = '>';
-                tokenizer.advance(1);
+                lastToken.kind = T_EQUAL_GREETER_BRACKET;
+                lastToken.value = '>';
+                advance(1);
             }
             else
             {
-                tokenizer.lastToken.kind = T_RIGHT_ANGLE_BRACKET;
+                lastToken.kind = T_RIGHT_ANGLE_BRACKET;
             }
         }
-        else if (tokenizer.lastChar == '&')
+        else if (lastChar == '&')
         {
-            if (tokenizer.peek(1) == '&')
+            if (peek(1) == '&')
             {
-                tokenizer.lastToken.kind = T_LOGIC_AND;
-                tokenizer.lastToken.value = '&';
-                tokenizer.advance(1);
+                lastToken.kind = T_LOGIC_AND;
+                lastToken.value = '&';
+                advance(1);
             }
             else
             {
-                tokenizer.lastToken.kind = T_AND;
+                lastToken.kind = T_AND;
             }
         }
-        else if (tokenizer.lastChar == '/')
+        else if (lastChar == '/')
         {
-            tokenizer.lastToken.kind = T_SLASH;
+            lastToken.kind = T_SLASH;
         }
-        else if (tokenizer.lastChar == '%')
+        else if (lastChar == '%')
         {
-            tokenizer.lastToken.kind = T_PERCENT;
+            lastToken.kind = T_PERCENT;
         }
-        else if (tokenizer.lastChar == ';')
+        else if (lastChar == ';')
         {
-            tokenizer.lastToken.kind = T_SEMICOLON;
+            lastToken.kind = T_SEMICOLON;
         }
-        else if (tokenizer.lastChar == '(')
+        else if (lastChar == '(')
         {
-            tokenizer.lastToken.kind = T_LEFT_ROUNDED_BRACKET;
+            lastToken.kind = T_LEFT_ROUNDED_BRACKET;
         }
-        else if (tokenizer.lastChar == ')')
+        else if (lastChar == ')')
         {
-            tokenizer.lastToken.kind = T_RIGHT_ROUNDED_BRACKET;
+            lastToken.kind = T_RIGHT_ROUNDED_BRACKET;
         }
-        else if (tokenizer.lastChar == '{')
+        else if (lastChar == '{')
         {
-            tokenizer.lastToken.kind = T_LEFT_CURLY_BRACKET;
+            lastToken.kind = T_LEFT_CURLY_BRACKET;
         }
-        else if (tokenizer.lastChar == '}')
+        else if (lastChar == '}')
         {
-            tokenizer.lastToken.kind = T_RIGHT_CURLY_BRACKET;
+            lastToken.kind = T_RIGHT_CURLY_BRACKET;
         }
-        else if (tokenizer.lastChar == '[')
+        else if (lastChar == '[')
         {
-            tokenizer.lastToken.kind = T_LEFT_SQUARE_BRACKET;
+            lastToken.kind = T_LEFT_SQUARE_BRACKET;
         }
-        else if (tokenizer.lastChar == ']')
+        else if (lastChar == ']')
         {
-            tokenizer.lastToken.kind = T_RIGHT_SQUARE_BRACKET;
+            lastToken.kind = T_RIGHT_SQUARE_BRACKET;
         }
         else
         {
-            std::cout << tokenizer.lastChar << std::endl;
-            Error::syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), tokenizer.index);
+            errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
         }
-        tokenizer.lastToken.value += tokenizer.lastChar;
-        tokenizer.lastToken.position = {tokenizer.index + 1, tokenizer.index + 1};
-        tokens.push_back(tokenizer.lastToken);
-        tokenizer.advance(1);
+        lastToken.value += lastChar;
+        lastToken.index = index - lastToken.value.length();
+        tokens.push_back(lastToken);
+        advance(1);
     }
-    return tokens;
 }
