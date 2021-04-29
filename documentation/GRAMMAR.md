@@ -11,6 +11,7 @@ INT                     : 'int'
 FLOAT                   : 'float'
 DOUBLE                  : 'double'
 BOOLEAN                 : 'bool'
+VOID                    : 'void'
 
 // Literals
 INT_LITERALS            : '0'|[1-9][0-9]*
@@ -43,6 +44,33 @@ EQUAL_MINUS             : '-='
 EQUAL_PIPE              : '|='
 EQUAL_LESSER_BRACKET    : '<='
 EQUAL_GREETER_BRACKET   : '>='
+
+// Keywords
+NAMESPACE               : 'namespace'
+CLASS                   : 'class'
+ENUM                    : 'enum'
+INTERFACE               : 'interface'
+EXTENDS                 : 'extends'
+IMPLEMENTS              : 'implements'
+ABSTRACT                : 'abstract'
+PUBLIC                  : 'public'
+PRIVATE                 : 'private'
+PROTECTED               : 'protected'
+METHOD                  : 'method'
+STATIC                  : 'static'
+IF                      : 'if'
+ELIF                    : 'elif'
+ELSE                    : 'else'
+FOR                     : 'for'
+WHILE                   : 'while'
+RETURN                  : 'return'
+BREAK                   : 'break'
+CONTINUE                : 'continue'
+USING                   : 'using'
+FINAL                   : 'final'
+TRUE                    : 'true'
+FALSE                   : 'false'
+THIS                    : 'this'
 
 // Identifiers
 ID                      : [_]*[a-z][A-Za-z0-9_]* ;
