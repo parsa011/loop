@@ -109,7 +109,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                 if (isLCOF() && lastChar != '\'')
                 {
                     errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
-                    break;
+                    exit(1);
                 }
                 else if (startIndex == 1 && lastChar == '\'')
                 {
@@ -136,9 +136,29 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                                 exit(1);
                             }
                         }
+                        else if (peek(1) == 'x')
+                        {
+                            for (size_t i = 0; i < 4; i++)
+                            {
+                                lastToken.value += lastChar;
+                                advance(1);
+                                ++startIndex;
+                                if (i > 2 && !isxdigit(lastChar))
+                                {
+                                    errorHandler.syntax(Error::NOT_HEX_DIGIT, "Is't Hexadecimal Digit", src.c_str(), index);
+                                    std::cout << lastChar << std::endl;
+                                    exit(1);
+                                }
+                                else
+                                {
+                                    lastToken.kind = T_CHAR;
+                                    break;
+                                }
+                            }
+                        }
                         else
                         {
-                            errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SQUANSE, "Unsupported Escape Squanse", src.c_str(), index);
+                            errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SEQUENCE, "Unsupported Escape Squanse", src.c_str(), index);
                             exit(1);
                         }
                     }

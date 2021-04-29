@@ -17,7 +17,8 @@ struct Error
         UNRECOGNIZED_TOKEN,
         MISSING_QUOTATION_MARK,
         MISSING_APOSTROPHE_MARK,
-        UNSUPPORTED_ESCAPE_SQUANSE
+        UNSUPPORTED_ESCAPE_SEQUENCE,
+        NOT_HEX_DIGIT
     };
     void syntax(ERRORS code, const char *message, const char *file_path, size_t index);
     void compiler(ERRORS code, const char *message);
