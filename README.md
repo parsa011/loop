@@ -40,6 +40,8 @@ $ make
 
 $ ./loop examples/example.loop
 ```
+## How should the grammar of Loop look like?
+Take a look at the [Grammar for Loop](documentation/GRAMMAR.md) `[work in progress]`
 
 ## About
 ### Authors: 

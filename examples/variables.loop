@@ -7,7 +7,6 @@ namespace Variables{
             float floatVar = 1.0;
             double doubleVar = 1.0;
             bool boolVar = true;
-            void voidVar = null;
         }
     }
 }
