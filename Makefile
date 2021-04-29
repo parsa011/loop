@@ -1,14 +1,15 @@
-GCC = g++
-src = $(wildcard src/*.cpp)
-flags = -ggdb -O0 -Wall -Wextra -Wpedantic -Wconversion -Wnon-virtual-dtor -Werror -std=c++17
-flags_release =  -O3 -Wall -Wextra -Wpedantic -Wconversion -Wnon-virtual-dtor -Werror -std=c++17
+GCC = clang
+SRC = $(wildcard src/*.cpp)
+FLAGS = -ggdb -O0 -Wall -Wextra -Wpedantic -Wconversion -Wnon-virtual-dtor -Werror -std=c++17
+FLAGS_RELEASE =  -O3 -Wall -Wextra -Wpedantic -Wconversion -Wnon-virtual-dtor -Werror -std=c++17
+LDFLAGS = -pthread -ldl -lm -lstdc++
 
 
 debug: 
-	$(GCC) $(src) $(flags) -o loop
+	$(GCC) $(SRC) $(FLAGS) $(LDFLAGS) -o loop
 
 release:
-	$(GCC) $(src) $(flags_release) -o loop
+	$(GCC) $(SRC) $(FLAGS_RELEASE) $(LDFLAGS) -o loop
 
 all: debug
 

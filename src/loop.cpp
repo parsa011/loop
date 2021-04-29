@@ -9,7 +9,7 @@ int main(int argc, const char *argv[])
     {
         Error error_handler;
         IO io(error_handler);
-        for (int i = 0; i < argc - 1; i++)
+        for (size_t i = 0; (int)i < argc - 1; i++)
         {
             try
             {

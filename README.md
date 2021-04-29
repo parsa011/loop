@@ -31,7 +31,7 @@ See the Loop [contribution guidelines](documentation/CONTRIBUTING.md).
 ## How do I build and run this?
 Make sure, you installed the requirements for g++ and make:
 ```shell
-$ sudo apt install build-essential
+$ sudo apt install build-essential clang
 ```
 
 Build and run:

@@ -26,9 +26,9 @@ bool Tokenizer::isLCOF()
 
 void Tokenizer::advance(int offset)
 {
-    if (offset + index < src.length())
+    if ((size_t)offset + index < src.length())
     {
-        index += offset;
+        index += (size_t)offset;
     }
     else
     {
@@ -39,9 +39,9 @@ void Tokenizer::advance(int offset)
 
 char Tokenizer::peek(int offset)
 {
-    if (offset + index < src.length())
+    if ((size_t)offset + index < src.length())
     {
-        return src[index + offset];
+        return src[index + (size_t)offset];
     }
     else
     {
@@ -117,7 +117,9 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                         lastToken.value += lastChar;
                         advance(1);
                         ++startIndex;
-                    }else{
+                    }
+                    else
+                    {
                         lastToken.kind = T_STRING;
                         break;
                     }
