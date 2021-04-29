@@ -1,6 +1,6 @@
 #include "tokenizer.h"
 
-bool Tokenizer::isEOF() // End Of File
+bool Tokenizer::isEOF()
 {
     if (index < src.length() && lastChar != '\0' && lastChar != char(-1))
     {
@@ -12,7 +12,7 @@ bool Tokenizer::isEOF() // End Of File
     }
 }
 
-bool Tokenizer::isLCOF() // Is Last Char Of File
+bool Tokenizer::isLCOF()
 {
     if (index < src.length() - 1)
     {
@@ -97,36 +97,30 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             }
             continue;
         }
-        if (lastChar == '"') // Notice String Parser Is't Stable; That's Next Todo
+        else if (lastChar == '"')
         {
             size_t startIndex = 0;
             while (!isEOF())
             {
-                if (isLCOF() && lastChar != '\'')
+                if (isLCOF() && lastChar != '"')
                 {
                     errorHandler.syntax(Error::MISSING_QUOTATION_MARK, "Quated Char Must Be Finished", src.c_str(), index);
                 }
-                else if (startIndex == 1 && lastChar == '\'')
+                else if (startIndex == 1 && lastChar == '"')
                 {
                     errorHandler.syntax(Error::NO_NULL_CHAR, "Char Type Must Be Initialized", src.c_str(), index);
                 }
-                else if (startIndex > 1 && lastChar != '\'')
+                else if (startIndex > 1 && lastChar == '"')
                 {
                     if (peek(-1) == '\\')
                     {
                         lastToken.value += lastChar;
                         advance(1);
                         ++startIndex;
+                    }else{
+                        lastToken.kind = T_STRING;
+                        break;
                     }
-                    else
-                    {
-                        errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Cannot Give More Than 1 Byte", src.c_str(), index);
-                    }
-                }
-                else if (lastChar == '\'' && startIndex > 0)
-                {
-                    lastToken.kind = T_CHAR;
-                    break;
                 }
                 else
                 {
