@@ -101,53 +101,47 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         else if (lastChar == '\'')
         {
             size_t startIndex = 0;
+            lastToken.value += lastChar;
+            advance(1);
+            ++startIndex;
             while (true)
             {
-                if (startIndex > 0)
+                if (isLCOF() && lastChar != '\'')
                 {
-                    if (isLCOF() && lastChar != '\'')
-                    {
-                        errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
-                        break;
-                    }
-                    else if (startIndex == 1 && lastChar == '\'')
-                    {
-                        errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
-                        break;
-                    }
-                    else if (lastChar == '\'' && peek(-1) != '\\')
-                    {
-                        lastToken.kind = T_CHAR;
-                        break;
-                    }
-                    else
-                    {
-                        if (lastChar == '\\')
-                        {
-                            if (peek(1) == 'a' || peek(1) == 'b' || peek(1) == 'e' || peek(1) == 'f' || peek(1) == 'n' || peek(1) == 'r' || peek(1) == 't' || peek(1) == 'v' || peek(1) == '\\' || peek(1) == '\'' || peek(1) == '"')
-                            {
-                                lastToken.value += lastChar;
-                                advance(1);
-                                ++startIndex;
-                                if (peek(1) != '\'')
-                                {
-                                    errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Can Only Contains 1 Byte", src.c_str(), index);
-                                    exit(1);
-                                }
-                            }
-                            else
-                            {
-                                errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SQUANSE, "Unsupported Escape Squanse", src.c_str(), index);
-                                exit(1);
-                            }
-                        }
-                        lastToken.value += lastChar;
-                        advance(1);
-                        ++startIndex;
-                    }
+                    errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
+                    break;
+                }
+                else if (startIndex == 1 && lastChar == '\'')
+                {
+                    errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
+                    break;
+                }
+                else if (lastChar == '\'' && peek(-1) != '\\')
+                {
+                    lastToken.kind = T_CHAR;
+                    break;
                 }
                 else
                 {
+                    if (lastChar == '\\')
+                    {
+                        if (peek(1) == 'a' || peek(1) == 'b' || peek(1) == 'e' || peek(1) == 'f' || peek(1) == 'n' || peek(1) == 'r' || peek(1) == 't' || peek(1) == 'v' || peek(1) == '\\' || peek(1) == '\'' || peek(1) == '"')
+                        {
+                            lastToken.value += lastChar;
+                            advance(1);
+                            ++startIndex;
+                            if (peek(1) != '\'')
+                            {
+                                errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Can Only Contains 1 Byte", src.c_str(), index);
+                                exit(1);
+                            }
+                        }
+                        else
+                        {
+                            errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SQUANSE, "Unsupported Escape Squanse", src.c_str(), index);
+                            exit(1);
+                        }
+                    }
                     lastToken.value += lastChar;
                     advance(1);
                     ++startIndex;
