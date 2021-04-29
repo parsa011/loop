@@ -11,4 +11,8 @@ INT             : 'int'
 FLOAT           : 'float'
 DOUBLE          : 'double'
 BOOLEAN         : 'bool'
+
+// Literals
+INT_LITERALS    : '0'|[1-9][0-9]*
+DEC_LITERALS    : '0'|[1-9][0-9]* '.' [0-9]+
 ```
