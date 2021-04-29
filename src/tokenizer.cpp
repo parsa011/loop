@@ -59,7 +59,25 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             advance(1);
         }
-        if (lastChar == '"') // Notice String Parser Is't Stable; That's Next Todo
+        if (lastChar == '/' && peek(1) == '*')
+        {
+            advance(2);
+            while (!isEOF())
+            {
+                advance(1);
+                if (lastChar == '*' && peek(1) == '/')
+                {
+                    advance(2);
+                    break;
+                }
+                if (isEOF())
+                {
+                    errorHandler.syntax(Error::CLOSE_COMMENT, "You need to close the comment", src.c_str(), index);
+                }
+            }
+            continue;
+        }
+        else if (lastChar == '"') // Notice String Parser Is't Stable; That's Next Todo
         {
             size_t startIndex = 0;
             while (!isEOF())
