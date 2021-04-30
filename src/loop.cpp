@@ -20,10 +20,13 @@ int main(int argc, const char *argv[])
 
                     if (!tokenizer.errorHandler.abort)
                     {
+                        int tokenCount = 0;
                         for (Token token : tokenizer.tokens)
                         {
                             std::cout << token.kind << " : " << token.value << "\n";
+                            ++tokenCount;
                         }
+                        std::cout << "Tokenization was \x1b[92;1msuccessful\x1b[0;1m (" << tokenCount << " token found)\n";
                     }
                 }
             }
