@@ -171,6 +171,23 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                         {
                             pushChar();
                         }
+                        else if (isdigit(lastChar))
+                        {
+                            for (size_t i = 0; isdigit(lastChar); i++)
+                            {
+                                pushChar();
+                                if (i > 1)
+                                {
+                                    if (std::atoi(lastToken.value.substr(lastToken.value.length() - 3, 3).c_str()) > 377)
+                                    {
+                                        std::cout << lastToken.value.length() << std::endl;
+                                        errorHandler.syntax(Error::INVALID_OCTAL_NUMBER, "Invalid Octal Number", src.c_str(), index);
+                                        exit(1);
+                                    }
+                                    charEnd = true;
+                                }
+                            }
+                        }
                         else
                         {
                             errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SEQUENCE, "Unsupported Escape Squanse", src.c_str(), index);

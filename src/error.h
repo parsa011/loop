@@ -20,7 +20,8 @@ struct Error
         UNSUPPORTED_ESCAPE_SEQUENCE,
         NOT_HEX_DIGIT,
         CLOSE_COMMENT,
-        UNRECOGNIZED_KEYWORD
+        UNRECOGNIZED_KEYWORD,
+        INVALID_OCTAL_NUMBER
     };
     void syntax(ERRORS code, const char *message, const char *file_path, size_t index);
     void compiler(ERRORS code, const char *message);
