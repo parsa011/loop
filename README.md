@@ -48,6 +48,8 @@ Take a look at the [Grammar for Loop](documentation/GRAMMAR.md) `[work in progre
 ### Authors: 
 - [Ali Chraghi](https://github.com/AliChraghi)
 - [Jonas Ampferl](https://github.com/Ampferl)
+### Contributors
+![Loop Contributors](https://contrib.rocks/image?repo=loop-lang/loop)
 ### Contact
 - [Discord](https://discord.gg/a23N3Gdy)
 

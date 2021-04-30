@@ -91,7 +91,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             }
             if (isEOF())
             {
-                errorHandler.syntax(Error::CLOSE_COMMENT, "You need to close the comment", src.c_str(), index);
+                continue;
             }
             continue;
         }
