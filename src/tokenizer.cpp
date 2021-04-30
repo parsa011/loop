@@ -89,10 +89,6 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                     break;
                 }
             }
-            if (isEOF())
-            {
-                continue;
-            }
             continue;
         }
         else if (lastChar == '"')
