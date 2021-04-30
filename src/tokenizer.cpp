@@ -72,28 +72,26 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                     advance(2);
                     break;
                 }
-                if (isEOF())
-                {
-                    errorHandler.syntax(Error::CLOSE_COMMENT, "You need to close the comment", src.c_str(), index);
-                }
+            }
+            if (isEOF())
+            {
+                errorHandler.syntax(Error::CLOSE_COMMENT, "You need to close the comment", src.c_str(), index);
             }
             continue;
         }
         else if (lastChar == '/' && peek(1) == '/')
         {
-            advance(2);
             while (!isEOF())
             {
                 advance(1);
                 if (lastChar == '\n')
                 {
-                    advance(2);
                     break;
                 }
-                if (isEOF())
-                {
-                    continue;
-                }
+            }
+            if (isEOF())
+            {
+                errorHandler.syntax(Error::CLOSE_COMMENT, "You need to close the comment", src.c_str(), index);
             }
             continue;
         }
@@ -347,122 +345,117 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             lastToken.kind = T_RIGHT_SQUARE_BRACKET;
         }
-        else
+        else if (isalpha(lastChar))
         {
-            std::string value;
-            value += lastChar;
-            advance(1);
-            while (isspace(lastChar))
+            while (isalpha(lastChar))
             {
-                value += lastChar;
+                lastToken.value += lastChar;
                 advance(1);
             }
-            value += lastChar;
-            if (value == "namespace")
+            if (lastToken.value == "namespace")
             {
                 lastToken.kind = T_NAMESPACE;
             }
-            else if (value == "class")
+            else if (lastToken.value == "class")
             {
                 lastToken.kind = T_CLASS;
             }
-            else if (value == "enum")
+            else if (lastToken.value == "enum")
             {
                 lastToken.kind = T_ENUM;
             }
-            else if (value == "interface")
+            else if (lastToken.value == "interface")
             {
                 lastToken.kind = T_INTERFACE;
             }
-            else if (value == "extends")
+            else if (lastToken.value == "extends")
             {
                 lastToken.kind = T_EXTENDS;
             }
-            else if (value == "implements")
+            else if (lastToken.value == "implements")
             {
                 lastToken.kind = T_IMPLEMENTS;
             }
-            else if (value == "abstract")
+            else if (lastToken.value == "abstract")
             {
                 lastToken.kind = T_ABSTRACT;
             }
-            else if (value == "public")
+            else if (lastToken.value == "public")
             {
                 lastToken.kind = T_PUBLIC;
             }
-            else if (value == "private")
+            else if (lastToken.value == "private")
             {
                 lastToken.kind = T_PRIVATE;
             }
-            else if (value == "protected")
+            else if (lastToken.value == "protected")
             {
                 lastToken.kind = T_PROTECTED;
             }
-            else if (value == "static")
+            else if (lastToken.value == "static")
             {
                 lastToken.kind = T_STATIC;
             }
-            else if (value == "if")
+            else if (lastToken.value == "if")
             {
                 lastToken.kind = T_IF;
             }
-            else if (value == "elif")
-            {
-                lastToken.kind = T_ELIF;
-            }
-            else if (value == "else")
+            else if (lastToken.value == "else")
             {
                 lastToken.kind = T_ELSE;
             }
-            else if (value == "for")
+            else if (lastToken.value == "for")
             {
                 lastToken.kind = T_FOR;
             }
-            else if (value == "while")
+            else if (lastToken.value == "while")
             {
                 lastToken.kind = T_WHILE;
             }
-            else if (value == "return")
+            else if (lastToken.value == "return")
             {
                 lastToken.kind = T_RETURN;
             }
-            else if (value == "break")
+            else if (lastToken.value == "break")
             {
                 lastToken.kind = T_BREAK;
             }
-            else if (value == "continue")
+            else if (lastToken.value == "continue")
             {
                 lastToken.kind = T_CONTINUE;
             }
-            else if (value == "using")
+            else if (lastToken.value == "using")
             {
                 lastToken.kind = T_USING;
             }
-            else if (value == "final")
+            else if (lastToken.value == "final")
             {
                 lastToken.kind = T_FINAL;
             }
-            else if (value == "true")
+            else if (lastToken.value == "true")
             {
                 lastToken.kind = T_TRUE;
             }
-            else if (value == "false")
+            else if (lastToken.value == "false")
             {
                 lastToken.kind = T_FALSE;
             }
-            else if (value == "this")
+            else if (lastToken.value == "this")
             {
                 lastToken.kind = T_THIS;
             }
             else
             {
-                errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
+                errorHandler.syntax(Error::UNRECOGNIZED_KEYWORD, "Unrecognized Keyword", data.c_str(), index);
             }
-            lastToken.value += value;
             lastToken.index = index - lastToken.value.length();
             tokens.push_back(lastToken);
             advance(1);
             continue;
+        }
+        else
+        {
+            errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
         }
         lastToken.value += lastChar;
         lastToken.index = index - lastToken.value.length();

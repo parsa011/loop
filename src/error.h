@@ -19,7 +19,8 @@ struct Error
         MISSING_APOSTROPHE_MARK,
         UNSUPPORTED_ESCAPE_SEQUENCE,
         NOT_HEX_DIGIT,
-        CLOSE_COMMENT
+        CLOSE_COMMENT,
+        UNRECOGNIZED_KEYWORD
     };
     void syntax(ERRORS code, const char *message, const char *file_path, size_t index);
     void compiler(ERRORS code, const char *message);

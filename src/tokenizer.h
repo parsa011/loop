@@ -50,7 +50,6 @@ enum TOKENS
     T_PROTECTED,             // protected
     T_STATIC,                // static
     T_IF,                    // if
-    T_ELIF,                  // elif
     T_ELSE,                  // else
     T_FOR,                   // for
     T_WHILE,                 // while
