@@ -22,6 +22,8 @@
 # Loop
 Loop is a object orientated programming language.
 
+![Example tokenized Loop Code](documentation/assets/images/tokenized_example_code.png)
+
 ## How do I build and run loop?
 Make sure, you installed the requirements for clang and make:
 ```shell
@@ -32,7 +34,7 @@ Build and run:
 ```shell
 $ make
 
-$ ./loop examples/example.loop
+$ ./loop examples/exampleClass.loop
 ```
 
 ## How do I contribute?
