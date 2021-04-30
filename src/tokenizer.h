@@ -19,6 +19,9 @@ enum TOKENS
     T_PIPE,                  // |
     T_AND,                   // &
     T_SEMICOLON,             // ;
+    T_COLON,                 // :
+    T_COMMA,                 // ,
+    T_DOT,                   // .
     T_LEFT_ROUNDED_BRACKET,  // (
     T_RIGHT_ROUNDED_BRACKET, // )
     T_LEFT_CURLY_BRACKET,    // {

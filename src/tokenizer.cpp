@@ -314,6 +314,18 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             lastToken.kind = T_SEMICOLON;
         }
+        else if (lastChar == ':')
+        {
+            lastToken.kind = T_COLON;
+        }
+        else if (lastChar == ',')
+        {
+            lastToken.kind = T_COMMA;
+        }
+        else if (lastChar == '.')
+        {
+            lastToken.kind = T_DOT;
+        }
         else if (lastChar == '(')
         {
             lastToken.kind = T_LEFT_ROUNDED_BRACKET;
