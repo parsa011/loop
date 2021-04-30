@@ -48,6 +48,7 @@ EQUAL_GREETER_BRACKET   : '>='
 // Keywords
 NAMESPACE               : 'namespace'
 CLASS                   : 'class'
+STRUCT                  : 'struct'
 ENUM                    : 'enum'
 EXTERN                  : 'extern'
 INTERFACE               : 'interface'

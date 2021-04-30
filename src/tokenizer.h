@@ -53,6 +53,7 @@ enum TOKENS
     // Keywords
     T_NAMESPACE,             // namespace
     T_CLASS,                 // class
+    T_STRUCT,                // struct
     T_ENUM,                  // enum
     T_EXTERN,                // extern
     T_INTERFACE,             // interface

@@ -392,6 +392,10 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             {
                 lastToken.kind = T_CLASS;
             }
+            else if (lastToken.value == "struct")
+            {
+                lastToken.kind = T_STRUCT;
+            }
             else if (lastToken.value == "enum")
             {
                 lastToken.kind = T_ENUM;

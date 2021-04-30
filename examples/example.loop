@@ -33,3 +33,5 @@ Asdf
 AS_DF
 A5_F
 string asdf="Hello World";
+
+struct test{};
