@@ -1,0 +1,19 @@
+namespace System
+{
+    class Console
+    {
+        static void main()
+        {
+            bool result;
+            string test = "Hello World";
+            if(test == "Hello" || test == "World")
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+        }
+    }
+}
