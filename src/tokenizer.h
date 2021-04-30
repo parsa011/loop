@@ -51,6 +51,7 @@ enum TOKENS
     T_NAMESPACE,             // namespace
     T_CLASS,                 // class
     T_ENUM,                  // enum
+    T_EXTERN,                // extern
     T_INTERFACE,             // interface
     T_EXTENDS,               // extends
     T_IMPLEMENTS,            // implements

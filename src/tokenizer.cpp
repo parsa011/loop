@@ -426,6 +426,10 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             {
                 lastToken.kind = T_ENUM;
             }
+            else if (lastToken.value == "extern")
+            {
+                lastToken.kind = T_EXTERN;
+            }
             else if (lastToken.value == "interface")
             {
                 lastToken.kind = T_INTERFACE;
