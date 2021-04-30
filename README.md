@@ -20,16 +20,10 @@
 </div>
 
 # Loop
-Loop is a object orientated programming language
+Loop is a object orientated programming language.
 
-## Before opening an issue
-Please see the [issue policy](documentation/CONTRIBUTING.md#issue-policy).
-
-## How do I contribute?
-See the Loop [contribution guidelines](documentation/CONTRIBUTING.md).
-
-## How do I build and run this?
-Make sure, you installed the requirements for g++ and make:
+## How do I build and run loop?
+Make sure, you installed the requirements for clang and make:
 ```shell
 $ sudo apt install build-essential clang
 ```
@@ -40,6 +34,13 @@ $ make
 
 $ ./loop examples/example.loop
 ```
+
+## How do I contribute?
+See the Loop [contribution guidelines](CONTRIBUTING.md).
+
+## Before opening an issue
+Please see the [issue policy](CONTRIBUTING.md#issue-policy).
+
 ## How should the grammar of Loop look like?
 Take a look at the [Grammar for Loop](documentation/GRAMMAR.md) `[work in progress]`
 
