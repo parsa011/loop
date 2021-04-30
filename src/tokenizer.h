@@ -83,6 +83,7 @@ struct Tokenizer
     bool isLCOF();
     char peek(int offset);
     void advance(int offset);
+    void pushChar();
     Tokenizer(std::string data, Error &error);
 };
 

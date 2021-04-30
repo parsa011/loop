@@ -37,6 +37,12 @@ void Tokenizer::advance(int offset)
     lastChar = src[index];
 }
 
+void Tokenizer::pushChar()
+{
+    lastToken.value.push_back(lastChar);
+    advance(1);
+}
+
 char Tokenizer::peek(int offset)
 {
     if ((size_t)offset + index < src.length())
@@ -108,8 +114,8 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                 {
                     if (peek(-1) == '\\')
                     {
-                        lastToken.value += lastChar;
-                        advance(1);
+
+                        pushChar();
                         ++startIndex;
                     }
                     else
@@ -120,26 +126,23 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                 }
                 else
                 {
-                    lastToken.value += lastChar;
-                    advance(1);
+
+                    pushChar();
                     ++startIndex;
                 }
             }
         }
         else if (lastChar == '\'')
         {
-            size_t startIndex = 0;
-            lastToken.value += lastChar;
-            advance(1);
-            ++startIndex;
-            while (true)
+            pushChar();
+            for (size_t sIndex = 0;; sIndex++)
             {
                 if (isLCOF() && lastChar != '\'')
                 {
                     errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
                     exit(1);
                 }
-                else if (startIndex == 1 && lastChar == '\'')
+                else if (sIndex == 1 && lastChar == '\'')
                 {
                     errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
                     break;
@@ -149,51 +152,29 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                     lastToken.kind = T_CHAR;
                     break;
                 }
-                else
+                else if (lastChar == '\\')
                 {
-                    if (lastChar == '\\')
+                    if (peek(1) == 'a' || peek(1) == 'b' || peek(1) == 'e' || peek(1) == 'f' || peek(1) == 'n' || peek(1) == 'r' || peek(1) == 't' || peek(1) == 'v' || peek(1) == '\\' || peek(1) == '\'' || peek(1) == '"')
                     {
-                        if (peek(1) == 'a' || peek(1) == 'b' || peek(1) == 'e' || peek(1) == 'f' || peek(1) == 'n' || peek(1) == 'r' || peek(1) == 't' || peek(1) == 'v' || peek(1) == '\\' || peek(1) == '\'' || peek(1) == '"')
+
+                        pushChar();
+                        if (peek(1) != '\'')
                         {
-                            lastToken.value += lastChar;
-                            advance(1);
-                            ++startIndex;
-                            if (peek(1) != '\'')
-                            {
-                                errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Can Only Contains 1 Byte", src.c_str(), index);
-                                exit(1);
-                            }
-                        }
-                        else if (peek(1) == 'x')
-                        {
-                            for (size_t i = 0; i < 4; i++)
-                            {
-                                lastToken.value += lastChar;
-                                advance(1);
-                                ++startIndex;
-                                if (i > 2 && !isxdigit(lastChar))
-                                {
-                                    errorHandler.syntax(Error::NOT_HEX_DIGIT, "Is't Hexadecimal Digit", src.c_str(), index);
-                                    std::cout << lastChar << std::endl;
-                                    exit(1);
-                                }
-                                else
-                                {
-                                    lastToken.kind = T_CHAR;
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SEQUENCE, "Unsupported Escape Squanse", src.c_str(), index);
+                            errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Can Only Contains 1 Byte", src.c_str(), index);
                             exit(1);
                         }
                     }
-                    lastToken.value += lastChar;
-                    advance(1);
-                    ++startIndex;
+                    else if (peek(1) == 'x')
+                    {
+                    }
+                    else
+                    {
+                        errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SEQUENCE, "Unsupported Escape Squanse", src.c_str(), index);
+                        exit(1);
+                    }
                 }
+                lastToken.value += lastChar;
+                advance(1);
             }
         }
         else if (lastChar == '=')
@@ -201,8 +182,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             if (peek(1) == '=')
             {
                 lastToken.kind = T_DOUBLE_EQUAL;
-                lastToken.value = '=';
-                advance(1);
+                pushChar();
             }
             else
             {
@@ -214,14 +194,12 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             if (peek(1) == '=')
             {
                 lastToken.kind = T_EQUAL_PLUS;
-                lastToken.value = '+';
-                advance(1);
+                pushChar();
             }
             else if (peek(1) == '+')
             {
                 lastToken.kind = T_DOUBLE_PLUS;
-                lastToken.value = '+';
-                advance(1);
+                pushChar();
             }
             else
             {
@@ -233,14 +211,12 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             if (peek(1) == '=')
             {
                 lastToken.kind = T_EQUAL_MINUS;
-                lastToken.value = '-';
-                advance(1);
+                pushChar();
             }
             else if (peek(1) == '-')
             {
                 lastToken.kind = T_DOUBLE_MINUS;
-                lastToken.value = '-';
-                advance(1);
+                pushChar();
             }
             else
             {
@@ -252,14 +228,12 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             if (peek(1) == '=')
             {
                 lastToken.kind = T_EQUAL_PIPE;
-                lastToken.value = '|';
-                advance(1);
+                pushChar();
             }
             else if (peek(1) == '|')
             {
                 lastToken.kind = T_DOUBLE_PIPE;
-                lastToken.value = '|';
-                advance(1);
+                pushChar();
             }
             else
             {
@@ -271,8 +245,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             if (peek(1) == '=')
             {
                 lastToken.kind = T_EQUAL_LESSER_BRACKET;
-                lastToken.value = '<';
-                advance(1);
+                pushChar();
             }
             else
             {
@@ -284,8 +257,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             if (peek(1) == '=')
             {
                 lastToken.kind = T_EQUAL_GREETER_BRACKET;
-                lastToken.value = '>';
-                advance(1);
+                pushChar();
             }
             else
             {
@@ -297,8 +269,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             if (peek(1) == '&')
             {
                 lastToken.kind = T_LOGIC_AND;
-                lastToken.value = '&';
-                advance(1);
+                pushChar();
             }
             else
             {
@@ -345,8 +316,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             while (isalpha(lastChar))
             {
-                lastToken.value += lastChar;
-                advance(1);
+                pushChar();
             }
             if (lastToken.value == "namespace")
             {
@@ -446,7 +416,6 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             }
             lastToken.index = index - lastToken.value.length();
             tokens.push_back(lastToken);
-            advance(1);
             continue;
         }
         else
