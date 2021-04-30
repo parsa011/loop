@@ -77,5 +77,5 @@ MULTI_LINE_COMMENT      : '/*' [A-Za-z0-9_]* '*/
 SINGLE_LINE_COMMENT     : '//' [A-Za-z0-9_]*
 
 // Identifiers
-ID                      : [_]*[a-z][A-Za-z0-9_]*
+ID                      : [a-z][A-Za-z0-9_]*
 ```

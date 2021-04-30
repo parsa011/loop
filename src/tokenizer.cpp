@@ -382,7 +382,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         }
         else if (isalpha(lastChar))
         {
-            while (isalpha(lastChar))
+            while (isalpha(lastChar) || isdigit(lastChar) || lastChar == '_')
             {
                 pushChar();
             }
@@ -512,7 +512,21 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             }
             else
             {
-                errorHandler.syntax(Error::UNRECOGNIZED_KEYWORD, "Unrecognized Keyword", data.c_str(), index);
+                if (isalpha(lastToken.value[0]))
+                {
+                    for (size_t i = 0; i <= lastToken.value.length()-1; ++i)
+                    {
+                        if (!isalpha(lastToken.value[i]) && !isdigit(lastToken.value[i]) && lastToken.value[i] != '_')
+                        {
+                            errorHandler.syntax(Error::INVALID_IDENTIFIER_NAME, "Invalid identifier name", data.c_str(), index);
+                        }
+                    }
+                    lastToken.kind = T_ID;
+                }
+                else
+                {
+                    errorHandler.syntax(Error::UNRECOGNIZED_KEYWORD, "Unrecognized Keyword", data.c_str(), index);
+                }
             }
             lastToken.index = index - lastToken.value.length();
             tokens.push_back(lastToken);

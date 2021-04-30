@@ -21,7 +21,8 @@ struct Error
         NOT_HEX_DIGIT,
         CLOSE_COMMENT,
         UNRECOGNIZED_KEYWORD,
-        INVALID_OCTAL_NUMBER
+        INVALID_OCTAL_NUMBER,
+        INVALID_IDENTIFIER_NAME
     };
     void syntax(ERRORS code, const char *message, const char *file_path, size_t index);
     void compiler(ERRORS code, const char *message);
