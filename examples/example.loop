@@ -19,3 +19,5 @@
 {} // this will be ignored
 []
 if(){}
+void
+int

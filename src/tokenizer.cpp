@@ -318,7 +318,35 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             {
                 pushChar();
             }
-            if (lastToken.value == "namespace")
+            if (lastToken.value == "char")
+            {
+            lastToken.kind = T_CHAR_TYPE;
+            }
+            else if (lastToken.value == "string")
+            {
+            lastToken.kind = T_STRING_TYPE;
+            }
+            else if (lastToken.value == "int")
+            {
+            lastToken.kind = T_INT_TYPE;
+            }
+            else if (lastToken.value == "float")
+            {
+            lastToken.kind = T_FLOAT_TYPE;
+            }
+            else if (lastToken.value == "double")
+            {
+            lastToken.kind = T_DOUBLE_TYPE;
+            }
+            else if (lastToken.value == "bool")
+            {
+            lastToken.kind = T_BOOLEAN_TYPE;
+            }
+            else if (lastToken.value == "void")
+            {
+            lastToken.kind = T_VOID_TYPE;
+            }
+            else if (lastToken.value == "namespace")
             {
                 lastToken.kind = T_NAMESPACE;
             }

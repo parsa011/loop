@@ -37,7 +37,17 @@ enum TOKENS
     T_EQUAL_PIPE,            // |=
     T_EQUAL_LESSER_BRACKET,  // <=
     T_EQUAL_GREETER_BRACKET, // >=
-    
+
+    // Data Types
+    T_CHAR_TYPE,             // char
+    T_STRING_TYPE,           // string
+    T_INT_TYPE,              // int
+    T_FLOAT_TYPE,            // float
+    T_DOUBLE_TYPE,           // double
+    T_BOOLEAN_TYPE,          // bool
+    T_VOID_TYPE,             // void
+
+    // Keywords
     T_NAMESPACE,             // namespace
     T_CLASS,                 // class
     T_ENUM,                  // enum
