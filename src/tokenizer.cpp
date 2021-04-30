@@ -57,7 +57,6 @@ char Tokenizer::peek(int offset)
 
 Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(error)
 {
-
     lastChar = src[0];
     while (!isEOF())
     {
@@ -134,48 +133,100 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         }
         else if (lastChar == '\'')
         {
-            pushChar();
-            for (size_t sIndex = 0;; sIndex++)
+            bool charEnd = false;
+            for (size_t i = 0; true; i++)
             {
-                if (isLCOF() && lastChar != '\'')
+                if (lastChar == '\'')
                 {
-                    errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
-                    exit(1);
-                }
-                else if (sIndex == 1 && lastChar == '\'')
-                {
-                    errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
-                    break;
-                }
-                else if (lastChar == '\'' && peek(-1) != '\\')
-                {
-                    lastToken.kind = T_CHAR;
-                    break;
-                }
-                else if (lastChar == '\\')
-                {
-                    if (peek(1) == 'a' || peek(1) == 'b' || peek(1) == 'e' || peek(1) == 'f' || peek(1) == 'n' || peek(1) == 'r' || peek(1) == 't' || peek(1) == 'v' || peek(1) == '\\' || peek(1) == '\'' || peek(1) == '"')
+                    if (i == 0)
                     {
-
                         pushChar();
-                        if (peek(1) != '\'')
-                        {
-                            errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Can Only Contains 1 Byte", src.c_str(), index);
-                            exit(1);
-                        }
                     }
-                    else if (peek(1) == 'x')
+                    else if (i == 1)
                     {
+                        errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
+                        exit(1);
                     }
                     else
                     {
-                        errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SEQUENCE, "Unsupported Escape Squanse", src.c_str(), index);
-                        exit(1);
+                        break;
                     }
                 }
-                lastToken.value += lastChar;
-                advance(1);
+                else
+                {
+                    if (isLCOF())
+                    {
+                        errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
+                        exit(1);
+                    }
+                    else if (charEnd && lastChar != '\'')
+                    {
+                        errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Can Only Contains 1 Byte", src.c_str(), index);
+                        exit(1);
+                    }
+                    else if (lastChar == '\\')
+                    {
+                        pushChar();
+                        if (lastChar == 'a' || lastChar == 'b' || lastChar == 'e' || lastChar == 'f' || lastChar == 'n' || lastChar == 'r' || lastChar == 't' || lastChar == 'v' || lastChar == '\\' || lastChar == '\'' || lastChar == '"')
+                        {
+                            pushChar();
+                        }
+                        else
+                        {
+                            errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SEQUENCE, "Unsupported Escape Squanse", src.c_str(), index);
+                            exit(1);
+                        }
+                    }
+                    else
+                    {
+                        pushChar();
+                    }
+                    charEnd = true;
+                }
             }
+            lastToken.kind = T_CHAR;
+            // pushChar();
+            // for (size_t sIndex = 0;; sIndex++)
+            // {
+            //     if (isLCOF() && lastChar != '\'')
+            //     {
+            //         errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
+            //         exit(1);
+            //     }
+            //     else if (sIndex == 1 && lastChar == '\'')
+            //     {
+            //         errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
+            //         break;
+            //     }
+            //     else if (lastChar == '\'' && peek(-1) != '\\')
+            //     {
+            //         lastToken.kind = T_CHAR;
+            //         break;
+            //     }
+            //     else if (lastChar == '\\')
+            //     {
+            //         if (peek(1) == 'a' || peek(1) == 'b' || peek(1) == 'e' || peek(1) == 'f' || peek(1) == 'n' || peek(1) == 'r' || peek(1) == 't' || peek(1) == 'v' || peek(1) == '\\' || peek(1) == '\'' || peek(1) == '"')
+            //         {
+
+            //             pushChar();
+            //             if (peek(1) != '\'')
+            //             {
+            //                 errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Can Only Contains 1 Byte", src.c_str(), index);
+            //                 exit(1);
+            //             }
+            //         }
+            //         else if (peek(1) == 'x')
+            //         {
+            //         }
+            //         else
+            //         {
+            //             errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SEQUENCE, "Unsupported Escape Squanse", src.c_str(), index);
+            //             exit(1);
+            //         }
+            //     }
+            //     lastToken.value += lastChar;
+            //     advance(1);
+            // }
         }
         else if (lastChar == '=')
         {
@@ -320,31 +371,31 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             }
             if (lastToken.value == "char")
             {
-            lastToken.kind = T_CHAR_TYPE;
+                lastToken.kind = T_CHAR_TYPE;
             }
             else if (lastToken.value == "string")
             {
-            lastToken.kind = T_STRING_TYPE;
+                lastToken.kind = T_STRING_TYPE;
             }
             else if (lastToken.value == "int")
             {
-            lastToken.kind = T_INT_TYPE;
+                lastToken.kind = T_INT_TYPE;
             }
             else if (lastToken.value == "float")
             {
-            lastToken.kind = T_FLOAT_TYPE;
+                lastToken.kind = T_FLOAT_TYPE;
             }
             else if (lastToken.value == "double")
             {
-            lastToken.kind = T_DOUBLE_TYPE;
+                lastToken.kind = T_DOUBLE_TYPE;
             }
             else if (lastToken.value == "bool")
             {
-            lastToken.kind = T_BOOLEAN_TYPE;
+                lastToken.kind = T_BOOLEAN_TYPE;
             }
             else if (lastToken.value == "void")
             {
-            lastToken.kind = T_VOID_TYPE;
+                lastToken.kind = T_VOID_TYPE;
             }
             else if (lastToken.value == "namespace")
             {
@@ -452,7 +503,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         }
         lastToken.value += lastChar;
         lastToken.index = index - lastToken.value.length();
-        tokens.push_back(lastToken);
         advance(1);
+        tokens.push_back(lastToken);
     }
 }
