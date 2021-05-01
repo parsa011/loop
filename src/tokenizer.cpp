@@ -92,51 +92,41 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         }
         else if (lastChar == '"')
         {
-            size_t startIndex = 0;
+            pushChar();
             while (!isEOF())
             {
-                if (isLCOF() && lastChar != '"')
-                {
-                    errorHandler.syntax(Error::MISSING_QUOTATION_MARK, "Quated Char Must Be Finished", src.c_str(), index);
-                }
-                else if (startIndex == 1 && lastChar == '"')
-                {
-                    errorHandler.syntax(Error::NO_NULL_CHAR, "Char Type Must Be Initialized", src.c_str(), index);
-                }
-                else if (startIndex > 1 && lastChar == '"')
+                if (lastChar == '"')
                 {
                     if (peek(-1) == '\\')
                     {
-
                         pushChar();
-                        ++startIndex;
                     }
                     else
                     {
-                        lastToken.kind = T_STRING;
                         break;
                     }
                 }
+                else if (isLCOF() && lastChar != '"')
+                {
+                    errorHandler.syntax(Error::MISSING_QUOTATION_MARK, "Quated String Must Be Finished", src.c_str(), index);
+                    exit(1);
+                }
                 else
                 {
-
                     pushChar();
-                    ++startIndex;
                 }
             }
+            lastToken.kind = T_CHAR;
         }
         else if (lastChar == '\'')
         {
             bool charEnd = false;
-            for (size_t i = 0; true; i++)
+                        pushChar();
+            for (size_t i = 0; !isEOF(); i++)
             {
                 if (lastChar == '\'')
                 {
                     if (i == 0)
-                    {
-                        pushChar();
-                    }
-                    else if (i == 1)
                     {
                         errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
                         exit(1);
@@ -177,7 +167,8 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                                         errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", src.c_str(), index);
                                         exit(1);
                                     }
-                                    else {
+                                    else
+                                    {
                                         pushChar();
                                     }
                                 }
@@ -188,7 +179,8 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                                         errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", src.c_str(), index);
                                         exit(1);
                                     }
-                                    else {
+                                    else
+                                    {
                                         break;
                                     }
                                 }
@@ -326,18 +318,6 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                 lastToken.kind = T_AND;
             }
         }
-        else if (lastChar == '/')
-        {
-            lastToken.kind = T_SLASH;
-        }
-        else if (lastChar == '%')
-        {
-            lastToken.kind = T_PERCENT;
-        }
-        else if (lastChar == ';')
-        {
-            lastToken.kind = T_SEMICOLON;
-        }
         else if (lastChar == ':')
         {
             if (peek(1) == ':')
@@ -349,7 +329,18 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             {
                 lastToken.kind = T_COLON;
             }
-            
+        }
+        else if (lastChar == '/')
+        {
+            lastToken.kind = T_SLASH;
+        }
+        else if (lastChar == '%')
+        {
+            lastToken.kind = T_PERCENT;
+        }
+        else if (lastChar == ';')
+        {
+            lastToken.kind = T_SEMICOLON;
         }
         else if (lastChar == ',')
         {
@@ -528,6 +519,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         else
         {
             errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
+            exit(1);
         }
         lastToken.value += lastChar;
         lastToken.index = index - lastToken.value.length();
