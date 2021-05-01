@@ -53,6 +53,11 @@ bool Tokenizer::isEOF()
     return true;
 }
 
+bool Tokenizer::ishex(char hex)
+{
+    return isdigit(hex) || hex == 'a' || hex == 'A' || hex == 'b' || hex == 'B' || hex == 'c' || hex == 'C' || hex == 'd' || hex == 'D' || hex == 'e' || hex == 'E' || hex == 'f' || hex == 'F';
+}
+
 bool Tokenizer::isLCOF()
 {
     if (index < src.length() - 1)
@@ -418,7 +423,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             lastToken.kind = T_RIGHT_SQUARE_BRACKET;
         }
-        else if (isalpha(lastChar) || lastChar == '_')
+        else if (isalpha(lastChar))
         {
             while (isalpha(lastChar) || isdigit(lastChar) || lastChar == '_')
             {
@@ -431,8 +436,45 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         }
         else
         {
-            errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
-            exit(1);
+            if (isdigit(lastChar))
+            {
+                while (lastChar == 'x' || lastChar == '.' || ishex(lastChar))
+                {
+                    pushChar();
+                }
+                if (lastToken.value[0] == '0' && lastToken.value[1] == 'x')
+                {
+                    lastToken.kind = T_HEX;
+                }
+                else if (lastToken.value[0] == '0' && lastToken.value[1] == 'b')
+                {
+                    lastToken.kind = T_BIN;
+                }
+                else
+                {
+                    lastToken.kind = T_INT;
+                    for(size_t i = 0; i <= lastToken.value.length()-1; ++i)
+                    {
+                        if(lastToken.value[i] == '.')
+                        {
+                            if(i == lastToken.value.length()-1)
+                            {
+                                errorHandler.syntax(Error::INVALID_NUMBER, "Invalid floating point number", data.c_str(), index);
+                exit(1);
+                            }
+                            lastToken.kind = T_FLOAT;
+                        }
+                    }
+                }
+                lastToken.index = index - lastToken.value.length();
+                tokens.push_back(lastToken);
+                continue;
+            }
+            else
+            {
+                errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
+                exit(1);
+            }
         }
         lastToken.value += lastChar;
         lastToken.index = index - lastToken.value.length();

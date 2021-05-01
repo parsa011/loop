@@ -12,6 +12,9 @@ enum TOKENS
     T_STRING,                // "String"
     T_CHAR,                  // 'Char'
     T_INT,                   // 27
+    T_FLOAT,                 // 27.0
+    T_HEX,                   // 0xFF
+    T_BIN,                   // 0b01
     T_EQUAL,                 // =
     T_PLUS,                  // +
     T_MINUS,                 // -
@@ -100,6 +103,7 @@ struct Tokenizer
     TOKENS getKeywordTokenKind();
     bool isEOF();
     bool isLCOF();
+    bool ishex(char hex);
     char peek(int offset);
     void advance(int offset);
     void pushChar();

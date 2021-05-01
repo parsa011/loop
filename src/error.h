@@ -22,7 +22,8 @@ struct Error
         UNSUPPORTED_ESCAPE_SEQUENCE,
         CLOSE_COMMENT,
         INVALID_OCTAL_NUMBER,
-        INVALID_HEX_DIGIT
+        INVALID_HEX_DIGIT,
+        INVALID_NUMBER
     };
     void syntax(ERRORS code, const char *message, const char *file_path, size_t index);
     void compiler(ERRORS code, const char *message);

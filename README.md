@@ -20,7 +20,7 @@
 </div>
 
 # Loop
-Loop is a object orientated programming language.
+Loop is an object orientated programming language.
 
 ![Example tokenized Loop Code](documentation/assets/images/tokenized_example_code.png)
 
