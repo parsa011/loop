@@ -165,6 +165,36 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                         {
                             pushChar();
                         }
+                        else if (lastChar == 'x')
+                        {
+                            pushChar();
+                            for (size_t i = 0; !isEOF(); i++)
+                            {
+                                if (isxdigit(lastChar))
+                                {
+                                    if (i > 7)
+                                    {
+                                        errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", src.c_str(), index);
+                                        exit(1);
+                                    }
+                                    else {
+                                        pushChar();
+                                    }
+                                }
+                                else
+                                {
+                                    if (i < 2)
+                                    {
+                                        errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", src.c_str(), index);
+                                        exit(1);
+                                    }
+                                    else {
+                                        break;
+                                    }
+                                }
+                            }
+                            charEnd = true;
+                        }
                         else if (isdigit(lastChar))
                         {
                             for (size_t i = 0; isdigit(lastChar); i++)

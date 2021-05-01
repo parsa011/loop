@@ -28,6 +28,7 @@ int
 'C'
 '\n'
 '\65'
+'\xDF676767'
 extern
 Asdf
 AS_DF
