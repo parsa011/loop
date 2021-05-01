@@ -1,39 +1,76 @@
+myVar
+// strings
+"String"
+"\"Hard\" String"
+// chars
+'m'
+'\xFFFFFFFF'
+'\377'
+// operators
 =
 +
 -
-/*
-* Multi
-* line
-* comments
-*/
+/
+%
 |
 &
-.
-,
-:
+// gaps
 ;
+:
+::
+,
+.
+// brackets
+(
+)
+{
+}
+[
+]
+<
+>
+// comparison
 ==
 ++
-"\"Hello\" World"
 --
 ||
-"Test"
 &&
-()
-{} // this will be ignored
-[]
-if(){}
-void
++=
+-=
+|=
+<=
+>=
+// data types
+char
+string
 int
-'C'
-'\n'
-'\65'
-'\xDF67677'
+float
+double
+bool
+void
+// keywords
+namespace
+class
+struct
+enum
 extern
-Asdf
-AS_DF
-A5_F
-string asdf="Hello World";
-
-struct test{};
-test::unit();
+interface
+extends
+implements
+abstract
+public
+private
+protected
+static
+if
+else
+for
+while
+return
+break
+continue
+using
+final
+true
+false
+this

@@ -1,46 +1,47 @@
 #include "tokenizer.h"
 
-std::map<std::string, TOKENS> StringToTokenKind = {
-    //Data Types
-    { "char" ,       T_CHAR_TYPE    },
-    { "string" ,     T_STRING       },
-    { "int" ,        T_INT_TYPE     },
-    { "float" ,      T_FLOAT_TYPE   },
-    { "double" ,     T_DOUBLE_TYPE  },
-    { "bool" ,       T_BOOLEAN_TYPE },
-    { "void" ,       T_VOID_TYPE    },
-    //Keywords
-    { "namespace" ,  T_NAMESPACE    },
-    { "class" ,      T_CLASS        },
-    { "struct",      T_STRUCT       },
-    { "enum" ,       T_ENUM         },
-    { "extern" ,     T_EXTERN       },
-    { "interface" ,  T_INTERFACE    },
-    { "extends" ,    T_EXTENDS      },
-    { "implements" , T_IMPLEMENTS   },
-    { "abstract" ,   T_ABSTRACT     },
-    { "public" ,     T_PUBLIC       },
-    { "private" ,    T_PRIVATE      },
-    { "protected" ,  T_PROTECTED    },
-    { "static" ,     T_STATIC       },
-    { "if" ,         T_IF           },
-    { "else" ,       T_ELSE         },
-    { "for" ,        T_FOR          },
-    { "while" ,      T_WHILE        },
-    { "return" ,     T_RETURN       },
-    { "break" ,      T_BREAK        },
-    { "continue" ,   T_CONTINUE     },
-    { "using" ,      T_USING        },
-    { "final" ,      T_FINAL        },
-    { "true" ,       T_TRUE         },
-    { "false" ,      T_FALSE        },
-    { "this" ,       T_THIS         }
-};
+std::map<std::string, TOKENS> KeyWordTokensKind = {
+    {"char", T_CHAR_TYPE},
+    {"string", T_STRING_TYPE},
+    {"int", T_INT_TYPE},
+    {"float", T_FLOAT_TYPE},
+    {"double", T_DOUBLE_TYPE},
+    {"bool", T_BOOLEAN_TYPE},
+    {"void", T_VOID_TYPE},
+    {"namespace", T_NAMESPACE},
+    {"class", T_CLASS},
+    {"struct", T_STRUCT},
+    {"enum", T_ENUM},
+    {"extern", T_EXTERN},
+    {"interface", T_INTERFACE},
+    {"extends", T_EXTENDS},
+    {"implements", T_IMPLEMENTS},
+    {"abstract", T_ABSTRACT},
+    {"public", T_PUBLIC},
+    {"private", T_PRIVATE},
+    {"protected", T_PROTECTED},
+    {"static", T_STATIC},
+    {"if", T_IF},
+    {"else", T_ELSE},
+    {"for", T_FOR},
+    {"while", T_WHILE},
+    {"return", T_RETURN},
+    {"break", T_BREAK},
+    {"continue", T_CONTINUE},
+    {"using", T_USING},
+    {"final", T_FINAL},
+    {"true", T_TRUE},
+    {"false", T_FALSE},
+    {"this", T_THIS}};
 
-auto Tokenizer::getKind(const std::string& type) {
-  auto kind = StringToTokenKind.find(type);
-  if (kind == std::end(StringToTokenKind)) return T_ID;
-  return kind->second;
+TOKENS Tokenizer::getKeywordTokenKind()
+{
+    std::_Rb_tree_iterator<std::pair<const std::string, TOKENS>> kind = KeyWordTokensKind.find(lastToken.value);
+    if (kind == std::end(KeyWordTokensKind))
+    {
+        return T_ID;
+    }
+    return kind->second;
 }
 
 bool Tokenizer::isEOF()
@@ -86,10 +87,7 @@ char Tokenizer::peek(int offset)
     {
         return src[index + (size_t)offset];
     }
-    else
-    {
-        return src[src.length()];
-    }
+    return src[src.length()];
 }
 
 Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(error)
@@ -103,37 +101,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             advance(1);
         }
 
-        if (lastChar == '/' && peek(1) == '*')
-        {
-            advance(2);
-            while (!isEOF())
-            {
-                advance(1);
-                if (lastChar == '*' && peek(1) == '/')
-                {
-                    advance(2);
-                    break;
-                }
-            }
-            if (isEOF())
-            {
-                errorHandler.syntax(Error::CLOSE_COMMENT, "You need to close the comment", src.c_str(), index);
-            }
-            continue;
-        }
-        else if (lastChar == '/' && peek(1) == '/')
-        {
-            while (!isEOF())
-            {
-                advance(1);
-                if (lastChar == '\n')
-                {
-                    break;
-                }
-            }
-            continue;
-        }
-        else if (lastChar == '"')
+        if (lastChar == '"')
         {
             pushChar();
             while (!isEOF())
@@ -159,12 +127,12 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                     pushChar();
                 }
             }
-            lastToken.kind = T_CHAR;
+            lastToken.kind = T_STRING;
         }
         else if (lastChar == '\'')
         {
             bool charEnd = false;
-                        pushChar();
+            pushChar();
             for (size_t i = 0; !isEOF(); i++)
             {
                 if (lastChar == '\'')
@@ -375,7 +343,40 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         }
         else if (lastChar == '/')
         {
-            lastToken.kind = T_SLASH;
+            if (peek(1) == '*')
+            {
+                advance(2);
+                while (!isEOF())
+                {
+                    advance(1);
+                    if (lastChar == '*' && peek(1) == '/')
+                    {
+                        advance(2);
+                        break;
+                    }
+                }
+                if (isEOF())
+                {
+                    errorHandler.syntax(Error::CLOSE_COMMENT, "You need to close the comment", src.c_str(), index);
+                }
+                continue;
+            }
+            else if (peek(1) == '/')
+            {
+                while (!isEOF())
+                {
+                    advance(1);
+                    if (lastChar == '\n')
+                    {
+                        break;
+                    }
+                }
+                continue;
+            }
+            else
+            {
+                lastToken.kind = T_SLASH;
+            }
         }
         else if (lastChar == '%')
         {
@@ -417,15 +418,13 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             lastToken.kind = T_RIGHT_SQUARE_BRACKET;
         }
-        else if (isalpha(lastChar))
+        else if (isalpha(lastChar) || lastChar == '_')
         {
             while (isalpha(lastChar) || isdigit(lastChar) || lastChar == '_')
             {
                 pushChar();
             }
-            
-            lastToken.kind = getKind(lastToken.value);
-            
+            lastToken.kind = getKeywordTokenKind();
             lastToken.index = index - lastToken.value.length();
             tokens.push_back(lastToken);
             continue;

@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    char32_t c = L'\xFDE32';
-    std::cout << c << std::endl;
+    
+    std::cout << isalpha('?') << std::endl;
     return 0;
 }

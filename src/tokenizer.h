@@ -8,7 +8,7 @@
 
 enum TOKENS
 {
-    T_ID,                    // Identifiers: using, return and etc
+    T_ID,                    // Identifiers: myVar and etc
     T_STRING,                // "String"
     T_CHAR,                  // 'Char'
     T_INT,                   // 27
@@ -32,11 +32,11 @@ enum TOKENS
     T_RIGHT_SQUARE_BRACKET,  // ]
     T_LEFT_ANGLE_BRACKET,    // <
     T_RIGHT_ANGLE_BRACKET,   // >
-    T_LOGIC_AND,             // &&
     T_DOUBLE_EQUAL,          // ==
     T_DOUBLE_PLUS,           // ++
     T_DOUBLE_MINUS,          // --
     T_DOUBLE_PIPE,           // ||
+    T_LOGIC_AND,             // &&
     T_EQUAL_PLUS,            // +=
     T_EQUAL_MINUS,           // -=
     T_EQUAL_PIPE,            // |=
@@ -80,6 +80,7 @@ enum TOKENS
     T_THIS                   // this
 };
 
+
 struct Token
 {
     std::string value;
@@ -94,10 +95,9 @@ struct Tokenizer
     std::string src;
     char lastChar;
     Token lastToken;
-    // std::map<std::string ,TOKENS> StringToTokenKind;
     std::vector<Token> tokens;
     Error errorHandler;
-    auto getKind(const std::string& type);
+    TOKENS getKeywordTokenKind();
     bool isEOF();
     bool isLCOF();
     char peek(int offset);
@@ -106,6 +106,5 @@ struct Tokenizer
     Tokenizer(std::string data, Error &error);
 };
 
-std::vector<Token> tokenize(std::string data);
 
 #endif //TOKENIZER_H
