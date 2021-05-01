@@ -457,7 +457,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                     {
                         if(lastToken.value[i] == '.')
                         {
-                            if(i == lastToken.value.length()-1)
+                            if(i == lastToken.value.length()-1 || lastToken.kind == T_FLOAT)
                             {
                                 errorHandler.syntax(Error::INVALID_NUMBER, "Invalid floating point number", data.c_str(), index);
                 exit(1);

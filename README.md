@@ -46,10 +46,8 @@ Please see the [issue policy](CONTRIBUTING.md#issue-policy).
 ## How should the grammar of Loop look like?
 Take a look at the [Grammar for Loop](documentation/GRAMMAR.md) `[work in progress]`
 
-## About
-
-### Contact
-- [Discord](https://discord.gg/a23N3Gdy)
+## Discord
+<a href="https://discord.gg/a23N3Gdy"><img src="https://invidget.switchblade.xyz/a23N3Gdy"/></a>
 
 ## License
 
