@@ -1,7 +1,7 @@
 GCC = clang
 SRC = $(wildcard src/*.cpp)
 FLAGS = -ggdb -O0 -Wall -Wextra -Wpedantic -Wconversion -Wnon-virtual-dtor -Werror -std=c++17
-FLAGS_RELEASE =  -O3 -std=c++17
+FLAGS_RELEASE = -O3 -std=c++17
 LDFLAGS = -pthread -ldl -lm -lstdc++
 
 
