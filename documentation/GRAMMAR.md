@@ -74,7 +74,7 @@ FALSE                   : 'false'
 THIS                    : 'this'
 
 // Comments
-MULTI_LINE_COMMENT      : '/*' [A-Za-z0-9_]* '*/
+MULTI_LINE_COMMENT      : '/*' [A-Za-z0-9_]* '*/'
 SINGLE_LINE_COMMENT     : '//' [A-Za-z0-9_]*
 
 // Identifiers
