@@ -6,10 +6,7 @@ bool Tokenizer::isEOF()
     {
         return false;
     }
-    else
-    {
-        return true;
-    }
+    return true;
 }
 
 bool Tokenizer::isLCOF()
@@ -18,10 +15,7 @@ bool Tokenizer::isLCOF()
     {
         return false;
     }
-    else
-    {
-        return true;
-    }
+    return true;
 }
 
 void Tokenizer::advance(int offset)
