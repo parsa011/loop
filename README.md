@@ -50,6 +50,7 @@ Take a look at the [Grammar for Loop](documentation/GRAMMAR.md) `[work in progre
 ### Authors: 
 - [Ali Chraghi](https://github.com/AliChraghi)
 - [Jonas Ampferl](https://github.com/Ampferl)
+- [Tejas Ravishankar](https://github.com/XtremeDevX)
 ### Contributors
 ![Loop Contributors](https://contrib.rocks/image?repo=loop-lang/loop)
 ### Contact
