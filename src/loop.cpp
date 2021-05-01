@@ -1,3 +1,4 @@
+// Imports
 #include <iostream>
 #include "tokenizer.h"
 #include "io.h"
@@ -5,6 +6,7 @@
 
 int main(int argc, const char *argv[])
 {
+    // Example: loop main.loop
     if (argc > 0)
     {
         Error error_handler;
@@ -26,7 +28,7 @@ int main(int argc, const char *argv[])
                             std::cout << token.kind << " : " << token.value << "\n";
                             ++tokenCount;
                         }
-                        std::cout << "Tokenization was \x1b[92;1msuccessful\x1b[0;1m (" << tokenCount << " token found)\n";
+                        std::cout << "Tokenization was \x1b[92;1msuccessful\x1b[0;1m (" << tokenCount << " tokens found)\n";
                     }
                 }
             }
@@ -36,5 +38,4 @@ int main(int argc, const char *argv[])
             }
         }
     }
-    return 0;
 }
