@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <map>
 #include "error.h"
 
 enum TOKENS
@@ -93,8 +94,10 @@ struct Tokenizer
     std::string src;
     char lastChar;
     Token lastToken;
+    // std::map<std::string ,TOKENS> StringToTokenKind;
     std::vector<Token> tokens;
     Error errorHandler;
+    auto getKind(const std::string& type);
     bool isEOF();
     bool isLCOF();
     char peek(int offset);

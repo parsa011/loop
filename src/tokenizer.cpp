@@ -1,5 +1,48 @@
 #include "tokenizer.h"
 
+std::map<std::string, TOKENS> StringToTokenKind = {
+    //Data Types
+    { "char" ,       T_CHAR_TYPE    },
+    { "string" ,     T_STRING       },
+    { "int" ,        T_INT_TYPE     },
+    { "float" ,      T_FLOAT_TYPE   },
+    { "double" ,     T_DOUBLE_TYPE  },
+    { "bool" ,       T_BOOLEAN_TYPE },
+    { "void" ,       T_VOID_TYPE    },
+    //Keywords
+    { "namespace" ,  T_NAMESPACE    },
+    { "class" ,      T_CLASS        },
+    { "struct",      T_STRUCT       },
+    { "enum" ,       T_ENUM         },
+    { "extern" ,     T_EXTERN       },
+    { "interface" ,  T_INTERFACE    },
+    { "extends" ,    T_EXTENDS      },
+    { "implements" , T_IMPLEMENTS   },
+    { "abstract" ,   T_ABSTRACT     },
+    { "public" ,     T_PUBLIC       },
+    { "private" ,    T_PRIVATE      },
+    { "protected" ,  T_PROTECTED    },
+    { "static" ,     T_STATIC       },
+    { "if" ,         T_IF           },
+    { "else" ,       T_ELSE         },
+    { "for" ,        T_FOR          },
+    { "while" ,      T_WHILE        },
+    { "return" ,     T_RETURN       },
+    { "break" ,      T_BREAK        },
+    { "continue" ,   T_CONTINUE     },
+    { "using" ,      T_USING        },
+    { "final" ,      T_FINAL        },
+    { "true" ,       T_TRUE         },
+    { "false" ,      T_FALSE        },
+    { "this" ,       T_THIS         }
+};
+
+auto Tokenizer::getKind(const std::string& type) {
+  auto kind = StringToTokenKind.find(type);
+  if (kind == std::end(StringToTokenKind)) return T_ID;
+  return kind->second;
+}
+
 bool Tokenizer::isEOF()
 {
     if (index < src.length() && lastChar != '\0' && lastChar != char(-1))
@@ -389,138 +432,9 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             {
                 pushChar();
             }
-            if (lastToken.value == "char")
-            {
-                lastToken.kind = T_CHAR_TYPE;
-            }
-            else if (lastToken.value == "string")
-            {
-                lastToken.kind = T_STRING_TYPE;
-            }
-            else if (lastToken.value == "int")
-            {
-                lastToken.kind = T_INT_TYPE;
-            }
-            else if (lastToken.value == "float")
-            {
-                lastToken.kind = T_FLOAT_TYPE;
-            }
-            else if (lastToken.value == "double")
-            {
-                lastToken.kind = T_DOUBLE_TYPE;
-            }
-            else if (lastToken.value == "bool")
-            {
-                lastToken.kind = T_BOOLEAN_TYPE;
-            }
-            else if (lastToken.value == "void")
-            {
-                lastToken.kind = T_VOID_TYPE;
-            }
-            else if (lastToken.value == "namespace")
-            {
-                lastToken.kind = T_NAMESPACE;
-            }
-            else if (lastToken.value == "class")
-            {
-                lastToken.kind = T_CLASS;
-            }
-            else if (lastToken.value == "struct")
-            {
-                lastToken.kind = T_STRUCT;
-            }
-            else if (lastToken.value == "enum")
-            {
-                lastToken.kind = T_ENUM;
-            }
-            else if (lastToken.value == "extern")
-            {
-                lastToken.kind = T_EXTERN;
-            }
-            else if (lastToken.value == "interface")
-            {
-                lastToken.kind = T_INTERFACE;
-            }
-            else if (lastToken.value == "extends")
-            {
-                lastToken.kind = T_EXTENDS;
-            }
-            else if (lastToken.value == "implements")
-            {
-                lastToken.kind = T_IMPLEMENTS;
-            }
-            else if (lastToken.value == "abstract")
-            {
-                lastToken.kind = T_ABSTRACT;
-            }
-            else if (lastToken.value == "public")
-            {
-                lastToken.kind = T_PUBLIC;
-            }
-            else if (lastToken.value == "private")
-            {
-                lastToken.kind = T_PRIVATE;
-            }
-            else if (lastToken.value == "protected")
-            {
-                lastToken.kind = T_PROTECTED;
-            }
-            else if (lastToken.value == "static")
-            {
-                lastToken.kind = T_STATIC;
-            }
-            else if (lastToken.value == "if")
-            {
-                lastToken.kind = T_IF;
-            }
-            else if (lastToken.value == "else")
-            {
-                lastToken.kind = T_ELSE;
-            }
-            else if (lastToken.value == "for")
-            {
-                lastToken.kind = T_FOR;
-            }
-            else if (lastToken.value == "while")
-            {
-                lastToken.kind = T_WHILE;
-            }
-            else if (lastToken.value == "return")
-            {
-                lastToken.kind = T_RETURN;
-            }
-            else if (lastToken.value == "break")
-            {
-                lastToken.kind = T_BREAK;
-            }
-            else if (lastToken.value == "continue")
-            {
-                lastToken.kind = T_CONTINUE;
-            }
-            else if (lastToken.value == "using")
-            {
-                lastToken.kind = T_USING;
-            }
-            else if (lastToken.value == "final")
-            {
-                lastToken.kind = T_FINAL;
-            }
-            else if (lastToken.value == "true")
-            {
-                lastToken.kind = T_TRUE;
-            }
-            else if (lastToken.value == "false")
-            {
-                lastToken.kind = T_FALSE;
-            }
-            else if (lastToken.value == "this")
-            {
-                lastToken.kind = T_THIS;
-            }
-            else
-            {
-                lastToken.kind = T_ID;
-            }
+            
+            lastToken.kind = getKind(lastToken.value);
+            
             lastToken.index = index - lastToken.value.length();
             tokens.push_back(lastToken);
             continue;
