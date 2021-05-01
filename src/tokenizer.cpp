@@ -444,23 +444,39 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                 }
                 if (lastToken.value[0] == '0' && lastToken.value[1] == 'x')
                 {
+                    for (size_t i = 2; i <= lastToken.value.length() - 1; ++i)
+                    {
+                        if (!ishex(lastToken.value[i]))
+                        {
+                            errorHandler.syntax(Error::INVALID_NUMBER, "Invalid hexadecimal number", data.c_str(), index);
+                            exit(1);
+                        }
+                    }
                     lastToken.kind = T_HEX;
                 }
                 else if (lastToken.value[0] == '0' && lastToken.value[1] == 'b')
                 {
+                    for (size_t i = 2; i <= lastToken.value.length() - 1; ++i)
+                    {
+                        if (lastToken.value[i] != '0' && lastToken.value[i] != '1')
+                        {
+                            errorHandler.syntax(Error::INVALID_NUMBER, "Invalid binary number", data.c_str(), index);
+                            exit(1);
+                        }
+                    }
                     lastToken.kind = T_BIN;
                 }
                 else
                 {
                     lastToken.kind = T_INT;
-                    for(size_t i = 0; i <= lastToken.value.length()-1; ++i)
+                    for (size_t i = 0; i <= lastToken.value.length() - 1; ++i)
                     {
-                        if(lastToken.value[i] == '.')
+                        if (lastToken.value[i] == '.' || !isdigit(lastToken.value[i]))
                         {
-                            if(i == lastToken.value.length()-1 || lastToken.kind == T_FLOAT)
+                            if (i == lastToken.value.length() - 1 || lastToken.kind == T_FLOAT || (!isdigit(lastToken.value[i]) && lastToken.value[i] != '.'))
                             {
                                 errorHandler.syntax(Error::INVALID_NUMBER, "Invalid floating point number", data.c_str(), index);
-                exit(1);
+                                exit(1);
                             }
                             lastToken.kind = T_FLOAT;
                         }
