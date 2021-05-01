@@ -47,9 +47,6 @@ Please see the [issue policy](CONTRIBUTING.md#issue-policy).
 Take a look at the [Grammar for Loop](documentation/GRAMMAR.md) `[work in progress]`
 
 ## About
-  
-### Contributors
-[![Loop Contributors](https://contrib.rocks/image?repo=loop-lang/loop)](https://github.com/loop-lang/loop/graphs/contributors)
 
 ### Contact
 - [Discord](https://discord.gg/a23N3Gdy)
