@@ -310,7 +310,16 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         }
         else if (lastChar == ':')
         {
-            lastToken.kind = T_COLON;
+            if (peek(1) == ':')
+            {
+                lastToken.kind = T_DOUBLE_COLON;
+                pushChar();
+            }
+            else
+            {
+                lastToken.kind = T_COLON;
+            }
+            
         }
         else if (lastChar == ',')
         {

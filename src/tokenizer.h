@@ -20,6 +20,7 @@ enum TOKENS
     T_AND,                   // &
     T_SEMICOLON,             // ;
     T_COLON,                 // :
+    T_DOUBLE_COLON,          // ::
     T_COMMA,                 // ,
     T_DOT,                   // .
     T_LEFT_ROUNDED_BRACKET,  // (

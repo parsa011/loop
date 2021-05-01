@@ -35,3 +35,4 @@ A5_F
 string asdf="Hello World";
 
 struct test{};
+test::unit();
