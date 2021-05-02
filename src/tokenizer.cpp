@@ -429,63 +429,73 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             tokens.push_back(lastToken);
             continue;
         }
+        else if (isdigit(lastChar))
+        {
+            if (lastChar == '0' && peek(1) == 'x')
+            {
+                for (size_t i = 0; true; i++)
+                {
+                    if (isxdigit(lastChar) || i < 2)
+                    {
+                        if (i > 9)
+                        {
+                            errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", data.c_str(), index);
+                            exit(1);
+                        }
+                        pushChar();
+                    }
+                    else if (i == 2)
+                    {
+                        errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", data.c_str(), index);
+                        exit(1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                lastToken.kind = T_HEX;
+            }
+            else if (lastChar == '0' && peek(1) == 'b')
+            {
+                for (size_t i = 0; true; i++)
+                {
+                    if (lastChar == '0' || lastChar == '1' || i < 2)
+                    {
+                        if (i == 33 && lastToken.value[2] == '0')
+                        {
+                            pushChar();
+                        }
+                        else if (i > 32)
+                        {
+                            errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Binary Number Size", data.c_str(), index);
+                            exit(1);
+                        }
+                        else
+                        {
+                            pushChar();
+                        }
+                    }
+                    else if (i == 2)
+                    {
+                        errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Binary Number", data.c_str(), index);
+                        exit(1);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                lastToken.kind = T_BIN;
+            }
+            lastToken.index = index - lastToken.value.length();
+            tokens.push_back(lastToken);
+            continue;
+        }
         else
         {
-            if (isdigit(lastChar))
-            {
-                while (lastChar == 'x' || lastChar == '.' || isxdigit(lastChar))
-                {
-                    pushChar();
-                }
-                if (lastToken.value[0] == '0' && lastToken.value[1] == 'x')
-                {
-                    for (size_t i = 2; i <= lastToken.value.length() - 1; ++i)
-                    {
-                        if (!isxdigit(lastToken.value[i]))
-                        {
-                            errorHandler.syntax(Error::INVALID_NUMBER, "Invalid hexadecimal number", data.c_str(), index);
-                            exit(1);
-                        }
-                    }
-                    lastToken.kind = T_HEX;
-                }
-                else if (lastToken.value[0] == '0' && lastToken.value[1] == 'b')
-                {
-                    for (size_t i = 2; i <= lastToken.value.length() - 1; ++i)
-                    {
-                        if (lastToken.value[i] != '0' && lastToken.value[i] != '1')
-                        {
-                            errorHandler.syntax(Error::INVALID_NUMBER, "Invalid binary number", data.c_str(), index);
-                            exit(1);
-                        }
-                    }
-                    lastToken.kind = T_BIN;
-                }
-                else
-                {
-                    lastToken.kind = T_INT;
-                    for (size_t i = 0; i <= lastToken.value.length() - 1; ++i)
-                    {
-                        if (lastToken.value[i] == '.' || !isdigit(lastToken.value[i]))
-                        {
-                            if (i == lastToken.value.length() - 1 || lastToken.kind == T_FLOAT || (!isdigit(lastToken.value[i]) && lastToken.value[i] != '.'))
-                            {
-                                errorHandler.syntax(Error::INVALID_NUMBER, "Invalid floating point number", data.c_str(), index);
-                                exit(1);
-                            }
-                            lastToken.kind = T_FLOAT;
-                        }
-                    }
-                }
-                lastToken.index = index - lastToken.value.length();
-                tokens.push_back(lastToken);
-                continue;
-            }
-            else
-            {
-                errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
-                exit(1);
-            }
+            errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
+            exit(1);
         }
         lastToken.value += lastChar;
         lastToken.index = index - lastToken.value.length();

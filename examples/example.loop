@@ -74,7 +74,5 @@ final
 true
 false
 this
-0xFA10D
-0b1011001
-10
-12.0
+0xFFFFFFFF
+0b
