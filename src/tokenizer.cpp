@@ -55,7 +55,8 @@ bool Tokenizer::isEOF()
 
 bool Tokenizer::ishex(char hex)
 {
-    return isdigit(hex) || hex == 'a' || hex == 'A' || hex == 'b' || hex == 'B' || hex == 'c' || hex == 'C' || hex == 'd' || hex == 'D' || hex == 'e' || hex == 'E' || hex == 'f' || hex == 'F';
+    return isdigit(hex) || (hex >= 'A' && hex <= 'F') || (hex >= 'a' && hex <= 'f');
+    //return isdigit(hex) || hex == 'a' || hex == 'A' || hex == 'b' || hex == 'B' || hex == 'c' || hex == 'C' || hex == 'd' || hex == 'D' || hex == 'e' || hex == 'E' || hex == 'f' || hex == 'F';
 }
 
 bool Tokenizer::isLCOF()
