@@ -53,11 +53,6 @@ bool Tokenizer::isEOF()
     return true;
 }
 
-bool Tokenizer::ishex(char hex)
-{
-    return isdigit(hex) || hex == 'a' || hex == 'A' || hex == 'b' || hex == 'B' || hex == 'c' || hex == 'C' || hex == 'd' || hex == 'D' || hex == 'e' || hex == 'E' || hex == 'f' || hex == 'F';
-}
-
 bool Tokenizer::isLCOF()
 {
     if (index < src.length() - 1)
@@ -438,7 +433,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             if (isdigit(lastChar))
             {
-                while (lastChar == 'x' || lastChar == '.' || ishex(lastChar))
+                while (lastChar == 'x' || lastChar == '.' || isxdigit(lastChar))
                 {
                     pushChar();
                 }
@@ -446,7 +441,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                 {
                     for (size_t i = 2; i <= lastToken.value.length() - 1; ++i)
                     {
-                        if (!ishex(lastToken.value[i]))
+                        if (!isxdigit(lastToken.value[i]))
                         {
                             errorHandler.syntax(Error::INVALID_NUMBER, "Invalid hexadecimal number", data.c_str(), index);
                             exit(1);

@@ -103,7 +103,6 @@ struct Tokenizer
     TOKENS getKeywordTokenKind();
     bool isEOF();
     bool isLCOF();
-    bool ishex(char hex);
     char peek(int offset);
     void advance(int offset);
     void pushChar();
