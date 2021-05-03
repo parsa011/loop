@@ -75,4 +75,6 @@ true
 false
 this
 0xFFFFFFFF
-0b
+0b10101010
+123456789
+123.45678

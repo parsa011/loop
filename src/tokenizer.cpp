@@ -117,7 +117,7 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                         break;
                     }
                 }
-                else if (isLCOF() && lastChar != '"')
+                else if (isLCOF())
                 {
                     errorHandler.syntax(Error::MISSING_QUOTATION_MARK, "Quated String Must Be Finished", src.c_str(), index);
                     exit(1);
@@ -133,8 +133,9 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
         {
             bool charEnd = false;
             pushChar();
-            for (size_t i = 0; !isEOF(); i++)
+            for (size_t i = 0; true; i++)
             {
+                std::cout << index << ':' << src.length() << ':' << lastChar << std::endl;
                 if (lastChar == '\'')
                 {
                     if (i == 0)
@@ -192,11 +193,11 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                                     }
                                     else
                                     {
+                                        charEnd = true;
                                         break;
                                     }
                                 }
                             }
-                            charEnd = true;
                         }
                         else if (isdigit(lastChar))
                         {
@@ -488,6 +489,49 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                 }
                 lastToken.kind = T_BIN;
             }
+            else
+            {
+                bool isDecimal = false;
+                for (size_t i = 0; true; i++)
+                {
+                    if (isdigit(lastChar))
+                    {
+                        if (std::atoi(lastToken.value.c_str()) > 2147483647)
+                        {
+                            errorHandler.syntax(Error::INVALID_NUMBER, "Invalid Number", data.c_str(), index);
+                            exit(1);
+                        }
+                        pushChar();
+                    }
+                    else if (lastChar == '.')
+                    {
+                        if (isDecimal)
+                        {
+                            lastToken.kind = T_DECIMAL;
+                            break;
+                        }
+                        else
+                        {
+                            pushChar();
+                            isDecimal = true;
+                        }
+                    }
+                    else
+                    {
+                        if (isDecimal)
+                        {
+                            lastToken.kind = T_DECIMAL;
+                        }
+                        else
+                        {
+
+                            lastToken.kind = T_INT;
+                        }
+                        break;
+                    }
+                }
+            }
+
             lastToken.index = index - lastToken.value.length();
             tokens.push_back(lastToken);
             continue;

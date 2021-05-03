@@ -12,7 +12,7 @@ enum TOKENS
     T_STRING,                // "String"
     T_CHAR,                  // 'Char'
     T_INT,                   // 27
-    T_FLOAT,                 // 27.0
+    T_DECIMAL,               // 27.0
     T_HEX,                   // 0xFF
     T_BIN,                   // 0b01
     T_EQUAL,                 // =
@@ -95,6 +95,7 @@ struct Tokenizer
 {
     size_t index = 0;
     size_t tokenIndex = 0;
+                            lastToken.kind = T_DECIMAL;
     std::string src;
     char lastChar;
     Token lastToken;
