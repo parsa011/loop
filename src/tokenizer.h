@@ -95,7 +95,6 @@ struct Tokenizer
 {
     size_t index = 0;
     size_t tokenIndex = 0;
-                            lastToken.kind = T_DECIMAL;
     std::string src;
     char lastChar;
     Token lastToken;

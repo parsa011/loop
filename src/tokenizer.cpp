@@ -135,7 +135,6 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             pushChar();
             for (size_t i = 0; true; i++)
             {
-                std::cout << index << ':' << src.length() << ':' << lastChar << std::endl;
                 if (lastChar == '\'')
                 {
                     if (i == 0)
@@ -208,7 +207,6 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
                                 {
                                     if (std::atoi(lastToken.value.substr(lastToken.value.length() - 3, 3).c_str()) > 377)
                                     {
-                                        std::cout << lastToken.value.length() << std::endl;
                                         errorHandler.syntax(Error::INVALID_OCTAL_NUMBER, "Invalid Octal Number", src.c_str(), index);
                                         exit(1);
                                     }
@@ -492,16 +490,16 @@ Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(e
             else
             {
                 bool isDecimal = false;
-                for (size_t i = 0; true; i++)
+                while (true)
                 {
                     if (isdigit(lastChar))
                     {
-                        if (std::atoi(lastToken.value.c_str()) > 2147483647)
+                        pushChar();
+                        if (std::atoll(lastToken.value.c_str()) > 2147483647)
                         {
                             errorHandler.syntax(Error::INVALID_NUMBER, "Invalid Number", data.c_str(), index);
                             exit(1);
                         }
-                        pushChar();
                     }
                     else if (lastChar == '.')
                     {
