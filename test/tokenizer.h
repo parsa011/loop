@@ -13,6 +13,10 @@ public:
         this->result();
     }
     void runAll();
+
+    // Tests
+    bool shouldWork();
+    bool shouldFail();
 };
 
 #endif
