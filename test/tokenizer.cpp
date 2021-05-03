@@ -1,21 +1,15 @@
 #include "tokenizer.h"
+#include "../src/tokenizer.h"
+#include "../src/error.h"
+Error errorHandler;
 
 void TokenizerTest::runAll()
 {
-    test(shouldWork());
-    test(shouldFail());
+    test(shouldTokenizeKeywords());
 }
 
-bool TokenizerTest::shouldFail(){
-    assert(1 == 1);
-    assert(1 == 1);
-    assert(1 == 2);
-    return verify();
-}
-
-bool TokenizerTest::shouldWork(){
-    assert(1 == 1);
-    assert(1 == 1);
-    assert(1 == 1);
+bool TokenizerTest::shouldTokenizeKeywords(){
+    Tokenizer tokenizer("if", errorHandler);
+    assert(tokenizer.lastToken.kind == T_IF);
     return verify();
 }

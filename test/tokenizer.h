@@ -14,9 +14,7 @@ public:
     }
     void runAll();
 
-    // Tests
-    bool shouldWork();
-    bool shouldFail();
+    bool shouldTokenizeKeywords();
 };
 
 #endif
