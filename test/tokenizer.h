@@ -3,11 +3,16 @@
 
 #include "unit_test.h"
 
-class TokenizerTest : public UnitTest {
+class TokenizerTest : public UnitTest
+{
 
-    public:
-        TokenizerTest() : UnitTest("Tokenizer"){}
-        void runAll();
+public:
+    TokenizerTest() : UnitTest("Tokenizer")
+    {
+        this->runAll();
+        this->result();
+    }
+    void runAll();
 };
 
 #endif
