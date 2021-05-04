@@ -92,7 +92,9 @@ char Tokenizer::peek(int offset)
 
 void Tokenizer::tokenize(std::string data)
 {
+    tokens.clear();
     src = data;
+    index = 0;
     lastChar = src[0];
     while (!isEOF())
     {

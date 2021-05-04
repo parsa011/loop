@@ -92,6 +92,7 @@ struct Token
 
 struct Tokenizer
 {
+public:
     size_t index = 0;
     std::string src;
     char lastChar;

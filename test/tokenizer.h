@@ -7,13 +7,15 @@
 
 class TokenizerTest : public UnitTest
 {
-
 public:
+    Error eh;
+    Tokenizer tokenizer{eh};
     TokenizerTest()
     {
         runAll();
     }
     void runAll();
+    TOKENS getTokenizerToken(const char *token);
     bool tokenizeKeywords();
     bool tokenizeOperators();
     bool tokenizeDataTypes();
