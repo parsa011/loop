@@ -16,6 +16,7 @@ public:
     void runAll();
     bool tokenizeKeywords();
     bool tokenizeOperators();
+    bool tokenizeDataTypes();
 };
 
 #endif
