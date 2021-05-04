@@ -18,7 +18,8 @@ int main(int argc, const char *argv[])
                 if (!io.errorHandler.abort)
                 {
                     io.read(argv[i + 1]);
-                    Tokenizer tokenizer(io.reads[i].data, error_handler);
+                    Tokenizer tokenizer(error_handler);
+                    tokenizer.tokenize(io.reads[i].data);
 
                     if (!tokenizer.errorHandler.abort)
                     {

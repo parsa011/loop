@@ -90,8 +90,9 @@ char Tokenizer::peek(int offset)
     return src[src.length()];
 }
 
-Tokenizer::Tokenizer(std::string data, Error &error) : src(data), errorHandler(error)
+void Tokenizer::tokenize(std::string data)
 {
+    src = data;
     lastChar = src[0];
     while (!isEOF())
     {

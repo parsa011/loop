@@ -104,7 +104,8 @@ struct Tokenizer
     char peek(int offset);
     void advance(int offset);
     void pushChar();
-    Tokenizer(std::string data, Error &error);
+    void tokenize(std::string data);
+    Tokenizer(Error &error) : errorHandler(error){};
 };
 
 #endif //TOKENIZER_H
