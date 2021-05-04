@@ -7,17 +7,15 @@ class UnitTest
 {
 private:
     int failedTests = 0;
-    int successTests = 0;
-    int totalSuccess = 0;
-    int totalFailed = 0;
+    int PassedTests = 0;
 
 public:
     const char *testName;
-    UnitTest(const char *testName) : testName(testName) {}
-    void assert(bool success);
+    int totalPassed = 0;
+    int totalFailed = 0;
+    void assert(bool Passed);
     bool verify();
-    void test(bool success);
-    void result();
+    void test(bool Passed);
     virtual void runAll() = 0;
 };
 

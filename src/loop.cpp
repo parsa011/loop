@@ -28,7 +28,7 @@ int main(int argc, const char *argv[])
                             std::cout << token.kind << " : " << token.value << "\n";
                             ++tokenCount;
                         }
-                        std::cout << "Tokenization was \x1b[92;1msuccessful\x1b[0;1m (" << tokenCount << " tokens found)\n";
+                        std::cout << "Tokenization was \x1b[92;1mSuccessful\x1b[0;1m (" << tokenCount << " tokens found)\n";
                     }
                 }
             }

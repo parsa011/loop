@@ -1,32 +1,30 @@
 #include "unit_test.h"
 
-void UnitTest::test(bool success)
+void UnitTest::test(bool Passed)
 {
-    if (success)
+    if (Passed)
     {
-        totalSuccess += successTests;
+        totalPassed += PassedTests;
     }
     else
     {
         totalFailed += failedTests;
     }
-    std::cout << "--------------------------------------------------\n";
-    std::cout << "Name: " << testName << "\n";
-    std::cout << "Successful: " << successTests << "\n";
-    std::cout << "Failed: " << failedTests << "\n";
-    std::cout << "--------------------------------------------------\n\n";
-    successTests = 0;
+    std::cout << "\x1b[92;1mPassed:\x1b[0;1m " << PassedTests << "\x1b[91;1m Failed:\x1b[0;1m " << failedTests << std::endl;
+    std::cout << "-----------------------" << std::endl;
+    PassedTests = 0;
     failedTests = 0;
 }
 
-void UnitTest::assert(bool success)
+void UnitTest::assert(bool Passed)
 {
-    if (!success)
+    if (!Passed)
     {
         failedTests++;
     }
-    else {
-        successTests++;
+    else
+    {
+        PassedTests++;
     }
 }
 
@@ -35,12 +33,4 @@ bool UnitTest::verify()
     bool result = failedTests == 0;
     failedTests = 0;
     return result;
-}
-
-void UnitTest::result()
-{
-    std::cout << "--------------------------------------------------\n";
-    std::cout << "Successful: " << totalSuccess << "\n";
-    std::cout << "Failed: " << totalFailed << "\n";
-    std::cout << "--------------------------------------------------\n\n";
 }

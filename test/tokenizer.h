@@ -9,7 +9,7 @@ class TokenizerTest : public UnitTest
 {
 
 public:
-    TokenizerTest() : UnitTest("Tokenizer")
+    TokenizerTest()
     {
         runAll();
     }
