@@ -2,7 +2,6 @@
 #define ERROR_H
 #include <iostream>
 #include <iomanip>
-#include <limits>
 
 struct Error
 {

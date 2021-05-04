@@ -6,18 +6,19 @@
 class UnitTest
 {
 private:
-    const char *testName = "";
     int failedTests = 0;
-    int successfulTests = 0;
-    int currentRunErrors = 0;
+    int successTests = 0;
+    int totalSuccess = 0;
+    int totalFailed = 0;
 
 public:
-    UnitTest(const char *testName) { this->testName = testName; }
+    const char *testName;
+    UnitTest(const char *testName) : testName(testName) {}
     void assert(bool success);
     bool verify();
     void test(bool success);
+    void result();
     virtual void runAll() = 0;
-    void result() const;
 };
 
 #endif

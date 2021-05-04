@@ -2,6 +2,8 @@
 #define TOKENIZER_TEST_H
 
 #include "unit_test.h"
+#include "../src/error.h"
+#include "../src/tokenizer.h"
 
 class TokenizerTest : public UnitTest
 {
@@ -9,12 +11,11 @@ class TokenizerTest : public UnitTest
 public:
     TokenizerTest() : UnitTest("Tokenizer")
     {
-        this->runAll();
-        this->result();
+        runAll();
     }
     void runAll();
-
-    bool shouldTokenizeKeywords();
+    bool tokenizeKeywords();
+    bool tokenizeOperators();
 };
 
 #endif

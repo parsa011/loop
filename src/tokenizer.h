@@ -47,42 +47,41 @@ enum TOKENS
     T_EQUAL_GREETER_BRACKET, // >=
 
     // Data Types
-    T_CHAR_TYPE,             // char
-    T_STRING_TYPE,           // string
-    T_INT_TYPE,              // int
-    T_FLOAT_TYPE,            // float
-    T_DOUBLE_TYPE,           // double
-    T_BOOLEAN_TYPE,          // bool
-    T_VOID_TYPE,             // void
+    T_CHAR_TYPE,    // char
+    T_STRING_TYPE,  // string
+    T_INT_TYPE,     // int
+    T_FLOAT_TYPE,   // float
+    T_DOUBLE_TYPE,  // double
+    T_BOOLEAN_TYPE, // bool
+    T_VOID_TYPE,    // void
 
     // Keywords
-    T_NAMESPACE,             // namespace
-    T_CLASS,                 // class
-    T_STRUCT,                // struct
-    T_ENUM,                  // enum
-    T_EXTERN,                // extern
-    T_INTERFACE,             // interface
-    T_EXTENDS,               // extends
-    T_IMPLEMENTS,            // implements
-    T_ABSTRACT,              // abstract
-    T_PUBLIC,                // public
-    T_PRIVATE,               // private
-    T_PROTECTED,             // protected
-    T_STATIC,                // static
-    T_IF,                    // if
-    T_ELSE,                  // else
-    T_FOR,                   // for
-    T_WHILE,                 // while
-    T_RETURN,                // return
-    T_BREAK,                 // break
-    T_CONTINUE,              // continue
-    T_USING,                 // using
-    T_FINAL,                 // final
-    T_TRUE,                  // true
-    T_FALSE,                 // false
-    T_THIS                   // this
+    T_NAMESPACE,  // namespace
+    T_CLASS,      // class
+    T_STRUCT,     // struct
+    T_ENUM,       // enum
+    T_EXTERN,     // extern
+    T_INTERFACE,  // interface
+    T_EXTENDS,    // extends
+    T_IMPLEMENTS, // implements
+    T_ABSTRACT,   // abstract
+    T_PUBLIC,     // public
+    T_PRIVATE,    // private
+    T_PROTECTED,  // protected
+    T_STATIC,     // static
+    T_IF,         // if
+    T_ELSE,       // else
+    T_FOR,        // for
+    T_WHILE,      // while
+    T_RETURN,     // return
+    T_BREAK,      // break
+    T_CONTINUE,   // continue
+    T_USING,      // using
+    T_FINAL,      // final
+    T_TRUE,       // true
+    T_FALSE,      // false
+    T_THIS        // this
 };
-
 
 struct Token
 {
@@ -94,7 +93,6 @@ struct Token
 struct Tokenizer
 {
     size_t index = 0;
-    size_t tokenIndex = 0;
     std::string src;
     char lastChar;
     Token lastToken;
@@ -108,6 +106,5 @@ struct Tokenizer
     void pushChar();
     Tokenizer(std::string data, Error &error);
 };
-
 
 #endif //TOKENIZER_H
