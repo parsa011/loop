@@ -92,5 +92,12 @@ bool TokenizerTest::tokenizeOperators()
 bool TokenizerTest::tokenizeDataTypes()
 {
     testName = "Tokenize Data Types";
+    assert(getTokenizerToken("char") == T_CHAR_TYPE);
+    assert(getTokenizerToken("string") == T_STRING_TYPE);
+    assert(getTokenizerToken("int") == T_INT_TYPE);
+    assert(getTokenizerToken("float") == T_FLOAT_TYPE);
+    assert(getTokenizerToken("double") == T_DOUBLE_TYPE);
+    assert(getTokenizerToken("bool") == T_BOOLEAN_TYPE);
+    assert(getTokenizerToken("void") == T_VOID_TYPE);
     return verify();
 }
