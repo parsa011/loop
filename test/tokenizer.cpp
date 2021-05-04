@@ -18,7 +18,7 @@ bool TokenizerTest::tokenizeKeywords()
 {
     testName = "Tokenize Keywords";
     assert(getTokenizerToken("if") == T_IF);
-    assert(getTokenizerToken("") == T_NAMESPACE);
+    assert(getTokenizerToken("namespace") != TOKENS::T_NAMESPACE);
     assert(getTokenizerToken("class") == T_CLASS);
     assert(getTokenizerToken("struct") == T_STRUCT);
     assert(getTokenizerToken("enum") == T_ENUM);

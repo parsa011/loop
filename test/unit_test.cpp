@@ -1,36 +1,29 @@
 #include "unit_test.h"
 
-void UnitTest::test(bool Passed)
+void UnitTest::test(bool passed)
 {
-    if (Passed)
-    {
-        totalPassed += PassedTests;
-    }
-    else
-    {
-        totalFailed += failedTests;
-    }
-    std::cout << "\x1b[92;1mPassed:\x1b[0;1m " << PassedTests << "\x1b[91;1m Failed:\x1b[0;1m " << failedTests << std::endl;
+    totalPassed += passedTests;
+    totalFailed += failedTests;
+    std::cout << "\x1b[92;1mPassed:\x1b[0;1m " << passedTests << "\x1b[91;1m Failed:\x1b[0;1m " << failedTests << std::endl;
     std::cout << "-----------------------" << std::endl;
-    PassedTests = 0;
+    passedTests = 0;
     failedTests = 0;
 }
 
-void UnitTest::assert(bool Passed)
+void UnitTest::assert(bool passed)
 {
-    if (!Passed)
+    if (passed)
     {
-        failedTests++;
+        passedTests++;
     }
     else
     {
-        PassedTests++;
+        failedTests++;
     }
 }
 
 bool UnitTest::verify()
 {
     bool result = failedTests == 0;
-    failedTests = 0;
     return result;
 }
