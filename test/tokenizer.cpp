@@ -49,6 +49,43 @@ bool TokenizerTest::tokenizeKeywords()
 bool TokenizerTest::tokenizeOperators()
 {
     testName = "Tokenize Operators";
+    assert(getTokenizerToken("test") == T_ID);
+    assert(getTokenizerToken("\"Hello World\"") == T_STRING);
+    assert(getTokenizerToken("'a'") == T_CHAR);
+    assert(getTokenizerToken("1") == T_INT);
+    assert(getTokenizerToken("1.0") == T_DECIMAL);
+    assert(getTokenizerToken("0xF4") == T_HEX);
+    assert(getTokenizerToken("0b10") == T_BIN);
+    assert(getTokenizerToken("=") == T_EQUAL);
+    assert(getTokenizerToken("+") == T_PLUS);
+    assert(getTokenizerToken("-") == T_MINUS);
+    assert(getTokenizerToken("/") == T_SLASH);
+    assert(getTokenizerToken("%") == T_PERCENT);
+    assert(getTokenizerToken("|") == T_PIPE);
+    assert(getTokenizerToken("&") == T_AND);
+    assert(getTokenizerToken(";") == T_SEMICOLON);
+    assert(getTokenizerToken(":") == T_COLON);
+    assert(getTokenizerToken("::") == T_DOUBLE_COLON);
+    assert(getTokenizerToken(",") == T_COMMA);
+    assert(getTokenizerToken(".") == T_DOT);
+    assert(getTokenizerToken("(") == T_LEFT_ROUNDED_BRACKET);
+    assert(getTokenizerToken(")") == T_RIGHT_ROUNDED_BRACKET);
+    assert(getTokenizerToken("{") == T_LEFT_CURLY_BRACKET);
+    assert(getTokenizerToken("}") == T_RIGHT_CURLY_BRACKET);
+    assert(getTokenizerToken("[") == T_LEFT_SQUARE_BRACKET);
+    assert(getTokenizerToken("]") == T_RIGHT_SQUARE_BRACKET);
+    assert(getTokenizerToken("<") == T_LEFT_ANGLE_BRACKET);
+    assert(getTokenizerToken(">") == T_RIGHT_ANGLE_BRACKET);
+    assert(getTokenizerToken("==") == T_DOUBLE_EQUAL);
+    assert(getTokenizerToken("++") == T_DOUBLE_PLUS);
+    assert(getTokenizerToken("--") == T_DOUBLE_MINUS);
+    assert(getTokenizerToken("||") == T_DOUBLE_PIPE);
+    assert(getTokenizerToken("&&") == T_LOGIC_AND);
+    assert(getTokenizerToken("+=") == T_EQUAL_PLUS);
+    assert(getTokenizerToken("-=") == T_EQUAL_MINUS);
+    assert(getTokenizerToken("|=") == T_EQUAL_PIPE);
+    assert(getTokenizerToken("<=") == T_EQUAL_LESSER_BRACKET);
+    assert(getTokenizerToken(">=") == T_EQUAL_GREETER_BRACKET);
     return verify();
 }
 
