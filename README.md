@@ -11,7 +11,7 @@
 <img src="https://img.shields.io/github/downloads/loop-lang/loop/total?label=Downlaods" />
 <img src="https://img.shields.io/github/languages/code-size/loop-lang/loop?label=Code%20Size" />
 <img src="https://img.shields.io/github/stars/loop-lang/loop?label=Stars&logo=github" />
-<a href="https://discord.gg/a23N3Gdy">
+<a href="https://discord.gg/4JRxNKMvtb">
   <img src="https://img.shields.io/discord/836863029080752128?color=7389D8&label=Discord&logo=discord&logoColor=ffffff" alt="discord - users online" />
 </a>
 
@@ -38,7 +38,7 @@ Please see the [issue policy](CONTRIBUTING.md#issue-policy).
 Take a look at the [Grammar for Loop](documentation/GRAMMAR.md) `[work in progress]`
 
 ## Discord
-<a href="https://discord.gg/a23N3Gdy"><img src="https://invidget.switchblade.xyz/a23N3Gdy"/></a>
+<a href="https://discord.gg/4JRxNKMvtb"><img src="https://invidget.switchblade.xyz/4JRxNKMvtb"/></a>
 
 ## License
 

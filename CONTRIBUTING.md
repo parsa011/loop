@@ -7,7 +7,7 @@ Everyone is welcome to work on the project.
 ## Communication
 
 
-Discord: [Loop Discord](https://discord.gg/a23N3Gdy)
+Discord: [Loop Discord](https://discord.gg/4JRxNKMvtb)
 
 ## Issue policy
 
