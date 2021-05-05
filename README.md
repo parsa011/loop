@@ -24,28 +24,9 @@ Loop is an object oriented programming language.
 
 ![Example tokenized Loop Code](documentation/assets/images/tokenized_example_code.png)
 
-## How do I build and run loop?
-Make sure, you installed the requirements for clang and make:
+## How do I build and run this?
 
-Debian:
-```shell
-sudo apt install build-essential clang
-```
-Arch:
-```shell
-sudo pacman -Sy base-devel clang  
-```
-
-Clone:
-```shell
-git clone https://github.com/loop-lang/loop && cd loop
-```
-
-Build and run:
-```shell
-make
-./loop examples/exampleClass.loop
-```
+See the [Loop build instructions](documentation/BuildInstructions.md).
 
 ## How do I contribute?
 See the Loop [contribution guidelines](CONTRIBUTING.md).
