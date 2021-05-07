@@ -5,15 +5,18 @@ void IO::read(std::string path)
     namespace fs = std::filesystem;
     if (!fs::exists(path))
     {
-        errorHandler.compiler(Error::FILE_NOT_FOUND, "Expected File Does not Exists");
+        werror.compilerError(E_FILE_NOT_FOUND, "Expected File Does not Exists");
+        exit(1);
     }
     else if (fs::is_directory(path))
     {
-        errorHandler.compiler(Error::IS_DIRECTORY, "Expected File Is A Directory");
+        werror.compilerError(E_IS_DIRECTORY, "Expected File Is A Directory");
+        exit(1);
     }
     else if (!fs::is_regular_file(path))
     {
-        errorHandler.compiler(Error::IST_REGULAR_FILE, "Expected File Is't Regular");
+        werror.compilerError(E_IST_REGULAR_FILE, "Expected File Is't Regular");
+        exit(1);
     }
 
     File file;

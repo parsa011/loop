@@ -5,7 +5,7 @@
 #include <string>
 #include <fstream>
 #include <filesystem>
-#include "error.h"
+#include "werror.h"
 
 struct File
 {
@@ -15,9 +15,9 @@ struct File
 
 struct IO
 {
-    Error errorHandler;
+    WError werror;
     std::vector<File> reads;
-    IO(Error error) : errorHandler(error){};
+    IO(WError wError) : werror(wError){};
     void read(std::string path);
     void write(File file);
 };

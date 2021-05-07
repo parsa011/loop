@@ -5,7 +5,6 @@ NEWLINE         : '\n'
 WHITESPACE      : [t ]+ -> skip
 
 // Datatypes
-CHAR                    : 'char'
 STRING                  : 'string'
 INT                     : 'int'
 FLOAT                   : 'float'

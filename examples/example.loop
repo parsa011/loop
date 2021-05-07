@@ -1,47 +1,11 @@
 myVar
 // strings
-"String"
-"\"Hard\" String"
-// chars
-'m'
-'\xFFFFFFFF'
-'\377'
+// strings
 // operators
-=
-+
--
-/
-%
-|
-&
 // gaps
-;
-:
-::
-,
-.
 // brackets
-(
-)
-{
-}
-[
-]
-<
->
 // comparison
-==
-++
---
-||
-&&
-+=
--=
-|=
-<=
->=
 // data types
-char
 string
 int
 float
@@ -74,7 +38,10 @@ final
 true
 false
 this
-0xFFFFFFFF
-0b10101010
+0b0
 2147483647
 123.45678
+'string\''
+0xFFFFF
+'F'
+string

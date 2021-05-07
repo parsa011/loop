@@ -1,7 +1,7 @@
 namespace Variables{
     class Variables{
         void Main(){
-            char charVar = 'a';
+            string stringVar = 'a';
             string strVar = "hello world";
             int intVar = 1;
             float floatVar = 1.0;

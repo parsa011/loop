@@ -1,49 +1,5 @@
 #include "tokenizer.h"
 
-std::map<std::string, TOKENS> KeyWordTokensKind = {
-    {"char", T_CHAR_TYPE},
-    {"string", T_STRING_TYPE},
-    {"int", T_INT_TYPE},
-    {"float", T_FLOAT_TYPE},
-    {"double", T_DOUBLE_TYPE},
-    {"bool", T_BOOLEAN_TYPE},
-    {"void", T_VOID_TYPE},
-    {"namespace", T_NAMESPACE},
-    {"class", T_CLASS},
-    {"struct", T_STRUCT},
-    {"enum", T_ENUM},
-    {"extern", T_EXTERN},
-    {"interface", T_INTERFACE},
-    {"extends", T_EXTENDS},
-    {"implements", T_IMPLEMENTS},
-    {"abstract", T_ABSTRACT},
-    {"public", T_PUBLIC},
-    {"private", T_PRIVATE},
-    {"protected", T_PROTECTED},
-    {"static", T_STATIC},
-    {"if", T_IF},
-    {"else", T_ELSE},
-    {"for", T_FOR},
-    {"while", T_WHILE},
-    {"return", T_RETURN},
-    {"break", T_BREAK},
-    {"continue", T_CONTINUE},
-    {"using", T_USING},
-    {"final", T_FINAL},
-    {"true", T_TRUE},
-    {"false", T_FALSE},
-    {"this", T_THIS}};
-
-TOKENS Tokenizer::getKeywordTokenKind()
-{
-    std::_Rb_tree_iterator<std::pair<const std::string, TOKENS>> kind = KeyWordTokensKind.find(lastToken.value);
-    if (kind == std::end(KeyWordTokensKind))
-    {
-        return T_ID;
-    }
-    return kind->second;
-}
-
 bool Tokenizer::isEOF()
 {
     if (index < src.length() && lastChar != '\0' && lastChar != char(-1))
@@ -99,138 +55,31 @@ void Tokenizer::tokenize(std::string data)
     while (!isEOF())
     {
         lastToken.value.clear();
+        lastToken.index = 0;
         while (isspace(lastChar))
         {
             advance(1);
         }
 
-        if (lastChar == '"')
+        if (lastChar == '\'')
         {
-            pushChar();
             while (!isEOF())
             {
-                if (lastChar == '"')
+                pushChar();
+                if (lastChar == '\'')
                 {
-                    if (peek(-1) == '\\')
-                    {
-                        pushChar();
-                    }
-                    else
+                    if (peek(-1) != '\\')
                     {
                         break;
                     }
                 }
                 else if (isLCOF())
                 {
-                    errorHandler.syntax(Error::MISSING_QUOTATION_MARK, "Quated String Must Be Finished", src.c_str(), index);
-                    exit(1);
-                }
-                else
-                {
-                    pushChar();
+                    werror.syntaxError(E_MISSING_QUOTATION_MARK, "Quated String Must Be Finished", "here", index);
+                    return;
                 }
             }
             lastToken.kind = T_STRING;
-        }
-        else if (lastChar == '\'')
-        {
-            bool charEnd = false;
-            pushChar();
-            for (size_t i = 0; true; i++)
-            {
-                if (lastChar == '\'')
-                {
-                    if (i == 0)
-                    {
-                        errorHandler.syntax(Error::NO_NULL_CHAR, "Quated Char Must Be Initialized", src.c_str(), index);
-                        exit(1);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                else
-                {
-                    if (isLCOF())
-                    {
-                        errorHandler.syntax(Error::MISSING_APOSTROPHE_MARK, "Quated Char Must Be Finished", src.c_str(), index);
-                        exit(1);
-                    }
-                    else if (charEnd && lastChar != '\'')
-                    {
-                        errorHandler.syntax(Error::MORE_THAN_ONE_BYTE, "Char Type Can Only Contains 1 Byte", src.c_str(), index);
-                        exit(1);
-                    }
-                    else if (lastChar == '\\')
-                    {
-                        pushChar();
-                        if (lastChar == 'a' || lastChar == 'b' || lastChar == 'e' || lastChar == 'f' || lastChar == 'n' || lastChar == 'r' || lastChar == 't' || lastChar == 'v' || lastChar == '\\' || lastChar == '\'' || lastChar == '"')
-                        {
-                            pushChar();
-                        }
-                        else if (lastChar == 'x')
-                        {
-                            pushChar();
-                            for (size_t i = 0; !isEOF(); i++)
-                            {
-                                if (isxdigit(lastChar))
-                                {
-                                    if (i > 7)
-                                    {
-                                        errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", src.c_str(), index);
-                                        exit(1);
-                                    }
-                                    else
-                                    {
-                                        pushChar();
-                                    }
-                                }
-                                else
-                                {
-                                    if (i < 2)
-                                    {
-                                        errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", src.c_str(), index);
-                                        exit(1);
-                                    }
-                                    else
-                                    {
-                                        charEnd = true;
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        else if (isdigit(lastChar))
-                        {
-                            for (size_t i = 0; isdigit(lastChar); i++)
-                            {
-                                pushChar();
-                                if (i > 1)
-                                {
-                                    if (std::atoi(lastToken.value.substr(lastToken.value.length() - 3, 3).c_str()) > 377)
-                                    {
-                                        errorHandler.syntax(Error::INVALID_OCTAL_NUMBER, "Invalid Octal Number", src.c_str(), index);
-                                        exit(1);
-                                    }
-                                    charEnd = true;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            errorHandler.syntax(Error::UNSUPPORTED_ESCAPE_SEQUENCE, "Unsupported Escape Squanse", src.c_str(), index);
-                            exit(1);
-                        }
-                    }
-                    else
-                    {
-                        pushChar();
-                    }
-                    charEnd = true;
-                }
-            }
-            lastToken.kind = T_CHAR;
         }
         else if (lastChar == '=')
         {
@@ -359,7 +208,7 @@ void Tokenizer::tokenize(std::string data)
                 }
                 if (isEOF())
                 {
-                    errorHandler.syntax(Error::CLOSE_COMMENT, "You need to close the comment", src.c_str(), index);
+                    werror.syntaxError(E_CLOSE_COMMENT, "You need to close the comment", "here", index);
                 }
                 continue;
             }
@@ -426,7 +275,134 @@ void Tokenizer::tokenize(std::string data)
             {
                 pushChar();
             }
-            lastToken.kind = getKeywordTokenKind();
+            if (lastToken.value == "string")
+            {
+                lastToken.kind = T_STRING_TYPE;
+            }
+            else if (lastToken.value == "int")
+            {
+                lastToken.kind = T_INT_TYPE;
+            }
+            else if (lastToken.value == "float")
+            {
+                lastToken.kind = T_FLOAT_TYPE;
+            }
+            else if (lastToken.value == "double")
+            {
+                lastToken.kind = T_DOUBLE_TYPE;
+            }
+            else if (lastToken.value == "bool")
+            {
+                lastToken.kind = T_BOOLEAN_TYPE;
+            }
+            else if (lastToken.value == "void")
+            {
+                lastToken.kind = T_VOID_TYPE;
+            }
+            else if (lastToken.value == "namespace")
+            {
+                lastToken.kind = T_NAMESPACE;
+            }
+            else if (lastToken.value == "class")
+            {
+                lastToken.kind = T_CLASS;
+            }
+            else if (lastToken.value == "struct")
+            {
+                lastToken.kind = T_STRUCT;
+            }
+            else if (lastToken.value == "enum")
+            {
+                lastToken.kind = T_ENUM;
+            }
+            else if (lastToken.value == "extern")
+            {
+                lastToken.kind = T_EXTERN;
+            }
+            else if (lastToken.value == "interface")
+            {
+                lastToken.kind = T_INTERFACE;
+            }
+            else if (lastToken.value == "extends")
+            {
+                lastToken.kind = T_EXTENDS;
+            }
+            else if (lastToken.value == "implements")
+            {
+                lastToken.kind = T_IMPLEMENTS;
+            }
+            else if (lastToken.value == "abstract")
+            {
+                lastToken.kind = T_ABSTRACT;
+            }
+            else if (lastToken.value == "public")
+            {
+                lastToken.kind = T_PUBLIC;
+            }
+            else if (lastToken.value == "private")
+            {
+                lastToken.kind = T_PRIVATE;
+            }
+            else if (lastToken.value == "protected")
+            {
+                lastToken.kind = T_PROTECTED;
+            }
+            else if (lastToken.value == "static")
+            {
+                lastToken.kind = T_STATIC;
+            }
+            else if (lastToken.value == "if")
+            {
+                lastToken.kind = T_IF;
+            }
+            else if (lastToken.value == "else")
+            {
+                lastToken.kind = T_ELSE;
+            }
+            else if (lastToken.value == "for")
+            {
+                lastToken.kind = T_FOR;
+            }
+            else if (lastToken.value == "while")
+            {
+                lastToken.kind = T_WHILE;
+            }
+            else if (lastToken.value == "return")
+            {
+                lastToken.kind = T_RETURN;
+            }
+            else if (lastToken.value == "break")
+            {
+                lastToken.kind = T_BREAK;
+            }
+            else if (lastToken.value == "continue")
+            {
+                lastToken.kind = T_CONTINUE;
+            }
+            else if (lastToken.value == "using")
+            {
+                lastToken.kind = T_USING;
+            }
+            else if (lastToken.value == "final")
+            {
+                lastToken.kind = T_FINAL;
+            }
+            else if (lastToken.value == "true")
+            {
+                lastToken.kind = T_TRUE;
+            }
+            else if (lastToken.value == "false")
+            {
+                lastToken.kind = T_FALSE;
+            }
+            else if (lastToken.value == "this")
+            {
+                lastToken.kind = T_THIS;
+            }
+            else
+            {
+                lastToken.kind = T_ID;
+            }
             lastToken.index = index - lastToken.value.length();
             tokens.push_back(lastToken);
             continue;
@@ -435,58 +411,39 @@ void Tokenizer::tokenize(std::string data)
         {
             if (lastChar == '0' && peek(1) == 'x')
             {
-                for (size_t i = 0; true; i++)
+                bool nxne = false;
+                size_t i = 0;
+                for (; !isEOF() && !isspace(lastChar); i++)
                 {
-                    if (isxdigit(lastChar) || i < 2)
+                    if (i > 1 && !isxdigit(lastChar) && !nxne)
                     {
-                        if (i > 9)
-                        {
-                            errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", data.c_str(), index);
-                            exit(1);
-                        }
-                        pushChar();
+                        werror.syntaxError(E_INVALID_HEX_NUMBER, "Invalid Hex Number", "here", index);
+                        nxne = true;
                     }
-                    else if (i == 2)
-                    {
-                        errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Hex Digit", data.c_str(), index);
-                        exit(1);
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    pushChar();
+                }
+                if (i > 10 || i < 4)
+                {
+                    werror.syntaxError(E_INVALID_HEX_NUMBER, "Invalid Hex Number", "here", index);
                 }
                 lastToken.kind = T_HEX;
             }
             else if (lastChar == '0' && peek(1) == 'b')
             {
-                for (size_t i = 0; true; i++)
+                bool nbne = false;
+                size_t i = 0;
+                for (; !isEOF() && !isspace(lastChar); i++)
                 {
-                    if (lastChar == '0' || lastChar == '1' || i < 2)
+                    if (i > 1 && lastChar != '0' && lastChar != '1' && !nbne)
                     {
-                        if (i == 33 && lastToken.value[2] == '0')
-                        {
-                            pushChar();
-                        }
-                        else if (i > 32)
-                        {
-                            errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Binary Number Size", data.c_str(), index);
-                            exit(1);
-                        }
-                        else
-                        {
-                            pushChar();
-                        }
+                        werror.syntaxError(E_INVALID_NUMBER, "Invalid Binary Number", "here", index);
+                        nbne = true;
                     }
-                    else if (i == 2)
-                    {
-                        errorHandler.syntax(Error::INVALID_HEX_DIGIT, "Invalid Binary Number", data.c_str(), index);
-                        exit(1);
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    pushChar();
+                }
+                if (i > 10 || i < 3)
+                {
+                    werror.syntaxError(E_INVALID_NUMBER, "Invalid Binary Number", "here", index);
                 }
                 lastToken.kind = T_BIN;
             }
@@ -498,11 +455,6 @@ void Tokenizer::tokenize(std::string data)
                     if (isdigit(lastChar))
                     {
                         pushChar();
-                        if (std::atoll(lastToken.value.c_str()) > 2147483647)
-                        {
-                            errorHandler.syntax(Error::INVALID_NUMBER, "Invalid Number", data.c_str(), index);
-                            exit(1);
-                        }
                     }
                     else if (lastChar == '.')
                     {
@@ -531,6 +483,10 @@ void Tokenizer::tokenize(std::string data)
                         break;
                     }
                 }
+                if (lastToken.kind == T_INT && std::atoll(lastToken.value.c_str()) > 2147483647)
+                {
+                    werror.syntaxError(E_INVALID_NUMBER, "Invalid Number", "here", index);
+                }
             }
 
             lastToken.index = index - lastToken.value.length();
@@ -539,8 +495,8 @@ void Tokenizer::tokenize(std::string data)
         }
         else
         {
-            errorHandler.syntax(Error::UNRECOGNIZED_TOKEN, "Unrecognized Token", data.c_str(), index);
-            exit(1);
+            werror.syntaxError(E_UNRECOGNIZED_TOKEN, "Unrecognized Token", "here", index);
+            return;
         }
         lastToken.value += lastChar;
         lastToken.index = index - lastToken.value.length();

@@ -1,9 +1,8 @@
 #include "tokenizer.h"
 
-TOKENS TokenizerTest::getTokenizerToken(const char *token)
+TOKEN TokenizerTest::getTokenizerToken(const char *token)
 {
     tokenizer.tokenize(token);
-    //std::cout << tokenizer.lastToken.value << std::endl;
     return tokenizer.lastToken.kind;
 }
 
@@ -18,7 +17,7 @@ bool TokenizerTest::tokenizeKeywords()
 {
     testName = "Tokenize Keywords";
     assert(getTokenizerToken("if") == T_IF);
-    assert(getTokenizerToken("namespace") == TOKENS::T_NAMESPACE);
+    assert(getTokenizerToken("namespace") == T_NAMESPACE);
     assert(getTokenizerToken("class") == T_CLASS);
     assert(getTokenizerToken("struct") == T_STRUCT);
     assert(getTokenizerToken("enum") == T_ENUM);
@@ -92,7 +91,6 @@ bool TokenizerTest::tokenizeOperators()
 bool TokenizerTest::tokenizeDataTypes()
 {
     testName = "Tokenize Data Types";
-    assert(getTokenizerToken("char") == T_CHAR_TYPE);
     assert(getTokenizerToken("string") == T_STRING_TYPE);
     assert(getTokenizerToken("int") == T_INT_TYPE);
     assert(getTokenizerToken("float") == T_FLOAT_TYPE);

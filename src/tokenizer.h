@@ -4,13 +4,12 @@
 #include <vector>
 #include <iostream>
 #include <map>
-#include "error.h"
+#include "werror.h"
 
-enum TOKENS
+enum TOKEN
 {
     T_ID,                    // Identifiers: myVar and etc
-    T_STRING,                // "String"
-    T_CHAR,                  // 'Char'
+    T_STRING,                // 'String'
     T_INT,                   // 27
     T_DECIMAL,               // 27.0
     T_HEX,                   // 0xFF
@@ -47,7 +46,7 @@ enum TOKENS
     T_EQUAL_GREETER_BRACKET, // >=
 
     // Data Types
-    T_CHAR_TYPE,    // char
+    T_BYTE_TYPE,    // byte
     T_STRING_TYPE,  // string
     T_INT_TYPE,     // int
     T_FLOAT_TYPE,   // float
@@ -86,7 +85,7 @@ enum TOKENS
 struct Token
 {
     std::string value;
-    TOKENS kind;
+    TOKEN kind;
     size_t index;
 };
 
@@ -98,15 +97,14 @@ public:
     char lastChar;
     Token lastToken;
     std::vector<Token> tokens;
-    Error errorHandler;
-    TOKENS getKeywordTokenKind();
+    WError werror;
     bool isEOF();
     bool isLCOF();
     char peek(int offset);
     void advance(int offset);
     void pushChar();
     void tokenize(std::string data);
-    Tokenizer(Error &error) : errorHandler(error){};
+    Tokenizer(WError &wError) : werror(wError){};
 };
 
 #endif //TOKENIZER_H
