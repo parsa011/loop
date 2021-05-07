@@ -50,7 +50,6 @@ bool TokenizerTest::tokenizeOperators()
     testName = "Tokenize Operators";
     assert(getTokenizerToken("test") == T_ID);
     assert(getTokenizerToken("'Hello World'") == T_STRING);
-    assert(getTokenizerToken("'a'") == T_STRING);
     assert(getTokenizerToken("1") == T_INT);
     assert(getTokenizerToken("1.0") == T_DECIMAL);
     assert(getTokenizerToken("0xF4") == T_HEX);
@@ -64,7 +63,6 @@ bool TokenizerTest::tokenizeOperators()
     assert(getTokenizerToken("&") == T_AND);
     assert(getTokenizerToken(";") == T_SEMICOLON);
     assert(getTokenizerToken(":") == T_COLON);
-    assert(getTokenizerToken("::") == T_DOUBLE_COLON);
     assert(getTokenizerToken(",") == T_COMMA);
     assert(getTokenizerToken(".") == T_DOT);
     assert(getTokenizerToken("(") == T_LEFT_ROUNDED_BRACKET);
@@ -75,6 +73,7 @@ bool TokenizerTest::tokenizeOperators()
     assert(getTokenizerToken("]") == T_RIGHT_SQUARE_BRACKET);
     assert(getTokenizerToken("<") == T_LEFT_ANGLE_BRACKET);
     assert(getTokenizerToken(">") == T_RIGHT_ANGLE_BRACKET);
+    assert(getTokenizerToken("::") == T_DOUBLE_COLON);
     assert(getTokenizerToken("==") == T_DOUBLE_EQUAL);
     assert(getTokenizerToken("++") == T_DOUBLE_PLUS);
     assert(getTokenizerToken("--") == T_DOUBLE_MINUS);
@@ -91,6 +90,7 @@ bool TokenizerTest::tokenizeOperators()
 bool TokenizerTest::tokenizeDataTypes()
 {
     testName = "Tokenize Data Types";
+    assert(getTokenizerToken("byte") == T_BYTE_TYPE);
     assert(getTokenizerToken("string") == T_STRING_TYPE);
     assert(getTokenizerToken("int") == T_INT_TYPE);
     assert(getTokenizerToken("float") == T_FLOAT_TYPE);
