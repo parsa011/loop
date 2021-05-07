@@ -60,8 +60,44 @@ void Tokenizer::tokenize(std::string data)
         {
             advance(1);
         }
-
-        if (lastChar == '\'')
+        if (lastChar == '/')
+        {
+            if (peek(1) == '*')
+            {
+                advance(2);
+                while (!isEOF())
+                {
+                    advance(1);
+                    if (lastChar == '*' && peek(1) == '/')
+                    {
+                        advance(2);
+                        break;
+                    }
+                }
+                if (isEOF())
+                {
+                    werror.syntaxError(E_CLOSE_COMMENT, "You need to close the comment", "here", index);
+                }
+                continue;
+            }
+            else if (peek(1) == '/')
+            {
+                while (!isEOF())
+                {
+                    advance(1);
+                    if (lastChar == '\n')
+                    {
+                        break;
+                    }
+                }
+                continue;
+            }
+            else
+            {
+                lastToken.kind = T_SLASH;
+            }
+        }
+        else if (lastChar == '\'')
         {
             while (!isEOF())
             {
@@ -192,43 +228,6 @@ void Tokenizer::tokenize(std::string data)
                 lastToken.kind = T_COLON;
             }
         }
-        else if (lastChar == '/')
-        {
-            if (peek(1) == '*')
-            {
-                advance(2);
-                while (!isEOF())
-                {
-                    advance(1);
-                    if (lastChar == '*' && peek(1) == '/')
-                    {
-                        advance(2);
-                        break;
-                    }
-                }
-                if (isEOF())
-                {
-                    werror.syntaxError(E_CLOSE_COMMENT, "You need to close the comment", "here", index);
-                }
-                continue;
-            }
-            else if (peek(1) == '/')
-            {
-                while (!isEOF())
-                {
-                    advance(1);
-                    if (lastChar == '\n')
-                    {
-                        break;
-                    }
-                }
-                continue;
-            }
-            else
-            {
-                lastToken.kind = T_SLASH;
-            }
-        }
         else if (lastChar == '%')
         {
             lastToken.kind = T_PERCENT;
@@ -275,7 +274,11 @@ void Tokenizer::tokenize(std::string data)
             {
                 pushChar();
             }
-            if (lastToken.value == "string")
+            if (lastToken.value == "byte")
+            {
+                lastToken.kind = T_BYTE_TYPE;
+            }
+            else if (lastToken.value == "string")
             {
                 lastToken.kind = T_STRING_TYPE;
             }
@@ -403,9 +406,7 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_ID;
             }
-            lastToken.index = index - lastToken.value.length();
-            tokens.push_back(lastToken);
-            continue;
+            goto independent;
         }
         else if (isdigit(lastChar))
         {
@@ -415,17 +416,14 @@ void Tokenizer::tokenize(std::string data)
                 size_t i = 0;
                 for (; !isEOF() && !isspace(lastChar); i++)
                 {
-                    if (i > 1 && !isxdigit(lastChar) && !nxne)
-                    {
-                        werror.syntaxError(E_INVALID_HEX_NUMBER, "Invalid Hex Number", "here", index);
+                    if (i > 1 && !isxdigit(lastChar))
                         nxne = true;
-                    }
                     pushChar();
                 }
                 if (i > 10 || i < 4)
-                {
+                    werror.syntaxError(E_INVALID_HEX_NUMBER, "Out Of Range Hex Number", "here", index);
+                if (nxne)
                     werror.syntaxError(E_INVALID_HEX_NUMBER, "Invalid Hex Number", "here", index);
-                }
                 lastToken.kind = T_HEX;
             }
             else if (lastChar == '0' && peek(1) == 'b')
@@ -435,16 +433,13 @@ void Tokenizer::tokenize(std::string data)
                 for (; !isEOF() && !isspace(lastChar); i++)
                 {
                     if (i > 1 && lastChar != '0' && lastChar != '1' && !nbne)
-                    {
-                        werror.syntaxError(E_INVALID_NUMBER, "Invalid Binary Number", "here", index);
                         nbne = true;
-                    }
                     pushChar();
                 }
                 if (i > 10 || i < 3)
-                {
+                    werror.syntaxError(E_INVALID_NUMBER, "Out Of Range Binary Number", "here", index);
+                if (nbne)
                     werror.syntaxError(E_INVALID_NUMBER, "Invalid Binary Number", "here", index);
-                }
                 lastToken.kind = T_BIN;
             }
             else
@@ -489,18 +484,16 @@ void Tokenizer::tokenize(std::string data)
                 }
             }
 
-            lastToken.index = index - lastToken.value.length();
-            tokens.push_back(lastToken);
-            continue;
+            goto independent;
         }
         else
         {
             werror.syntaxError(E_UNRECOGNIZED_TOKEN, "Unrecognized Token", "here", index);
             return;
         }
-        lastToken.value += lastChar;
+        pushChar();
+    independent:
         lastToken.index = index - lastToken.value.length();
-        advance(1);
         tokens.push_back(lastToken);
     }
 }
