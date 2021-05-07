@@ -49,8 +49,8 @@ bool TokenizerTest::tokenizeOperators()
 {
     testName = "Tokenize Operators";
     assert(getTokenizerToken("test") == T_ID);
-    assert(getTokenizerToken("\"Hello World\"") == T_STRING);
-    assert(getTokenizerToken("'a'") == T_CHAR);
+    assert(getTokenizerToken("'Hello World'") == T_STRING);
+    assert(getTokenizerToken("'a'") == T_STRING);
     assert(getTokenizerToken("1") == T_INT);
     assert(getTokenizerToken("1.0") == T_DECIMAL);
     assert(getTokenizerToken("0xF4") == T_HEX);

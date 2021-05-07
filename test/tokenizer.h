@@ -2,13 +2,13 @@
 #define TOKENIZER_TEST_H
 
 #include "unit_test.h"
-#include "../src/error.h"
+#include "../src/werror.h"
 #include "../src/tokenizer.h"
 
 class TokenizerTest : public UnitTest
 {
 public:
-    ErrorHandler eh;
+    WError eh;
     Tokenizer tokenizer{eh};
     TokenizerTest()
     {
