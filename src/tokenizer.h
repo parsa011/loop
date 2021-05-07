@@ -8,6 +8,7 @@
 
 enum TOKEN
 {
+    T_NEWLINE,               // Newline
     T_ID,                    // Identifiers: myVar and etc
     T_STRING,                // 'String'
     T_INT,                   // 27
@@ -75,7 +76,7 @@ enum TOKEN
     T_RETURN,     // return
     T_BREAK,      // break
     T_CONTINUE,   // continue
-    T_USING,      // using
+    T_IMPORT,     // import
     T_FINAL,      // final
     T_TRUE,       // true
     T_FALSE,      // false

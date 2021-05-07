@@ -56,6 +56,12 @@ void Tokenizer::tokenize(std::string data)
     {
         lastToken.value.clear();
         lastToken.index = 0;
+        if (lastChar == '\n')
+        {
+            lastToken.kind = T_NEWLINE;
+            advance(1);
+            goto independent;
+        }
         while (isspace(lastChar))
         {
             advance(1);
@@ -382,9 +388,9 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_CONTINUE;
             }
-            else if (lastToken.value == "using")
+            else if (lastToken.value == "import")
             {
-                lastToken.kind = T_USING;
+                lastToken.kind = T_IMPORT;
             }
             else if (lastToken.value == "final")
             {

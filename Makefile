@@ -16,7 +16,7 @@ debug:
 release:
 	$(COMPILER) $(SRC) $(FLAGS_RELEASE) $(LDFLAGS) -o loop
 
-all: debug
+all: debug test
 
 clean:
 	rm loop

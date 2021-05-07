@@ -37,7 +37,7 @@ bool TokenizerTest::tokenizeKeywords()
     assert(getTokenizerToken("return") == T_RETURN);
     assert(getTokenizerToken("break") == T_BREAK);
     assert(getTokenizerToken("continue") == T_CONTINUE);
-    assert(getTokenizerToken("using") == T_USING);
+    assert(getTokenizerToken("import") == T_IMPORT);
     assert(getTokenizerToken("final") == T_FINAL);
     assert(getTokenizerToken("true") == T_TRUE);
     assert(getTokenizerToken("false") == T_FALSE);
