@@ -25,13 +25,7 @@ int main(int argc, const char *argv[])
 
             if (tokenizer.werror.errors.size() < 1)
             {
-                int tokenCount = 0;
-                for (Token token : tokenizer.tokens)
-                {
-                    std::cout << token.kind << " : " << token.value << "\n";
-                    ++tokenCount;
-                }
-                std::cout << "Tokenization was \x1b[92;1mSuccessful\x1b[0;1m (" << tokenCount << " tokens found)" << std::endl;
+                std::cout << "Tokenization was \x1b[92;1mSuccessful\x1b[0;1m (" << tokenizer.tokens.size() << " tokens found)" << std::endl;
             }
             else
             {

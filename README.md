@@ -20,9 +20,17 @@
 </div>
 
 # Loop
-Loop is an object oriented programming language.
+Loop is a multi-paradigm programming language.
 
 ![Example tokenized Loop Code](documentation/assets/images/tokenized_example_code.png)
+
+## What will make loop special?
+- Better loops 
+- Very fast performance
+- Guaranteed memory safety
+- Secure and robust
+- Better error handling
+- Rich library
 
 ## How do I build and run this?
 

@@ -4,16 +4,22 @@ namespace System
     {
         static void main()
         {
-            bool result;
-            string test = "Hello World";
-            if(test == "Hello" || test == "World")
+            bool result
+            string test = 'Hello World'
+            if(test == 'Hello' || test == 'World')
             {
-                result = true;
+                result = true
             }
             else
             {
-                result = false;
+                result = false
             }
+						int sum = 0
+						loop i in 1:5
+						{
+							sum += i
+						}
         }
     }
 }
+
