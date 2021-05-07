@@ -71,8 +71,7 @@ enum TOKEN
     T_STATIC,     // static
     T_IF,         // if
     T_ELSE,       // else
-    T_FOR,        // for
-    T_WHILE,      // while
+    T_LOOP,       // loop
     T_RETURN,     // return
     T_BREAK,      // break
     T_CONTINUE,   // continue
@@ -80,7 +79,8 @@ enum TOKEN
     T_FINAL,      // final
     T_TRUE,       // true
     T_FALSE,      // false
-    T_THIS        // this
+    T_THIS,       // this
+    T_IN          // in
 };
 
 struct Token

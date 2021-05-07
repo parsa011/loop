@@ -32,8 +32,7 @@ bool TokenizerTest::tokenizeKeywords()
     assert(getTokenizerToken("static") == T_STATIC);
     assert(getTokenizerToken("if") == T_IF);
     assert(getTokenizerToken("else") == T_ELSE);
-    assert(getTokenizerToken("for") == T_FOR);
-    assert(getTokenizerToken("while") == T_WHILE);
+    assert(getTokenizerToken("loop") == T_LOOP);
     assert(getTokenizerToken("return") == T_RETURN);
     assert(getTokenizerToken("break") == T_BREAK);
     assert(getTokenizerToken("continue") == T_CONTINUE);
@@ -42,6 +41,7 @@ bool TokenizerTest::tokenizeKeywords()
     assert(getTokenizerToken("true") == T_TRUE);
     assert(getTokenizerToken("false") == T_FALSE);
     assert(getTokenizerToken("this") == T_THIS);
+    assert(getTokenizerToken("in") == T_IN);
     return verify();
 }
 

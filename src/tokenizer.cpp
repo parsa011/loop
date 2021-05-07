@@ -368,13 +368,9 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_ELSE;
             }
-            else if (lastToken.value == "for")
+            else if (lastToken.value == "loop")
             {
-                lastToken.kind = T_FOR;
-            }
-            else if (lastToken.value == "while")
-            {
-                lastToken.kind = T_WHILE;
+                lastToken.kind = T_LOOP;
             }
             else if (lastToken.value == "return")
             {
@@ -407,6 +403,10 @@ void Tokenizer::tokenize(std::string data)
             else if (lastToken.value == "this")
             {
                 lastToken.kind = T_THIS;
+            }
+            else if (lastToken.value == "in")
+            {
+                lastToken.kind = T_IN;
             }
             else
             {
