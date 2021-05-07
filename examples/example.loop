@@ -1,11 +1,34 @@
 myVar
-// strings
-// strings
-// operators
-// gaps
-// brackets
-// comparison
-// data types
+'string'
+12
+12.2
+0xFF
+0b10
+=
++
+-
+/
+%
+|
+&
+;
+:
+,
+.
+()
+{}
+[]
+<>
+::
+==
+++
+--
+||
++=
+-=
+<=
+>=
+byte
 string
 int
 float
@@ -38,11 +61,3 @@ final
 true
 false
 this
-0b0
-2147483647
-123.45678
-'string\''
-0xFFFFF
-'F'
-string
-0b1001

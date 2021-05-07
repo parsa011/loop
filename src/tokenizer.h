@@ -23,7 +23,6 @@ enum TOKEN
     T_AND,                   // &
     T_SEMICOLON,             // ;
     T_COLON,                 // :
-    T_DOUBLE_COLON,          // ::
     T_COMMA,                 // ,
     T_DOT,                   // .
     T_LEFT_ROUNDED_BRACKET,  // (
@@ -34,6 +33,7 @@ enum TOKEN
     T_RIGHT_SQUARE_BRACKET,  // ]
     T_LEFT_ANGLE_BRACKET,    // <
     T_RIGHT_ANGLE_BRACKET,   // >
+    T_DOUBLE_COLON,          // ::
     T_DOUBLE_EQUAL,          // ==
     T_DOUBLE_PLUS,           // ++
     T_DOUBLE_MINUS,          // --
