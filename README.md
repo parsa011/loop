@@ -21,8 +21,7 @@
 
 # Loop
 Loop is a multi-paradigm programming language.
-
-![Example tokenized Loop Code](documentation/assets/images/tokenized_example_code.png)
+![Loop Code](https://user-images.githubusercontent.com/63039748/117528404-1cc45d00-afe3-11eb-8ea0-b12548a2e572.png)
 
 ## What will make loop special?
 - Better loops 
@@ -31,6 +30,7 @@ Loop is a multi-paradigm programming language.
 - Secure and robust
 - Better error handling
 - Rich library
+- Small Executables
 
 ## How do I build and run this?
 
