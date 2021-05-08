@@ -21,7 +21,10 @@
 
 # Loop
 Loop is a multi-paradigm programming language.
-![Loop Code](https://user-images.githubusercontent.com/63039748/117528404-1cc45d00-afe3-11eb-8ea0-b12548a2e572.png)
+
+<p align="center">
+  <img style="text-align:center" src="documentation/assets/images/tokenized_example_code.png" width="50%">
+</p>
 
 ## What will make loop special?
 - Better loops 

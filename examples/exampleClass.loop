@@ -1,25 +1,13 @@
-namespace System
-{
-    class Console
-    {
-        static void main()
-        {
-            bool result
-            string test = 'Hello World'
-            if(test == 'Hello' || test == 'World')
-            {
-                result = true
+namespace System {
+	class Console {
+    	static void main() {
+        	bool result = false
+            string test = 'Hello'
+            result = test == 'Hello'
+            int sum = 0
+            loop 1:5 {
+            	sum++
             }
-            else
-            {
-                result = false
-            }
-						int sum = 0
-						loop i in 1:5
-						{
-							sum += i
-						}
         }
     }
 }
-
