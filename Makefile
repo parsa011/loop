@@ -20,7 +20,7 @@ release: clean
 all: debug test
 
 clean:
-	rm loop
-	rm loop-test
+	rm -f -- loop
+	rm -f -- loop-test
 
 .PHONY: all test 

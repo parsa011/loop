@@ -450,6 +450,20 @@ void Tokenizer::tokenize(std::string data)
                     werror.syntaxError(E_INVALID_BIN, "Invalid Binary", "here", index);
                 lastToken.kind = T_BIN;
             }
+            else if (lastChar == '0' && peek(1) == 'u')
+            {
+                bool nune = false;
+                size_t i = 0;
+                for (; !isEOF() && !isspace(lastChar); i++)
+                {
+                    if (i > 1 && !isxdigit(lastChar) && !nune)
+                        nune = true;
+                    pushChar();
+                }
+                if (i != 10 || nune)
+                    werror.syntaxError(E_INVALID_UNICODE, "Invalid Unicode", "here", index);
+                lastToken.kind = T_BIN;
+            }
             else
             {
                 bool isDecimal = false;
