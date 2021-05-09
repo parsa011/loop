@@ -23,10 +23,11 @@ public:
 
     bool ThrowCloseCommentError();
     bool ThrowMissingQuotationMarkError();
-    bool ThrowInvalidHexNumberOutOfRangeError();
-    bool ThrowInvalidHexNumberError();
-    bool ThrowInvalidBinaryNumberOutOfRangeError();
-    bool ThrowInvalidBinaryNumberError();
+    bool ThrowOutOfRangeHexError();
+    bool ThrowInvalidHexError();
+    bool ThrowInvalidHexAndOutOfRangeHexError();
+    bool ThrowOutOfRangeBinaryError();
+    bool ThrowInvalidBinaryError();
     bool ThrowInvalidNumberError();
     bool ThrowUnrecognizedTokenError();
 };

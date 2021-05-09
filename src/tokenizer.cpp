@@ -84,7 +84,7 @@ void Tokenizer::tokenize(std::string data)
                 }
                 if (isEOF())
                 {
-                    werror.syntaxError(E_CLOSE_COMMENT, "You need to close the comment", "here", index);
+                    werror.syntaxError(E_CLOSE_COMMENT, "You Need To Close The Comment", "here", index);
                 }
                 continue;
             }
@@ -429,9 +429,9 @@ void Tokenizer::tokenize(std::string data)
                     pushChar();
                 }
                 if (i > 10 || i < 4)
-                    werror.syntaxError(E_INVALID_HEX_NUMBER, "Out Of Range Hex Number", "here", index);
+                    werror.syntaxError(E_OUT_OF_RANGE_HEX, "Out Of Range Hex", "here", index);
                 if (nxne)
-                    werror.syntaxError(E_INVALID_HEX_NUMBER, "Invalid Hex Number", "here", index);
+                    werror.syntaxError(E_INVALID_HEX, "Invalid Hex", "here", index);
                 lastToken.kind = T_HEX;
             }
             else if (lastChar == '0' && peek(1) == 'b')
@@ -444,10 +444,10 @@ void Tokenizer::tokenize(std::string data)
                         nbne = true;
                     pushChar();
                 }
-                if (i > 10 || i < 3)
-                    werror.syntaxError(E_INVALID_NUMBER, "Out Of Range Binary Number", "here", index);
-                if (nbne)
-                    werror.syntaxError(E_INVALID_NUMBER, "Invalid Binary Number", "here", index);
+                if (i > 10)
+                    werror.syntaxError(E_OUT_OF_RANGE_BIN, "Out Of Range Binary", "here", index);
+                if (nbne || i < 3)
+                    werror.syntaxError(E_INVALID_BIN, "Invalid Binary", "here", index);
                 lastToken.kind = T_BIN;
             }
             else
