@@ -462,7 +462,7 @@ void Tokenizer::tokenize(std::string data)
                 }
                 if (i != 10 || nune)
                     werror.syntaxError(E_INVALID_UNICODE, "Invalid Unicode", "here", index);
-                lastToken.kind = T_BIN;
+                lastToken.kind = T_UNICODE;
             }
             else
             {

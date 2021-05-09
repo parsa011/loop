@@ -15,6 +15,7 @@ enum TOKEN
     T_DECIMAL,               // 27.0
     T_HEX,                   // 0xFF
     T_BIN,                   // 0b01
+    T_UNICODE,               // 0u12345678
     T_EQUAL,                 // =
     T_PLUS,                  // +
     T_MINUS,                 // -

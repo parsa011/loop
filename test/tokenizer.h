@@ -28,6 +28,7 @@ public:
     bool ThrowInvalidHexAndOutOfRangeHexError();
     bool ThrowOutOfRangeBinaryError();
     bool ThrowInvalidBinaryError();
+    bool ThrowInvalidUnicodeError();
     bool ThrowInvalidNumberError();
     bool ThrowUnrecognizedTokenError();
 };

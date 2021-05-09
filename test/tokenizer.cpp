@@ -19,6 +19,7 @@ void TokenizerTest::runAll()
     test(ThrowInvalidHexAndOutOfRangeHexError());
     test(ThrowOutOfRangeBinaryError());
     test(ThrowInvalidBinaryError());
+    test(ThrowInvalidUnicodeError());
     test(ThrowInvalidNumberError());
     test(ThrowUnrecognizedTokenError());
 }
@@ -64,6 +65,7 @@ bool TokenizerTest::tokenizeOperators()
     assert(getTokenizerToken("1.0") == T_DECIMAL);
     assert(getTokenizerToken("0xF4") == T_HEX);
     assert(getTokenizerToken("0b10") == T_BIN);
+    assert(getTokenizerToken("0u12345678") == T_UNICODE);
     assert(getTokenizerToken("=") == T_EQUAL);
     assert(getTokenizerToken("+") == T_PLUS);
     assert(getTokenizerToken("-") == T_MINUS);
@@ -184,6 +186,20 @@ bool TokenizerTest::ThrowInvalidBinaryError()
     assert(tokenizer.werror.errors.size() == 1);
     assert(tokenizer.werror.errors[0].code == E_INVALID_BIN);
     assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Binary") == 0);
+    return verify();
+}
+
+bool TokenizerTest::ThrowInvalidUnicodeError()
+{
+    testName = "Throw Invalid Unicode Error";
+    tokenizer.tokenize("0uFFFFFFF");
+    assert(tokenizer.werror.errors.size() == 1);
+    assert(tokenizer.werror.errors[0].code == E_INVALID_UNICODE);
+    assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Unicode") == 0);
+    tokenizer.tokenize("0uFFFrFFFF");
+    assert(tokenizer.werror.errors.size() == 1);
+    assert(tokenizer.werror.errors[0].code == E_INVALID_UNICODE);
+    assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Unicode") == 0);
     return verify();
 }
 
