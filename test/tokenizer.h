@@ -1,7 +1,6 @@
 #ifndef TOKENIZER_TEST_H
 #define TOKENIZER_TEST_H
 
-#include <string.h>
 #include "unit_test.h"
 #include "../src/werror.h"
 #include "../src/tokenizer.h"

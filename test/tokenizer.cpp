@@ -1,4 +1,5 @@
 #include "tokenizer.h"
+#include <string.h>
 
 TOKEN TokenizerTest::getTokenizerToken(const char *token)
 {
@@ -123,8 +124,6 @@ bool TokenizerTest::ThrowCloseCommentError()
 bool TokenizerTest::ThrowMissingQuotationMarkError()
 {
     testName = "Throw Missing Quotation Mark Error";
-    WError errorHandler;
-    Tokenizer tokenizer(errorHandler);
     tokenizer.tokenize("'Invalid String");
     assert(tokenizer.werror.errors.size() == 1);
     assert(tokenizer.werror.errors[0].code == E_MISSING_QUOTATION_MARK);
@@ -135,8 +134,6 @@ bool TokenizerTest::ThrowMissingQuotationMarkError()
 bool TokenizerTest::ThrowInvalidHexNumberOutOfRangeError()
 {
     testName = "Throw Invalid Hex Number Out Of Range Error";
-    WError errorHandler;
-    Tokenizer tokenizer(errorHandler);
     tokenizer.tokenize("0xFFFFFFFFFF");
     assert(tokenizer.werror.errors.size() == 1);
     assert(tokenizer.werror.errors[0].code == E_INVALID_HEX_NUMBER);
@@ -147,8 +144,6 @@ bool TokenizerTest::ThrowInvalidHexNumberOutOfRangeError()
 bool TokenizerTest::ThrowInvalidHexNumberError()
 {
     testName = "Throw Invalid Hex Number Error";
-    WError errorHandler;
-    Tokenizer tokenizer(errorHandler);
     tokenizer.tokenize("0xLOOP");
     assert(tokenizer.werror.errors.size() == 1);
     assert(tokenizer.werror.errors[0].code == E_INVALID_HEX_NUMBER);
@@ -159,8 +154,6 @@ bool TokenizerTest::ThrowInvalidHexNumberError()
 bool TokenizerTest::ThrowInvalidBinaryNumberOutOfRangeError()
 {
     testName = "Throw Invalid Binary Number Out Of Range Error";
-    WError errorHandler;
-    Tokenizer tokenizer(errorHandler);
     tokenizer.tokenize("0b1111111111");
     assert(tokenizer.werror.errors.size() == 1);
     assert(tokenizer.werror.errors[0].code == E_INVALID_NUMBER);
@@ -171,8 +164,6 @@ bool TokenizerTest::ThrowInvalidBinaryNumberOutOfRangeError()
 bool TokenizerTest::ThrowInvalidBinaryNumberError()
 {
     testName = "Throw Invalid Binary Number Error";
-    WError errorHandler;
-    Tokenizer tokenizer(errorHandler);
     tokenizer.tokenize("0bLOOP");
     assert(tokenizer.werror.errors.size() == 1);
     assert(tokenizer.werror.errors[0].code == E_INVALID_NUMBER);
@@ -183,8 +174,6 @@ bool TokenizerTest::ThrowInvalidBinaryNumberError()
 bool TokenizerTest::ThrowInvalidNumberError()
 {
     testName = "Throw Invalid Number Error";
-    WError errorHandler;
-    Tokenizer tokenizer(errorHandler);
     tokenizer.tokenize("2147483648");
     assert(tokenizer.werror.errors.size() == 1);
     assert(tokenizer.werror.errors[0].code == E_INVALID_NUMBER);
@@ -195,8 +184,6 @@ bool TokenizerTest::ThrowInvalidNumberError()
 bool TokenizerTest::ThrowUnrecognizedTokenError()
 {
     testName = "Throw Unrecognized Token Error";
-    WError errorHandler;
-    Tokenizer tokenizer(errorHandler);
     tokenizer.tokenize("~");
     assert(tokenizer.werror.errors.size() == 1);
     assert(tokenizer.werror.errors[0].code == E_UNRECOGNIZED_TOKEN);

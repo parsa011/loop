@@ -48,6 +48,8 @@ char Tokenizer::peek(int offset)
 
 void Tokenizer::tokenize(std::string data)
 {
+    werror.errors.clear();
+    werror.warnings.clear();
     tokens.clear();
     src = data;
     index = 0;

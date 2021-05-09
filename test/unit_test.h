@@ -2,8 +2,6 @@
 #define UNIT_TEST_H
 
 #include <iostream>
-#include <sstream>
-#include "../src/utils.h"
 
 class UnitTest
 {
