@@ -61,5 +61,5 @@ final
 true
 false
 this
-0b1
-0uFu
+/* ignored */ asdf /* ignored */ asdf
+asdf // ignored

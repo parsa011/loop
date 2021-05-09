@@ -76,15 +76,15 @@ void Tokenizer::tokenize(std::string data)
                 while (!isEOF())
                 {
                     advance(1);
+                    if (isEOF())
+                    {
+                        werror.syntaxError(E_CLOSE_COMMENT, "You Need To Close The Comment", "here", index);
+                    }
                     if (lastChar == '*' && peek(1) == '/')
                     {
                         advance(2);
                         break;
                     }
-                }
-                if (isEOF())
-                {
-                    werror.syntaxError(E_CLOSE_COMMENT, "You Need To Close The Comment", "here", index);
                 }
                 continue;
             }

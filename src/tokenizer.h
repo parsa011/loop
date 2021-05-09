@@ -48,40 +48,40 @@ enum TOKEN
     T_EQUAL_GREETER_BRACKET, // >=
 
     // Data Types
-    T_BYTE_TYPE,    // byte
-    T_STRING_TYPE,  // string
-    T_INT_TYPE,     // int
-    T_FLOAT_TYPE,   // float
-    T_DOUBLE_TYPE,  // double
-    T_BOOLEAN_TYPE, // bool
-    T_VOID_TYPE,    // void
+    T_BYTE_TYPE,             // byte
+    T_STRING_TYPE,           // string
+    T_INT_TYPE,              // int
+    T_FLOAT_TYPE,            // float
+    T_DOUBLE_TYPE,           // double
+    T_BOOLEAN_TYPE,          // bool
+    T_VOID_TYPE,             // void
 
     // Keywords
-    T_NAMESPACE,  // namespace
-    T_CLASS,      // class
-    T_STRUCT,     // struct
-    T_ENUM,       // enum
-    T_EXTERN,     // extern
-    T_INTERFACE,  // interface
-    T_EXTENDS,    // extends
-    T_IMPLEMENTS, // implements
-    T_ABSTRACT,   // abstract
-    T_PUBLIC,     // public
-    T_PRIVATE,    // private
-    T_PROTECTED,  // protected
-    T_STATIC,     // static
-    T_IF,         // if
-    T_ELSE,       // else
-    T_LOOP,       // loop
-    T_RETURN,     // return
-    T_BREAK,      // break
-    T_CONTINUE,   // continue
-    T_IMPORT,     // import
-    T_FINAL,      // final
-    T_TRUE,       // true
-    T_FALSE,      // false
-    T_THIS,       // this
-    T_IN          // in
+    T_NAMESPACE,             // namespace
+    T_CLASS,                 // class
+    T_STRUCT,                // struct
+    T_ENUM,                  // enum
+    T_EXTERN,                // extern
+    T_INTERFACE,             // interface
+    T_EXTENDS,               // extends
+    T_IMPLEMENTS,            // implements
+    T_ABSTRACT,              // abstract
+    T_PUBLIC,                // public
+    T_PRIVATE,               // private
+    T_PROTECTED,             // protected
+    T_STATIC,                // static
+    T_IF,                    // if
+    T_ELSE,                  // else
+    T_LOOP,                  // loop
+    T_RETURN,                // return
+    T_BREAK,                 // break
+    T_CONTINUE,              // continue
+    T_IMPORT,                // import
+    T_FINAL,                 // final
+    T_TRUE,                  // true
+    T_FALSE,                 // false
+    T_THIS,                  // this
+    T_IN                     // in
 };
 
 struct Token
@@ -109,4 +109,4 @@ public:
     Tokenizer(WError &wError) : werror(wError){};
 };
 
-#endif //TOKENIZER_H
+#endif

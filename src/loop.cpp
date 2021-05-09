@@ -5,7 +5,6 @@
 
 int main(int argc, const char *argv[])
 {
-    // Example: loop main.loop
     if (argc > 0)
     {
         WError werror;
@@ -22,14 +21,11 @@ int main(int argc, const char *argv[])
                           << "\x1b[0;91;1mERROR\x1b[0;1m: " << tokenizer.werror.errors[i].message << std::endl;
             }
 
-            if (tokenizer.werror.errors.size() < 1)
-            {
-                std::cout << "Tokenization was \x1b[92;1mSuccessful\x1b[0;1m (" << tokenizer.tokens.size() << " tokens found)" << std::endl;
-            }
-            else
+            if (tokenizer.werror.errors.size() > 0)
             {
                 exit(1);
             }
+            std::cout << "Tokenization was \x1b[92;1mSuccessful\x1b[0;1m (" << tokenizer.tokens.size() << " tokens found)" << std::endl;
         }
     }
 }

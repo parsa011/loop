@@ -23,7 +23,7 @@
 Loop is a multi-paradigm programming language.
 
 <p align="center">
-  <img style="text-align:center" src="documentation/assets/images/tokenized_example_code.png" width="50%">
+  <img style="text-align:center" src="documentation/assets/images/tokenized_example_code.png" width="70%">
 </p>
 
 ## What will make loop special?
