@@ -3,6 +3,7 @@
 
 #include "werror.h"
 #include <string>
+#include <vector>
 
 namespace AST
 {
@@ -80,14 +81,18 @@ namespace AST
     class BlockStatement : Statement
     {
     public:
-        BlockStatement();
+        BlockStatement(std::vector<Statement *> *statementList, std::vector<IdentifierDeclaration *> *idList);
+        std::vector<IdentifierDeclaration *> *idList;
+        std::vector<Statement *> *statementList;
         ~BlockStatement();
     };
 
     class AssignStatement : Statement
     {
     public:
-        AssignStatement();
+        AssignStatement(AssignOperations op, Expression *expr);
+        AssignOperations op;
+        Expression *expr;
         ~AssignStatement();
     };
 
@@ -192,6 +197,13 @@ namespace AST
     public:
         Declaration();
         ~Declaration();
+    };
+
+    class IdentifierDeclaration : Declaration
+    {
+    public:
+        IdentifierDeclaration();
+        ~IdentifierDeclaration();
     };
 
     class StructDeclaration : Declaration
