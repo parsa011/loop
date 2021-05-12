@@ -1,8 +1,0 @@
-class Variables{
-    void Main(){
-        string stringVar = 'a';
-        i8 intVar = 1;
-        f8 floatVar = 1.0;
-        bool boolVar = true;
-    }
-}
