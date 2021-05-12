@@ -38,35 +38,42 @@ namespace AST
     class IntegerLiteralExpression : LiteralExpression
     {
     public:
-        IntegerLiteralExpression();
+        IntegerLiteralExpression(int value, int size);
+        int value;
+        int size;
         ~IntegerLiteralExpression();
     };
 
     class FloatLiteralExpression : LiteralExpression
     {
     public:
-        FloatLiteralExpression();
+        FloatLiteralExpression(double value, int size);
+        double value;
+        int size;
         ~FloatLiteralExpression();
     };
 
     class BoolLiteralExpression : LiteralExpression
     {
     public:
-        BoolLiteralExpression();
+        BoolLiteralExpression(bool value);
+        bool value;
         ~BoolLiteralExpression();
     };
 
     class ByteLiteralExpression : LiteralExpression
     {
     public:
-        ByteLiteralExpression();
+        ByteLiteralExpression(unsigned char value);
+        unsigned char value;
         ~ByteLiteralExpression();
     };
 
     class StringLiteralExpression : LiteralExpression
     {
     public:
-        StringLiteralExpression();
+        StringLiteralExpression(std::string value);
+        std::string value;
         ~StringLiteralExpression();
     };
 
