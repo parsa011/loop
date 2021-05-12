@@ -20,11 +20,17 @@ int main(int argc, const char *argv[])
                 std::cerr << "\x1b[91;1mE" << std::setfill('0') << std::setw(2) << tokenizer.werror.errors[i].code << " \x1b[0mIn \x1b[4m" << tokenizer.werror.errors[i].filePath << ':' << tokenizer.werror.errors[i].line << std::endl
                           << "\x1b[0;91;1mERROR\x1b[0;1m: " << tokenizer.werror.errors[i].message << std::endl;
             }
-
             if (tokenizer.werror.errors.size() > 0)
             {
                 exit(1);
             }
+
+            for (Token token : tokenizer.tokens)
+            {
+                if (token.kind != T_NEWLINE)
+                    std::cout << token.kind << ':' << token.value << std::endl;
+            }
+
             std::cout << "Tokenization was \x1b[92;1mSuccessful\x1b[0;1m (" << tokenizer.tokens.size() << " tokens found)" << std::endl;
         }
     }

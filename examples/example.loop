@@ -1,6 +1,7 @@
 myVar
 'string'
 12
+-12
 12.2
 0xFF
 0b10
@@ -31,9 +32,18 @@ myVar
 >=
 byte
 string
-int
-float
-double
+i8
+i16
+i32
+i64
+u8
+u16
+u32
+u64
+f8
+f16
+f32
+f64
 bool
 void
 // keywords
@@ -57,10 +67,8 @@ in
 return
 break
 continue
-using
+import
 final
 true
 false
 this
-/* ignored */ asdf /* ignored */ asdf
-asdf // ignored

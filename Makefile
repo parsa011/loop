@@ -7,6 +7,8 @@ FLAGS_RELEASE = -O3 -std=c++17
 FLAGS_TEST = -g -O0 -std=c++17
 LDFLAGS = -pthread -ldl -lm -lstdc++
 
+.PHONY: all test clean
+
 test:
 	$(COMPILER) $(TEST) $(WARNINGS) $(FLAGS_TEST) $(LDFLAGS) -o loop-test
 

@@ -1,13 +1,9 @@
-namespace System {
-	class Console {
-    	static void main() {
-        	bool result = false
-            string test = 'Hello'
-            result = test == 'Hello'
-            int sum = 0
-            loop 1:5 {
-            	sum++
-            }
-        }
+module MyModule
+
+import @Console
+
+class Hello {
+    void PrintHello() {
+        Console.Writeln('Hello')
     }
 }

@@ -166,6 +166,10 @@ void Tokenizer::tokenize(std::string data)
                 lastToken.kind = T_DOUBLE_MINUS;
                 pushChar();
             }
+            else if (isdigit(peek(1)))
+            {
+                goto LexNumber;
+            }
             else
             {
                 lastToken.kind = T_MINUS;
@@ -290,17 +294,53 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_STRING_TYPE;
             }
-            else if (lastToken.value == "int")
+            else if (lastToken.value == "i8")
             {
-                lastToken.kind = T_INT_TYPE;
+                lastToken.kind = T_I8_TYPE;
             }
-            else if (lastToken.value == "float")
+            else if (lastToken.value == "i16")
             {
-                lastToken.kind = T_FLOAT_TYPE;
+                lastToken.kind = T_I16_TYPE;
             }
-            else if (lastToken.value == "double")
+            else if (lastToken.value == "i32")
             {
-                lastToken.kind = T_DOUBLE_TYPE;
+                lastToken.kind = T_I32_TYPE;
+            }
+            else if (lastToken.value == "i64")
+            {
+                lastToken.kind = T_I64_TYPE;
+            }
+            else if (lastToken.value == "u8")
+            {
+                lastToken.kind = T_U8_TYPE;
+            }
+            else if (lastToken.value == "u16")
+            {
+                lastToken.kind = T_U16_TYPE;
+            }
+            else if (lastToken.value == "u32")
+            {
+                lastToken.kind = T_U32_TYPE;
+            }
+            else if (lastToken.value == "u64")
+            {
+                lastToken.kind = T_U64_TYPE;
+            }
+            else if (lastToken.value == "f8")
+            {
+                lastToken.kind = T_F8_TYPE;
+            }
+            else if (lastToken.value == "f16")
+            {
+                lastToken.kind = T_F16_TYPE;
+            }
+            else if (lastToken.value == "f32")
+            {
+                lastToken.kind = T_F32_TYPE;
+            }
+            else if (lastToken.value == "f64")
+            {
+                lastToken.kind = T_F64_TYPE;
             }
             else if (lastToken.value == "bool")
             {
@@ -466,41 +506,31 @@ void Tokenizer::tokenize(std::string data)
             }
             else
             {
-                bool isDecimal = false;
-                while (true)
+            LexNumber:
+                lastToken.kind = T_UINT;
+                if (lastChar == '-')
+                {
+                    pushChar();
+                    lastToken.kind = T_INT;
+                }
+                while (!isEOF())
                 {
                     if (isdigit(lastChar))
                     {
                         pushChar();
                     }
-                    else if (lastChar == '.')
+                    else if (lastChar == '.' && lastToken.kind != T_FLOAT)
                     {
-                        if (isDecimal)
-                        {
-                            lastToken.kind = T_DECIMAL;
-                            break;
-                        }
-                        else
-                        {
-                            pushChar();
-                            isDecimal = true;
-                        }
+                        pushChar();
+                        lastToken.kind = T_FLOAT;
                     }
                     else
                     {
-                        if (isDecimal)
-                        {
-                            lastToken.kind = T_DECIMAL;
-                        }
-                        else
-                        {
-
-                            lastToken.kind = T_INT;
-                        }
                         break;
                     }
                 }
-                if (lastToken.kind == T_INT && std::atoll(lastToken.value.c_str()) > 2147483647)
+                // TODO: Reimplement String To Int With Error Handling
+                if (lastToken.kind == T_INT && std::atoll(lastToken.value.c_str()) > 9223372036854775807)
                 {
                     werror.syntaxError(E_INVALID_NUMBER, "Invalid Number", "here", index);
                 }
