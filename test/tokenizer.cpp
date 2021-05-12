@@ -27,32 +27,22 @@ void TokenizerTest::runAll()
 bool TokenizerTest::tokenizeKeywords()
 {
     testName = "Tokenize Keywords";
-    assert(getTokenizerToken("if") == T_IF);
     assert(getTokenizerToken("module") == T_MODULE);
-    assert(getTokenizerToken("class") == T_CLASS);
-    assert(getTokenizerToken("struct") == T_STRUCT);
-    assert(getTokenizerToken("enum") == T_ENUM);
-    assert(getTokenizerToken("extern") == T_EXTERN);
-    assert(getTokenizerToken("interface") == T_INTERFACE);
-    assert(getTokenizerToken("extends") == T_EXTENDS);
-    assert(getTokenizerToken("implements") == T_IMPLEMENTS);
-    assert(getTokenizerToken("abstract") == T_ABSTRACT);
-    assert(getTokenizerToken("public") == T_PUBLIC);
-    assert(getTokenizerToken("private") == T_PRIVATE);
-    assert(getTokenizerToken("protected") == T_PROTECTED);
+    assert(getTokenizerToken("import") == T_IMPORT);
+    assert(getTokenizerToken("fn") == T_FUNCTION);
+    assert(getTokenizerToken("pub") == T_PUBLIC);
     assert(getTokenizerToken("static") == T_STATIC);
     assert(getTokenizerToken("if") == T_IF);
     assert(getTokenizerToken("else") == T_ELSE);
     assert(getTokenizerToken("loop") == T_LOOP);
     assert(getTokenizerToken("return") == T_RETURN);
-    assert(getTokenizerToken("break") == T_BREAK);
-    assert(getTokenizerToken("continue") == T_CONTINUE);
-    assert(getTokenizerToken("import") == T_IMPORT);
-    assert(getTokenizerToken("final") == T_FINAL);
+    assert(getTokenizerToken("stop") == T_STOP);
+    assert(getTokenizerToken("jump") == T_JUMP);
+    assert(getTokenizerToken("go") == T_GO);
+    assert(getTokenizerToken("in") == T_IN);
     assert(getTokenizerToken("true") == T_TRUE);
     assert(getTokenizerToken("false") == T_FALSE);
-    assert(getTokenizerToken("this") == T_THIS);
-    assert(getTokenizerToken("in") == T_IN);
+    assert(getTokenizerToken("@label") == T_LABEL);
     return verify();
 }
 
@@ -119,7 +109,6 @@ bool TokenizerTest::tokenizeDataTypes()
     assert(getTokenizerToken("f32") == T_F32_TYPE);
     assert(getTokenizerToken("f64") == T_F64_TYPE);
     assert(getTokenizerToken("bool") == T_BOOLEAN_TYPE);
-    assert(getTokenizerToken("void") == T_VOID_TYPE);
     return verify();
 }
 
@@ -213,7 +202,6 @@ bool TokenizerTest::ThrowInvalidUnicodeError()
     assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Unicode") == 0);
     return verify();
 }
-
 
 // !(Ali) STOPPED FOR BAD SUPPORT IN TOKENIZER
 // bool TokenizerTest::ThrowInvalidNumberError()
