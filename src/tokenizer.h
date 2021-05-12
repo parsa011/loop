@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <map>
 #include "werror.h"
 
 enum TOKEN
@@ -50,6 +49,7 @@ enum TOKEN
     T_EQUAL_GREETER_BRACKET, // >=
 
     // Data Types
+    T_BOOLEAN_TYPE, // bool
     T_BYTE_TYPE,    // byte
     T_STRING_TYPE,  // string
     T_I8_TYPE,      // int-8bit
@@ -64,35 +64,29 @@ enum TOKEN
     T_F16_TYPE,     // float int-16bit
     T_F32_TYPE,     // float int-32bit
     T_F64_TYPE,     // float int-64bit
-    T_BOOLEAN_TYPE, // bool
-    T_VOID_TYPE,    // void
+    T_STRUCT,       // struct
+    T_ENUM,         // enum
 
     // Keywords
-    T_MODULE,     // module
-    T_CLASS,      // class
-    T_STRUCT,     // struct
-    T_ENUM,       // enum
-    T_EXTERN,     // extern
-    T_INTERFACE,  // interface
-    T_EXTENDS,    // extends
-    T_IMPLEMENTS, // implements
-    T_ABSTRACT,   // abstract
-    T_PUBLIC,     // public
-    T_PRIVATE,    // private
-    T_PROTECTED,  // protected
-    T_STATIC,     // static
-    T_IF,         // if
-    T_ELSE,       // else
-    T_LOOP,       // loop
-    T_RETURN,     // return
-    T_BREAK,      // break
-    T_CONTINUE,   // continue
-    T_IMPORT,     // import
-    T_FINAL,      // final
-    T_TRUE,       // true
-    T_FALSE,      // false
-    T_THIS,       // this
-    T_IN          // in
+    T_MODULE,   // module
+    T_IMPORT,   // import
+    T_FUNCTION, // fn
+    T_PUBLIC,   // pub
+    T_STATIC,   // static
+    T_IF,       // if
+    T_ELSE,     // else
+    T_LOOP,     // loop
+    T_RETURN,   // return
+    T_STOP,     // stop
+    T_JUMP,     // jump
+    T_GO,       // go
+    T_IN,       // in
+    T_TRUE,     // true
+    T_FALSE,    // false
+
+    // Others
+
+    T_LABEL
 };
 
 struct Token
