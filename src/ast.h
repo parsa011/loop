@@ -187,14 +187,19 @@ namespace AST
     class BinaryOperation : Operation
     {
     public:
-        BinaryOperation();
+        BinaryOperation(Expression *left, Expression *right, BinaryOperations op);
+        Expression *left;
+        Expression *right;
+        BinaryOperations op;
         ~BinaryOperation();
     };
 
     class UnaryOperation : Operation
     {
     public:
-        UnaryOperation();
+        UnaryOperation(Expression *expr, UnaryOperations op);
+        Expression *expr;
+        UnaryOperations op;
         ~UnaryOperation();
     };
 
