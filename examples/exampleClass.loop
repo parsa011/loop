@@ -1,9 +1,0 @@
-module MyModule
-
-import @Console
-
-class Hello {
-    void PrintHello() {
-        Console.Writeln('Hello')
-    }
-}

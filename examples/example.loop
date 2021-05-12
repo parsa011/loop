@@ -1,74 +1,20 @@
-myVar
-'string'
-12
--12
-12.2
-0xFF
-0b10
-0uFFFFFFFF
-=
-+
--
-/
-%
-|
-&
-;
-:
-,
-.
-()
-{}
-[]
-<>
-::
-==
-++
---
-||
-+=
--=
-<=
->=
-byte
-string
-i8
-i16
-i32
-i64
-u8
-u16
-u32
-u64
-f8
-f16
-f32
-f64
-bool
-void
-// keywords
-module
-class
-struct
-enum
-extern
-interface
-extends
-implements
-abstract
-public
-private
-protected
-static
-if
-else
-loop
-in
-return
-break
-continue
-import
-final
-true
-false
-this
+import Standard.Console;
+
+struct Animal {
+  string Name,
+  u8 Age
+}
+
+struct Cat : Animal {
+  byte Color; // or in future Hex
+
+  fn Sound() {
+    Console.Writeln('Meaow');
+  }
+}
+
+
+fn Main(u8 param1, string param2) void {
+  Cat myCat;
+  myCat.Sound();
+}
