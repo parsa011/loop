@@ -46,7 +46,7 @@ EQUAL_LESSER_BRACKET    : '<='
 EQUAL_GREETER_BRACKET   : '>='
 
 // Keywords
-NAMESPACE               : 'namespace'
+MODULE                  : 'module'
 CLASS                   : 'class'
 STRUCT                  : 'struct'
 ENUM                    : 'enum'
