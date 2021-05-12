@@ -68,7 +68,7 @@ enum TOKEN
     T_VOID_TYPE,    // void
 
     // Keywords
-    T_NAMESPACE,  // namespace
+    T_MODULE,     // module
     T_CLASS,      // class
     T_STRUCT,     // struct
     T_ENUM,       // enum

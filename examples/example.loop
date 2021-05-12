@@ -47,7 +47,7 @@ f64
 bool
 void
 // keywords
-namespace
+module
 class
 struct
 enum

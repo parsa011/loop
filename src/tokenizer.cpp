@@ -350,9 +350,9 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_VOID_TYPE;
             }
-            else if (lastToken.value == "namespace")
+            else if (lastToken.value == "module")
             {
-                lastToken.kind = T_NAMESPACE;
+                lastToken.kind = T_MODULE;
             }
             else if (lastToken.value == "class")
             {
