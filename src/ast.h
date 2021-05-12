@@ -1,16 +1,21 @@
 #ifndef H_AST
 #define H_AST
 
-#include <iostream>
+#include "werror.h"
 #include <string>
-#include <vector>
 
 namespace AST
 {
+    WError werror;
+
     class Id
     {
+        std::string id;
+        int size;
+
     public:
-        Id();
+        Id(std::string id, int size);
+        Id(std::string id);
         ~Id();
     };
 
@@ -89,15 +94,46 @@ namespace AST
     class IfStatement : Statement
     {
     public:
-        IfStatement();
+        IfStatement(Expression *condition, BlockStatement *if_block, BlockStatement *else_block);
+        Expression *condition;
+        BlockStatement *if_block;
+        BlockStatement *else_block;
         ~IfStatement();
     };
 
     class LoopStatement : Statement
     {
     public:
-        LoopStatement();
+        LoopStatement(Expression *, Expression *, BlockStatement *, std::string id);
+        BlockStatement *block;
         ~LoopStatement();
+    };
+
+    class LoopForStatement : LoopStatement
+    {
+    public:
+        LoopForStatement(Expression *initCondition, Expression *endCondition, BlockStatement *block, std::string id);
+        std::string id;
+        Expression *initCondition;
+        Expression *endCondition;
+        ~LoopForStatement();
+    };
+
+    class LoopWhileStatement : LoopStatement
+    {
+    public:
+        LoopWhileStatement(Expression *condition, BlockStatement *block);
+        Expression *condition;
+        ~LoopWhileStatement();
+    };
+
+    class LoopCounterStatement : LoopStatement
+    {
+    public:
+        LoopCounterStatement(Expression *condition, BlockStatement *block, std::string id);
+        std::string id;
+        Expression *condition;
+        ~LoopCounterStatement();
     };
 
     class ReturnStatement : Statement
