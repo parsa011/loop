@@ -58,6 +58,7 @@ void Tokenizer::tokenize(std::string data)
     {
         lastToken.value.clear();
         lastToken.index = 0;
+        lastToken.kind = T_UNRECOGNIZED;
         if (lastChar == '\n')
         {
             lastToken.kind = T_NEWLINE;
@@ -240,6 +241,18 @@ void Tokenizer::tokenize(std::string data)
                 lastToken.kind = T_COLON;
             }
         }
+        else if (lastChar == '@')
+        {
+            pushChar();
+            if (isalpha(lastChar))
+            {
+                while (!isEOF() && isalpha(lastChar))
+                {
+                    pushChar();
+                }
+                lastToken.kind = T_LABEL;
+            }
+        }
         else if (lastChar == '%')
         {
             lastToken.kind = T_PERCENT;
@@ -286,7 +299,11 @@ void Tokenizer::tokenize(std::string data)
             {
                 pushChar();
             }
-            if (lastToken.value == "byte")
+            if (lastToken.value == "bool")
+            {
+                lastToken.kind = T_BOOLEAN_TYPE;
+            }
+            else if (lastToken.value == "byte")
             {
                 lastToken.kind = T_BYTE_TYPE;
             }
@@ -342,22 +359,6 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_F64_TYPE;
             }
-            else if (lastToken.value == "bool")
-            {
-                lastToken.kind = T_BOOLEAN_TYPE;
-            }
-            else if (lastToken.value == "void")
-            {
-                lastToken.kind = T_VOID_TYPE;
-            }
-            else if (lastToken.value == "module")
-            {
-                lastToken.kind = T_MODULE;
-            }
-            else if (lastToken.value == "class")
-            {
-                lastToken.kind = T_CLASS;
-            }
             else if (lastToken.value == "struct")
             {
                 lastToken.kind = T_STRUCT;
@@ -366,41 +367,25 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_ENUM;
             }
-            else if (lastToken.value == "extern")
+            else if (lastToken.value == "module")
             {
-                lastToken.kind = T_EXTERN;
+                lastToken.kind = T_MODULE;
             }
-            else if (lastToken.value == "interface")
+            else if (lastToken.value == "import")
             {
-                lastToken.kind = T_INTERFACE;
+                lastToken.kind = T_IMPORT;
             }
-            else if (lastToken.value == "extends")
+            else if (lastToken.value == "fn")
             {
-                lastToken.kind = T_EXTENDS;
-            }
-            else if (lastToken.value == "implements")
-            {
-                lastToken.kind = T_IMPLEMENTS;
-            }
-            else if (lastToken.value == "abstract")
-            {
-                lastToken.kind = T_ABSTRACT;
-            }
-            else if (lastToken.value == "public")
-            {
-                lastToken.kind = T_PUBLIC;
-            }
-            else if (lastToken.value == "private")
-            {
-                lastToken.kind = T_PRIVATE;
-            }
-            else if (lastToken.value == "protected")
-            {
-                lastToken.kind = T_PROTECTED;
+                lastToken.kind = T_FUNCTION;
             }
             else if (lastToken.value == "static")
             {
                 lastToken.kind = T_STATIC;
+            }
+            else if (lastToken.value == "pub")
+            {
+                lastToken.kind = T_PUBLIC;
             }
             else if (lastToken.value == "if")
             {
@@ -418,21 +403,21 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_RETURN;
             }
-            else if (lastToken.value == "break")
+            else if (lastToken.value == "stop")
             {
-                lastToken.kind = T_BREAK;
+                lastToken.kind = T_STOP;
             }
-            else if (lastToken.value == "continue")
+            else if (lastToken.value == "jump")
             {
-                lastToken.kind = T_CONTINUE;
+                lastToken.kind = T_JUMP;
             }
-            else if (lastToken.value == "import")
+            else if (lastToken.value == "go")
             {
-                lastToken.kind = T_IMPORT;
+                lastToken.kind = T_GO;
             }
-            else if (lastToken.value == "final")
+            else if (lastToken.value == "in")
             {
-                lastToken.kind = T_FINAL;
+                lastToken.kind = T_IN;
             }
             else if (lastToken.value == "true")
             {
@@ -441,14 +426,6 @@ void Tokenizer::tokenize(std::string data)
             else if (lastToken.value == "false")
             {
                 lastToken.kind = T_FALSE;
-            }
-            else if (lastToken.value == "this")
-            {
-                lastToken.kind = T_THIS;
-            }
-            else if (lastToken.value == "in")
-            {
-                lastToken.kind = T_IN;
             }
             else
             {
@@ -538,7 +515,7 @@ void Tokenizer::tokenize(std::string data)
 
             goto independent;
         }
-        else
+        if (lastToken.kind == T_UNRECOGNIZED)
         {
             werror.syntaxError(E_UNRECOGNIZED_TOKEN, "Unrecognized Token", "here", index);
             return;
