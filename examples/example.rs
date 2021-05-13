@@ -1,4 +1,4 @@
-import Standard.Console;
+import Std.Console;
 
 struct Animal {
   string Name,
@@ -6,15 +6,13 @@ struct Animal {
 }
 
 struct Cat : Animal {
-  byte Color; // or in future Hex
-
+  byte Color;
   fn Sound() {
     Console.Writeln('Meaow');
   }
 }
 
-
-fn Main(u8 param1, string param2) {
+fn Main() {
   Cat myCat;
   myCat.Sound();
 }
