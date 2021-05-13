@@ -14,7 +14,7 @@ struct Cat : Animal {
 }
 
 
-fn Main(u8 param1, string param2) void {
+fn Main(u8 param1, string param2) {
   Cat myCat;
   myCat.Sound();
 }

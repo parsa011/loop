@@ -23,7 +23,7 @@
 Loop is a multi-paradigm programming language.
 
 <p align="center">
-  <img style="text-align:center" src="documentation/assets/images/tokenized_example_code.png" width="70%">
+  <img style="text-align:center" src="docs/assets/images/code.png" width="70%">
 </p>
 
 ## What will make loop special?
@@ -37,7 +37,7 @@ Loop is a multi-paradigm programming language.
 
 ## How do I build and run this?
 
-See the [Loop build instructions](documentation/BuildInstructions.md).
+See the [Loop build instructions](docs/BuildInstructions.md).
 
 ## How do I contribute?
 See the Loop [contribution guidelines](CONTRIBUTING.md).
@@ -46,7 +46,7 @@ See the Loop [contribution guidelines](CONTRIBUTING.md).
 Please see the [issue policy](CONTRIBUTING.md#issue-policy).
 
 ## How should the grammar of Loop look like?
-Take a look at the [Grammar for Loop](documentation/GRAMMAR.md) `[work in progress]`
+Take a look at the [Grammar for Loop](docs/GRAMMAR.md) `[work in progress]`
 
 ## Discord
 <a href="https://discord.gg/4JRxNKMvtb"><img src="https://invidget.switchblade.xyz/4JRxNKMvtb"/></a>
