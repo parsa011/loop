@@ -62,4 +62,6 @@ struct WError
     void compilerWarning(WarningCode code, const char *message);
 };
 
+extern WError werror;
+
 #endif
