@@ -1,13 +1,44 @@
 #ifndef H_AST
 #define H_AST
 
-#include "werror.h"
+#include "global.h"
 #include <string>
 #include <vector>
 
 namespace AST
 {
-    WError werror;
+
+    class Id;
+    class Expression;
+    class LiteralExpression;
+    class IntegerLiteralExpression;
+    class FloatLiteralExpression;
+    class BoolLiteralExpression;
+    class ByteLiteralExpression;
+    class StringLiteralExpression;
+    class Statement;
+    class BlockStatement;
+    class AssignStatement;
+    class IfStatement;
+    class LoopStatement;
+    class LoopForStatement;
+    class LoopWhileStatement;
+    class LoopCounterStatement;
+    class ReturnStatement;
+    class ContinueStatement;
+    class BreakStatement;
+    class ImportStatement;
+    class Operation;
+    class BinaryOperation;
+    class UnaryOperation;
+    class Declaration;
+    class IdentifierDeclaration;
+    class StructDeclaration;
+    class EnumDeclaration;
+    class FunctionDeclaration;
+    class Call;
+    class StructCall;
+    class FunctionCall;
 
     enum class DataTypes
     {
@@ -65,7 +96,7 @@ namespace AST
         Id(std::string id);
         std::string id;
         int size;
-        ~Id();
+        ~Id() {}
     };
 
     // Expression
@@ -83,7 +114,7 @@ namespace AST
         IntegerLiteralExpression(int value, int size);
         int value;
         int size;
-        ~IntegerLiteralExpression();
+        ~IntegerLiteralExpression() {}
     };
 
     class FloatLiteralExpression : LiteralExpression
@@ -92,7 +123,7 @@ namespace AST
         FloatLiteralExpression(double value, int size);
         double value;
         int size;
-        ~FloatLiteralExpression();
+        ~FloatLiteralExpression() {}
     };
 
     class BoolLiteralExpression : LiteralExpression
@@ -100,7 +131,7 @@ namespace AST
     public:
         BoolLiteralExpression(bool value);
         bool value;
-        ~BoolLiteralExpression();
+        ~BoolLiteralExpression() {}
     };
 
     class ByteLiteralExpression : LiteralExpression
@@ -108,7 +139,7 @@ namespace AST
     public:
         ByteLiteralExpression(unsigned char value);
         unsigned char value;
-        ~ByteLiteralExpression();
+        ~ByteLiteralExpression() {}
     };
 
     class StringLiteralExpression : LiteralExpression
@@ -116,7 +147,7 @@ namespace AST
     public:
         StringLiteralExpression(std::string value);
         std::string value;
-        ~StringLiteralExpression();
+        ~StringLiteralExpression() {}
     };
 
     // Statement
@@ -130,7 +161,7 @@ namespace AST
         BlockStatement(std::vector<Statement *> *statementList, std::vector<IdentifierDeclaration *> *idList);
         std::vector<IdentifierDeclaration *> *idList;
         std::vector<Statement *> *statementList;
-        ~BlockStatement();
+        ~BlockStatement() {}
     };
 
     class AssignStatement : Statement
@@ -139,7 +170,7 @@ namespace AST
         AssignStatement(AssignOperations op, Expression *expr);
         AssignOperations op;
         Expression *expr;
-        ~AssignStatement();
+        ~AssignStatement() {}
     };
 
     class IfStatement : Statement
@@ -149,7 +180,7 @@ namespace AST
         Expression *condition;
         BlockStatement *if_block;
         BlockStatement *else_block;
-        ~IfStatement();
+        ~IfStatement() {}
     };
 
     class LoopStatement : Statement
@@ -157,7 +188,7 @@ namespace AST
     public:
         LoopStatement(Expression *, Expression *, BlockStatement *, std::string id);
         BlockStatement *block;
-        ~LoopStatement();
+        ~LoopStatement() {}
     };
 
     class LoopForStatement : LoopStatement
@@ -167,7 +198,7 @@ namespace AST
         std::string id;
         Expression *initCondition;
         Expression *endCondition;
-        ~LoopForStatement();
+        ~LoopForStatement() {}
     };
 
     class LoopWhileStatement : LoopStatement
@@ -175,7 +206,7 @@ namespace AST
     public:
         LoopWhileStatement(Expression *condition, BlockStatement *block);
         Expression *condition;
-        ~LoopWhileStatement();
+        ~LoopWhileStatement() {}
     };
 
     class LoopCounterStatement : LoopStatement
@@ -184,7 +215,7 @@ namespace AST
         LoopCounterStatement(Expression *condition, BlockStatement *block, std::string id);
         std::string id;
         Expression *condition;
-        ~LoopCounterStatement();
+        ~LoopCounterStatement() {}
     };
 
     class ReturnStatement : Statement
@@ -192,7 +223,7 @@ namespace AST
     public:
         ReturnStatement(Expression *condition);
         Expression *condition;
-        ~ReturnStatement();
+        ~ReturnStatement() {}
     };
 
     class ContinueStatement : Statement
@@ -208,7 +239,7 @@ namespace AST
     public:
         ImportStatement(Id *library);
         Id *library;
-        ~ImportStatement();
+        ~ImportStatement() {}
     };
 
     // Operation
@@ -223,7 +254,7 @@ namespace AST
         Expression *left;
         Expression *right;
         AST::BinaryOperations op;
-        ~BinaryOperation();
+        ~BinaryOperation() {}
     };
 
     class UnaryOperation : Operation
@@ -232,7 +263,7 @@ namespace AST
         UnaryOperation(Expression *expr, UnaryOperations op);
         Expression *expr;
         AST::UnaryOperations op;
-        ~UnaryOperation();
+        ~UnaryOperation() {}
     };
 
     // Declaration
@@ -243,40 +274,40 @@ namespace AST
     class IdentifierDeclaration : Declaration
     {
     public:
-        IdentifierDeclaration(DataTypes type, std::vector<Id *> * idList);
+        IdentifierDeclaration(DataTypes type, std::vector<Id *> *idList);
         DataTypes type;
-        std::vector<Id *> * idList;
-        ~IdentifierDeclaration();
+        std::vector<Id *> *idList;
+        ~IdentifierDeclaration() {}
     };
 
     class StructDeclaration : Declaration
     {
     public:
-        StructDeclaration(std::string id, std::vector<Id *> * arguments, std::vector<FunctionDeclaration *> * functions);
+        StructDeclaration(std::string id, std::vector<Id *> *arguments, std::vector<FunctionDeclaration *> *functions);
         std::string id;
-        std::vector<Id *> * arguments;
-        std::vector<FunctionDeclaration *> * functions;
-        ~StructDeclaration();
+        std::vector<Id *> *arguments;
+        std::vector<FunctionDeclaration *> *functions;
+        ~StructDeclaration() {}
     };
 
     class EnumDeclaration : Declaration
     {
     public:
-        EnumDeclaration(std::string id, std::vector<Id *> * constants);
+        EnumDeclaration(std::string id, std::vector<Id *> *constants);
         std::string id;
-        std::vector<Id *> * constants;
-        ~EnumDeclaration();
+        std::vector<Id *> *constants;
+        ~EnumDeclaration() {}
     };
 
     class FunctionDeclaration : Declaration
     {
     public:
-        FunctionDeclaration(std::string id, DataTypes returnType,  std::vector<Id *> * arguments, BlockStatement * block);
+        FunctionDeclaration(std::string id, DataTypes returnType, std::vector<Id *> *arguments, BlockStatement *block);
         std::string id;
         DataTypes returnType;
-        std::vector<Id *> * arguments;
-        BlockStatement * block;
-        ~FunctionDeclaration();
+        std::vector<Id *> *arguments;
+        BlockStatement *block;
+        ~FunctionDeclaration() {}
     };
 
     // Call
@@ -287,19 +318,19 @@ namespace AST
     class StructCall : Call
     {
     public:
-        StructCall(std::string id, std::vector<Expression *> * arguments);
+        StructCall(std::string id, std::vector<Expression *> *arguments);
         std::string id;
-        std::vector<Expression *> * arguments;
-        ~StructCall();
+        std::vector<Expression *> *arguments;
+        ~StructCall() {}
     };
 
     class FunctionCall : Call
     {
     public:
-        FunctionCall(std::string id, std::vector<Expression *> * arguments);
+        FunctionCall(std::string id, std::vector<Expression *> *arguments);
         std::string id;
-        std::vector<Expression *> * arguments;
-        ~FunctionCall();
+        std::vector<Expression *> *arguments;
+        ~FunctionCall() {}
     };
 }
 #endif
