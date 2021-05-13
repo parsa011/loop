@@ -141,3 +141,15 @@ AST::FunctionDeclaration::FunctionDeclaration(std::string id, DataTypes returnTy
     this->arguments = arguments;
     this->block = block;
 }
+
+AST::StructCall::StructCall(std::string id, std::vector<Expression *> *arguments)
+{
+    this->id = id;
+    this->arguments = arguments;
+}
+
+AST::FunctionCall::FunctionCall(std::string id, std::vector<Expression *> *arguments)
+{
+    this->id = id;
+    this->arguments = arguments;
+}
