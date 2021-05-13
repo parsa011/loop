@@ -1,6 +1,8 @@
 #include <iostream>
+#include "../src/global.h"
 #include "tokenizer.h"
 
+WError werror;
 int main()
 {
     TokenizerTest tokenizerTest;
