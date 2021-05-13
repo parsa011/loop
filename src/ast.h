@@ -178,17 +178,17 @@ namespace AST
     class IfStatement : Statement
     {
     public:
-        IfStatement(Expression *condition, BlockStatement *if_block, BlockStatement *else_block);
+        IfStatement(Expression *condition, BlockStatement *ifBlock, BlockStatement *elseBlock);
         Expression *condition;
-        BlockStatement *if_block;
-        BlockStatement *else_block;
+        BlockStatement *ifBlock;
+        BlockStatement *elseBlock;
         ~IfStatement() {}
     };
 
     class LoopStatement : Statement
     {
     public:
-        LoopStatement(Expression *, Expression *, BlockStatement *, std::string id);
+        LoopStatement(BlockStatement *block);
         BlockStatement *block;
         ~LoopStatement() {}
     };
@@ -239,8 +239,8 @@ namespace AST
     class ImportStatement : Statement
     {
     public:
-        ImportStatement(Id *library);
-        Id *library;
+        ImportStatement(Id *id);
+        Id *id;
         ~ImportStatement() {}
     };
 

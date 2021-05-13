@@ -55,3 +55,55 @@ AST::StringLiteralExpression::StringLiteralExpression(std::string value)
 {
     this->value = value;
 }
+
+AST::BlockStatement::BlockStatement(std::vector<Statement *> *statementList, std::vector<IdentifierDeclaration *> *idList)
+{
+    this->idList = idList;
+    this->statementList = statementList;
+}
+
+AST::AssignStatement::AssignStatement(AssignOperations op, Expression *expr)
+{
+    this->op = op;
+    this->expr = expr;
+}
+
+AST::IfStatement::IfStatement(Expression *condition, BlockStatement *ifBlock, BlockStatement *elseBlock)
+{
+    this->condition = condition;
+    this->ifBlock = ifBlock;
+    this->elseBlock = elseBlock;
+}
+
+AST::LoopStatement::LoopStatement(BlockStatement *block)
+{
+    this->block = block;
+}
+
+AST::LoopForStatement::LoopForStatement(Expression *initCondition, Expression *endCondition, BlockStatement *block, std::string id) : LoopStatement(block)
+{
+    this->id = id;
+    this->initCondition = initCondition;
+    this->endCondition = endCondition;
+}
+
+AST::LoopWhileStatement::LoopWhileStatement(Expression *condition, BlockStatement *block) : LoopStatement(block)
+{
+    this->condition = condition;
+}
+
+AST::LoopCounterStatement::LoopCounterStatement(Expression *condition, BlockStatement *block, std::string id) : LoopStatement(block)
+{
+    this->id = id;
+    this->condition = condition;
+}
+
+AST::ReturnStatement::ReturnStatement(Expression *condition)
+{
+    this->condition = condition;
+}
+
+AST::ImportStatement::ImportStatement(Id *id)
+{
+    this->id = id;
+}
