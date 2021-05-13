@@ -112,6 +112,7 @@ namespace AST
     {
     public:
         IntegerLiteralExpression(int value, int size);
+        IntegerLiteralExpression(int value);
         int value;
         int size;
         ~IntegerLiteralExpression() {}
@@ -121,6 +122,7 @@ namespace AST
     {
     public:
         FloatLiteralExpression(double value, int size);
+        FloatLiteralExpression(double value);
         double value;
         int size;
         ~FloatLiteralExpression() {}
