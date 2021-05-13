@@ -107,3 +107,16 @@ AST::ImportStatement::ImportStatement(Id *id)
 {
     this->id = id;
 }
+
+AST::BinaryOperation::BinaryOperation(Expression *left, Expression *right, BinaryOperations op)
+{
+    this->left = left;
+    this->right = right;
+    this->op = op;
+}
+
+AST::UnaryOperation::UnaryOperation(Expression *expr, UnaryOperations op)
+{
+    this->expr = expr;
+    this->op = op;
+}
