@@ -9,30 +9,72 @@ namespace AST
 {
     WError werror;
 
+    enum class DataTypes
+    {
+        I8,
+        I16,
+        I32,
+        I64,
+        U8,
+        U16,
+        U32,
+        U64,
+        F8,
+        F16,
+        F32,
+        F64,
+        BOOL,
+        BYTE,
+        STRING
+    };
+
+    enum class AssignOperations
+    {
+        PLUS_EQUAL,
+        MINUS_EQUAL,
+        EQUAL
+    };
+
+    enum class BinaryOperations
+    {
+        PLUS,
+        MINUS,
+        MULTIPLY,
+        DIVIDE,
+        MODULO,
+        LESS_THAN,
+        GREATER_THAN,
+        LESS_EQUAL,
+        GREATER_EQUAL,
+        NOT_EQUAL,
+        EQUAL_EQUAL,
+        AND,
+        OR
+    };
+
+    enum class UnaryOperations
+    {
+        MINUS,
+        NOT
+    };
+
     class Id
     {
-        std::string id;
-        int size;
-
     public:
         Id(std::string id, int size);
         Id(std::string id);
+        std::string id;
+        int size;
         ~Id();
     };
 
     // Expression
     class Expression
     {
-    public:
-        Expression();
-        ~Expression();
     };
 
     class LiteralExpression : Expression
     {
-    public:
-        LiteralExpression();
-        ~LiteralExpression();
     };
 
     class IntegerLiteralExpression : LiteralExpression
@@ -80,9 +122,6 @@ namespace AST
     // Statement
     class Statement
     {
-    public:
-        Statement();
-        ~Statement();
     };
 
     class BlockStatement : Statement
@@ -151,37 +190,30 @@ namespace AST
     class ReturnStatement : Statement
     {
     public:
-        ReturnStatement();
+        ReturnStatement(Expression *condition);
+        Expression *condition;
         ~ReturnStatement();
     };
 
     class ContinueStatement : Statement
     {
-    public:
-        ContinueStatement();
-        ~ContinueStatement();
     };
 
     class BreakStatement : Statement
     {
-    public:
-        BreakStatement();
-        ~BreakStatement();
     };
 
     class ImportStatement : Statement
     {
     public:
-        ImportStatement();
+        ImportStatement(Id *library);
+        Id *library;
         ~ImportStatement();
     };
 
     // Operation
     class Operation
     {
-    public:
-        Operation();
-        ~Operation();
     };
 
     class BinaryOperation : Operation
@@ -190,7 +222,7 @@ namespace AST
         BinaryOperation(Expression *left, Expression *right, BinaryOperations op);
         Expression *left;
         Expression *right;
-        BinaryOperations op;
+        AST::BinaryOperations op;
         ~BinaryOperation();
     };
 
@@ -199,108 +231,75 @@ namespace AST
     public:
         UnaryOperation(Expression *expr, UnaryOperations op);
         Expression *expr;
-        UnaryOperations op;
+        AST::UnaryOperations op;
         ~UnaryOperation();
     };
 
     // Declaration
     class Declaration
     {
-    public:
-        Declaration();
-        ~Declaration();
     };
 
     class IdentifierDeclaration : Declaration
     {
     public:
-        IdentifierDeclaration();
+        IdentifierDeclaration(DataTypes type, std::vector<Id *> * idList);
+        DataTypes type;
+        std::vector<Id *> * idList;
         ~IdentifierDeclaration();
     };
 
     class StructDeclaration : Declaration
     {
     public:
-        StructDeclaration();
+        StructDeclaration(std::string id, std::vector<Id *> * arguments, std::vector<FunctionDeclaration *> * functions);
+        std::string id;
+        std::vector<Id *> * arguments;
+        std::vector<FunctionDeclaration *> * functions;
         ~StructDeclaration();
+    };
+
+    class EnumDeclaration : Declaration
+    {
+    public:
+        EnumDeclaration(std::string id, std::vector<Id *> * constants);
+        std::string id;
+        std::vector<Id *> * constants;
+        ~EnumDeclaration();
     };
 
     class FunctionDeclaration : Declaration
     {
     public:
-        FunctionDeclaration();
+        FunctionDeclaration(std::string id, DataTypes returnType,  std::vector<Id *> * arguments, BlockStatement * block);
+        std::string id;
+        DataTypes returnType;
+        std::vector<Id *> * arguments;
+        BlockStatement * block;
         ~FunctionDeclaration();
     };
 
     // Call
     class Call
     {
-    public:
-        Call();
-        ~Call();
     };
 
     class StructCall : Call
     {
     public:
-        StructCall();
+        StructCall(std::string id, std::vector<Expression *> * arguments);
+        std::string id;
+        std::vector<Expression *> * arguments;
         ~StructCall();
     };
 
     class FunctionCall : Call
     {
     public:
-        FunctionCall();
+        FunctionCall(std::string id, std::vector<Expression *> * arguments);
+        std::string id;
+        std::vector<Expression *> * arguments;
         ~FunctionCall();
-    };
-
-    enum class DataTypes
-    {
-        I8,
-        I16,
-        I32,
-        I64,
-        U8,
-        U16,
-        U32,
-        U64,
-        F8,
-        F16,
-        F32,
-        F64,
-        BOOL,
-        BYTE,
-        STRING
-    };
-
-    enum class AssignOperations
-    {
-        PLUS_EQUAL,
-        MINUS_EQUAL,
-        EQUAL
-    };
-
-    enum class BinaryOperations
-    {
-        PLUS,
-        MINUS,
-        MULTIPLY,
-        DIVIDE,
-        MODULO,
-        LESS_THAN,
-        GREATER_THAN,
-        LESS_EQUAL,
-        GREATER_EQUAL,
-        NOT_EQUAL,
-        EQUAL_EQUAL,
-        AND,
-        OR
-    };
-
-    enum class UnaryOperations
-    {
-        MINUS,
-        NOT
     };
 }
 #endif
