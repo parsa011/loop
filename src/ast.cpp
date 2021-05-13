@@ -120,3 +120,24 @@ AST::UnaryOperation::UnaryOperation(Expression *expr, UnaryOperations op)
     this->expr = expr;
     this->op = op;
 }
+
+AST::StructDeclaration::StructDeclaration(std::string id, std::vector<Id *> *arguments, std::vector<FunctionDeclaration *> *functions)
+{
+    this->id = id;
+    this->arguments = arguments;
+    this->functions = functions;
+}
+
+AST::EnumDeclaration::EnumDeclaration(std::string id, std::vector<Id *> *constants)
+{
+    this->id = id;
+    this->constants = constants;
+}
+
+AST::FunctionDeclaration::FunctionDeclaration(std::string id, DataTypes returnType, std::vector<Id *> *arguments, BlockStatement *block)
+{
+    this->id = id;
+    this-> returnType = returnType;
+    this->arguments = arguments;
+    this->block = block;
+}
