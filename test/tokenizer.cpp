@@ -115,12 +115,11 @@ bool TokenizerTest::tokenizeDataTypes()
 bool TokenizerTest::ThrowCloseCommentError()
 {
     testName = "Throw Close Comment Error";
-    WError errorHandler;
-    Tokenizer tokenizer(errorHandler);
+    Tokenizer tokenizer;
     tokenizer.tokenize("/* Comment ");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_CLOSE_COMMENT);
-    assert(strcmp(tokenizer.werror.errors[0].message, "You Need To Close The Comment") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_CLOSE_COMMENT);
+    assert(strcmp(werror.errors[0].message, "You Need To Close The Comment") == 0);
     return verify();
 }
 
@@ -128,18 +127,18 @@ bool TokenizerTest::ThrowMissingQuotationMarkError()
 {
     testName = "Throw Missing Quotation Mark Error";
     tokenizer.tokenize("'Invalid String");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_MISSING_QUOTATION_MARK);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Quated String Must Be Finished") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_MISSING_QUOTATION_MARK);
+    assert(strcmp(werror.errors[0].message, "Quated String Must Be Finished") == 0);
     return verify();
 }
 bool TokenizerTest::ThrowOutOfRangeHexError()
 {
     testName = "Throw Out Of Range Hex Error";
     tokenizer.tokenize("0xFFFFFFFFFF");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_OUT_OF_RANGE_HEX);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Out Of Range Hex") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_OUT_OF_RANGE_HEX);
+    assert(strcmp(werror.errors[0].message, "Out Of Range Hex") == 0);
     return verify();
 }
 
@@ -147,9 +146,9 @@ bool TokenizerTest::ThrowInvalidHexError()
 {
     testName = "Throw Invalid Hex Error";
     tokenizer.tokenize("0xLOOP");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_INVALID_HEX);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Hex") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_INVALID_HEX);
+    assert(strcmp(werror.errors[0].message, "Invalid Hex") == 0);
     return verify();
 }
 
@@ -157,11 +156,11 @@ bool TokenizerTest::ThrowInvalidHexAndOutOfRangeHexError()
 {
     testName = "Throw Invalid Hex And Out Of Range Hex Error";
     tokenizer.tokenize("0xr");
-    assert(tokenizer.werror.errors.size() == 2);
-    assert(tokenizer.werror.errors[0].code == E_OUT_OF_RANGE_HEX);
-    assert(tokenizer.werror.errors[1].code == E_INVALID_HEX);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Out Of Range Hex") == 0);
-    assert(strcmp(tokenizer.werror.errors[1].message, "Invalid Hex") == 0);
+    assert(werror.errors.size() == 2);
+    assert(werror.errors[0].code == E_OUT_OF_RANGE_HEX);
+    assert(werror.errors[1].code == E_INVALID_HEX);
+    assert(strcmp(werror.errors[0].message, "Out Of Range Hex") == 0);
+    assert(strcmp(werror.errors[1].message, "Invalid Hex") == 0);
     return verify();
 }
 
@@ -169,9 +168,9 @@ bool TokenizerTest::ThrowOutOfRangeBinaryError()
 {
     testName = "Throw Invalid Binary Out Of Range Error";
     tokenizer.tokenize("0b1111111111");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_OUT_OF_RANGE_BIN);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Out Of Range Binary") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_OUT_OF_RANGE_BIN);
+    assert(strcmp(werror.errors[0].message, "Out Of Range Binary") == 0);
     return verify();
 }
 
@@ -179,13 +178,13 @@ bool TokenizerTest::ThrowInvalidBinaryError()
 {
     testName = "Throw Invalid Binary Error";
     tokenizer.tokenize("0bLOOP");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_INVALID_BIN);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Binary") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_INVALID_BIN);
+    assert(strcmp(werror.errors[0].message, "Invalid Binary") == 0);
     tokenizer.tokenize("0b");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_INVALID_BIN);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Binary") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_INVALID_BIN);
+    assert(strcmp(werror.errors[0].message, "Invalid Binary") == 0);
     return verify();
 }
 
@@ -193,13 +192,13 @@ bool TokenizerTest::ThrowInvalidUnicodeError()
 {
     testName = "Throw Invalid Unicode Error";
     tokenizer.tokenize("0uFFFFFFF");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_INVALID_UNICODE);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Unicode") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_INVALID_UNICODE);
+    assert(strcmp(werror.errors[0].message, "Invalid Unicode") == 0);
     tokenizer.tokenize("0uFFFrFFFF");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_INVALID_UNICODE);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Unicode") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_INVALID_UNICODE);
+    assert(strcmp(werror.errors[0].message, "Invalid Unicode") == 0);
     return verify();
 }
 
@@ -208,9 +207,9 @@ bool TokenizerTest::ThrowInvalidUnicodeError()
 // {
 //     testName = "Throw Invalid Number Error";
 //     tokenizer.tokenize("2147483648");
-//     assert(tokenizer.werror.errors.size() == 1);
-//     assert(tokenizer.werror.errors[0].code == E_INVALID_NUMBER);
-//     assert(strcmp(tokenizer.werror.errors[0].message, "Invalid Number") == 0);
+//     assert(werror.errors.size() == 1);
+//     assert(werror.errors[0].code == E_INVALID_NUMBER);
+//     assert(strcmp(werror.errors[0].message, "Invalid Number") == 0);
 //     return verify();
 // }
 
@@ -218,8 +217,8 @@ bool TokenizerTest::ThrowUnrecognizedTokenError()
 {
     testName = "Throw Unrecognized Token Error";
     tokenizer.tokenize("~");
-    assert(tokenizer.werror.errors.size() == 1);
-    assert(tokenizer.werror.errors[0].code == E_UNRECOGNIZED_TOKEN);
-    assert(strcmp(tokenizer.werror.errors[0].message, "Unrecognized Token") == 0);
+    assert(werror.errors.size() == 1);
+    assert(werror.errors[0].code == E_UNRECOGNIZED_TOKEN);
+    assert(strcmp(werror.errors[0].message, "Unrecognized Token") == 0);
     return verify();
 }

@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "werror.h"
+#include "global.h"
 
 enum TOKEN
 {
@@ -104,14 +104,12 @@ public:
     char lastChar;
     Token lastToken;
     std::vector<Token> tokens;
-    WError werror;
     bool isEOF();
     bool isLCOF();
     char peek(int offset);
     void advance(int offset);
     void pushChar();
     void tokenize(std::string data);
-    Tokenizer(WError &wError) : werror(wError){};
 };
 
 #endif

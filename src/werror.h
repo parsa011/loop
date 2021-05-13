@@ -24,7 +24,9 @@ enum ErrorCode
     E_INVALID_UNICODE,
     E_INVALID_NUMBER,
     E_OUT_OF_RANGE_HEX,
-    E_OUT_OF_RANGE_BIN
+    E_OUT_OF_RANGE_BIN,
+    // AST
+    E_INVALID_IDENTIFIER_SIZE
 };
 
 enum WarningCode
@@ -59,5 +61,7 @@ struct WError
     void syntaxWarning(WarningCode code, const char *message, const char *file_path, size_t index);
     void compilerWarning(WarningCode code, const char *message);
 };
+
+extern WError werror;
 
 #endif
