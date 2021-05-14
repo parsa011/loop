@@ -39,10 +39,10 @@ enum TOKEN
     T_RIGHT_ANGLE_BRACKET,   // >
     T_DOUBLE_COLON,          // ::
     T_LOGIC_AND,             // &&
+    T_DOUBLE_PIPE,           // ||
     T_DOUBLE_EQUAL,          // ==
     T_DOUBLE_PLUS,           // ++
     T_DOUBLE_MINUS,          // --
-    T_DOUBLE_PIPE,           // ||
     T_EQUAL_PLUS,            // +=
     T_EQUAL_MINUS,           // -=
     T_EQUAL_PIPE,            // |=
