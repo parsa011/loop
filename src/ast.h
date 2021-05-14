@@ -1,6 +1,5 @@
 #ifndef H_AST
 #define H_AST
-
 #include "global.h"
 #include <string>
 #include <vector>

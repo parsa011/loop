@@ -1,6 +1,5 @@
 #ifndef WERROR_H
 #define WERROR_H
-#include <iostream>
 #include <vector>
 #include <iomanip>
 

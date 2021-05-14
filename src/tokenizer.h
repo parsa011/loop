@@ -2,7 +2,6 @@
 #define TOKENIZER_H
 #include <string>
 #include <vector>
-#include <iostream>
 #include "global.h"
 
 enum TOKEN

@@ -1,5 +1,8 @@
 #include "utils.h"
-#include <functional>
+#include <regex>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 std::vector<std::string> utils::split(const std::string &str, const std::string &delim)
 {

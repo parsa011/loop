@@ -1,8 +1,10 @@
 #include "werror.h"
+#include "console.h"
+#include <iostream>
 
 void WError::compilerError(ErrorCode code, const char *message)
 {
-    std::cerr << "\033[0;91;1mE" << std::setfill('0') << std::setw(2) << code << "\033[0;1m: " << message << std::endl;
+    outerr << "\033[0;91;1mE" << std::setfill('0') << std::setw(2) << code << "\033[0;1m: " << message << '\n';
     exit(1);
 }
 
