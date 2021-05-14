@@ -12,8 +12,7 @@ AST::Id::Id(std::string id, int size)
 
 AST::Id::Id(std::string id)
 {
-    std::string astId = id;
-    this->id = astId, this->size = 0;
+    this->id = id, this->size = 0;
 }
 
 AST::IntegerLiteralExpression::IntegerLiteralExpression(int value, int size)

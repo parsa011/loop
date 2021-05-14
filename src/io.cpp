@@ -1,6 +1,6 @@
 #include "io.h"
 
-void IO::read(std::string path)
+void IO::read(const char *path)
 {
     if (!std::filesystem::exists(path))
     {
@@ -18,13 +18,13 @@ void IO::read(std::string path)
         exit(1);
     }
 
-    File file;
-    std::stringstream content;
-    std::ifstream in(path);
-    content << in.rdbuf();
-    in.close();
+    std::string content;
+    std::ifstream file(path);
+    file.seekg(0, std::ios::end);
+    content.resize((size_t)file.tellg());
+    file.seekg(0);
+    file.read(content.data(), (int)content.size());
+    file.close();
 
-    file.path = path;
-    file.data = content.str();
-    reads.push_back(file);
+    reads.push_back({path, content});
 }

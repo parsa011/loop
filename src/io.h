@@ -15,8 +15,9 @@ struct File
 
 struct IO
 {
+    std::fstream fStream;
     std::vector<File> reads;
-    void read(std::string path);
+    void read(const char *path);
     void write(File file);
 };
 

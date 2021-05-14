@@ -419,13 +419,9 @@ void Tokenizer::tokenize(std::string data)
             {
                 lastToken.kind = T_IN;
             }
-            else if (lastToken.value == "true")
+            else if (lastToken.value == "true" || lastToken.value == "false")
             {
-                lastToken.kind = T_TRUE;
-            }
-            else if (lastToken.value == "false")
-            {
-                lastToken.kind = T_FALSE;
+                lastToken.kind = T_BOOLEAN;
             }
             else
             {
