@@ -6,14 +6,13 @@ AST::Id::Id(std::string id, int size)
     {
         werror.compilerError(E_INVALID_IDENTIFIER_SIZE, "Invalid Size, has to be greater than zero");
     }
-    auto astId = id;
-    auto astSz = size;
-    this->id = astId, this->size = astSz;
+    std::string astId = id;
+    this->id = astId, this->size = size;
 }
 
 AST::Id::Id(std::string id)
 {
-    auto astId = id;
+    std::string astId = id;
     this->id = astId, this->size = 0;
 }
 
