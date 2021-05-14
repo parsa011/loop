@@ -1,19 +1,23 @@
 # Lexer Grammar `[work in progress]`
 This is the grammar for the programming language Loop:
-```c++
+```js
+UNRECOGNIZED    :
 NEWLINE         : '\n'
 WHITESPACE      : [t ]+ -> skip
 
 // Datatypes
+BOOLEAN                 : 'true'|'false'
 STRING                  : 'string'
 INT                     : 'i8', 'i16', 'i32', 'i64'
-Unsigned INT            : 'u8', 'u16', 'u32', 'u64'
-Float INT               : 'f8', 'f16', 'f32', 'f64'
-Boolean                 : 'bool'
+UNSIGNED                : 'u8', 'u16', 'u32', 'u64'
+FLOAT                   : 'f8', 'f16', 'f32', 'f64'
 
 // Literals
 INT_LITERALS            : '0'|[1-9][0-9]*
 DEC_LITERALS            : '0'|[1-9][0-9]* '.' [0-9]+
+HEX_LITERALS            : 0[xX][0-9a-fA-F]+
+BIN_LITERALS            : \b[01]+\b
+UNICODE_LITERALS        : 0[xX][0-9a-fA-F]+
 
 // Operators
 EQUAL                   : '='
@@ -23,8 +27,11 @@ SLASH                   : '/'
 PERCENT                 : '%'
 PIPE                    : '|'
 AND                     : '&'
+T_DOT                   : '.'
+T_COMMA                 : ','
+T_COLON                 : ':'
 SEMICOLON               : ';'
-LEFT_ROUNDED_BRACKET    : '('
+T_LEFT_ROUND_BRACKET    : '('
 RIGHT_ROUNDED_BRACKET   : ')'
 LEFT_CURLY_BRACKET      : '{'
 RIGHT_CURLY_BRACKET     : '}'

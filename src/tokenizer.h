@@ -10,6 +10,7 @@ enum TOKEN
     T_UNRECOGNIZED,          // Unrecognized
     T_NEWLINE,               // Newline
     T_ID,                    // Identifiers: myVar and etc
+    T_BOOLEAN,               // true or false
     T_STRING,                // 'String'
     T_INT,                   // -128 to 127
     T_UINT,                  // 255
@@ -24,12 +25,12 @@ enum TOKEN
     T_PERCENT,               // %
     T_PIPE,                  // |
     T_AND,                   // &
-    T_SEMICOLON,             // ;
-    T_COLON,                 // :
-    T_COMMA,                 // ,
     T_DOT,                   // .
-    T_LEFT_ROUNDED_BRACKET,  // (
-    T_RIGHT_ROUNDED_BRACKET, // )
+    T_COMMA,                 // ,
+    T_COLON,                 // :
+    T_SEMICOLON,             // ;
+    T_LEFT_ROUND_BRACKET,    // (
+    T_RIGHT_ROUND_BRACKET,   // )
     T_LEFT_CURLY_BRACKET,    // {
     T_RIGHT_CURLY_BRACKET,   // }
     T_LEFT_SQUARE_BRACKET,   // [
@@ -37,11 +38,11 @@ enum TOKEN
     T_LEFT_ANGLE_BRACKET,    // <
     T_RIGHT_ANGLE_BRACKET,   // >
     T_DOUBLE_COLON,          // ::
+    T_LOGIC_AND,             // &&
     T_DOUBLE_EQUAL,          // ==
     T_DOUBLE_PLUS,           // ++
     T_DOUBLE_MINUS,          // --
     T_DOUBLE_PIPE,           // ||
-    T_LOGIC_AND,             // &&
     T_EQUAL_PLUS,            // +=
     T_EQUAL_MINUS,           // -=
     T_EQUAL_PIPE,            // |=
@@ -81,8 +82,6 @@ enum TOKEN
     T_JUMP,     // jump
     T_GO,       // go
     T_IN,       // in
-    T_TRUE,     // true
-    T_FALSE,    // false
 
     // Others
 

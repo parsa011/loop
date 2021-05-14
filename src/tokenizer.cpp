@@ -271,11 +271,11 @@ void Tokenizer::tokenize(std::string data)
         }
         else if (lastChar == '(')
         {
-            lastToken.kind = T_LEFT_ROUNDED_BRACKET;
+            lastToken.kind = T_LEFT_ROUND_BRACKET;
         }
         else if (lastChar == ')')
         {
-            lastToken.kind = T_RIGHT_ROUNDED_BRACKET;
+            lastToken.kind = T_RIGHT_ROUND_BRACKET;
         }
         else if (lastChar == '{')
         {

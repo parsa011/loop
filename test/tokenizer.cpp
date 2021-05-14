@@ -69,8 +69,8 @@ bool TokenizerTest::tokenizeOperators()
     assert(getTokenizerToken(":") == T_COLON);
     assert(getTokenizerToken(",") == T_COMMA);
     assert(getTokenizerToken(".") == T_DOT);
-    assert(getTokenizerToken("(") == T_LEFT_ROUNDED_BRACKET);
-    assert(getTokenizerToken(")") == T_RIGHT_ROUNDED_BRACKET);
+    assert(getTokenizerToken("(") == T_LEFT_ROUND_BRACKET);
+    assert(getTokenizerToken(")") == T_RIGHT_ROUND_BRACKET);
     assert(getTokenizerToken("{") == T_LEFT_CURLY_BRACKET);
     assert(getTokenizerToken("}") == T_RIGHT_CURLY_BRACKET);
     assert(getTokenizerToken("[") == T_LEFT_SQUARE_BRACKET);

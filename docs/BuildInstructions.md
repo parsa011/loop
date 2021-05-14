@@ -3,21 +3,21 @@
 Make sure, you installed the requirements for clang and make.
 
 ### Debian:
-```shell
+```sh
 sudo apt install build-essential clang
 ```
 ### Arch:
-```shell
+```sh
 sudo pacman -Sy base-devel clang  
 ```
 
 ## Clone Repository
-```shell
+```sh
 git clone https://github.com/loop-lang/loop && cd loop
 ```
 
 ## Build and Run Loop
-```shell
+```sh
 make
 ./loop examples/exampleClass.loop
 ```
