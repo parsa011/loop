@@ -40,8 +40,6 @@ bool TokenizerTest::tokenizeKeywords()
     assert(getTokenizerToken("jump") == T_JUMP);
     assert(getTokenizerToken("go") == T_GO);
     assert(getTokenizerToken("in") == T_IN);
-    assert(getTokenizerToken("true") == T_TRUE);
-    assert(getTokenizerToken("false") == T_FALSE);
     assert(getTokenizerToken("@label") == T_LABEL);
     return verify();
 }
