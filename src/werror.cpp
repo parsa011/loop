@@ -2,7 +2,7 @@
 
 void WError::compilerError(ErrorCode code, const char *message)
 {
-    std::cerr << "\x1b[0;91;1mE" << std::setfill('0') << std::setw(2) << code << "\x1b[0;1m: " << message << std::endl;
+    std::cerr << "\033[0;91;1mE" << std::setfill('0') << std::setw(2) << code << "\033[0;1m: " << message << std::endl;
     exit(1);
 }
 
