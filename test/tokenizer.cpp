@@ -20,13 +20,14 @@ void TokenizerTest::runAll()
     test(ThrowOutOfRangeBinaryError());
     test(ThrowInvalidBinaryError());
     test(ThrowInvalidUnicodeError());
-    //test(ThrowInvalidNumberError());
     test(ThrowUnrecognizedTokenError());
 }
 
 bool TokenizerTest::tokenizeKeywords()
 {
     testName = "Tokenize Keywords";
+    assert(getTokenizerToken("true") == T_BOOLEAN);
+    assert(getTokenizerToken("false") == T_BOOLEAN);
     assert(getTokenizerToken("module") == T_MODULE);
     assert(getTokenizerToken("import") == T_IMPORT);
     assert(getTokenizerToken("fn") == T_FUNCTION);
@@ -201,17 +202,6 @@ bool TokenizerTest::ThrowInvalidUnicodeError()
     assert(strcmp(werror.errors[0].message, "Invalid Unicode") == 0);
     return verify();
 }
-
-// !(Ali) STOPPED FOR INCOMPLETE SUPPORT IN TOKENIZER
-// bool TokenizerTest::ThrowInvalidNumberError()
-// {
-//     testName = "Throw Invalid Number Error";
-//     tokenizer.tokenize("2147483648");
-//     assert(werror.errors.size() == 1);
-//     assert(werror.errors[0].code == E_INVALID_NUMBER);
-//     assert(strcmp(werror.errors[0].message, "Invalid Number") == 0);
-//     return verify();
-// }
 
 bool TokenizerTest::ThrowUnrecognizedTokenError()
 {
