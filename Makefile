@@ -22,5 +22,5 @@ clean:
 	rm -f -- loop
 	rm -f -- loop-test
 
-symlink:
+install: release
 	ln -sf $PWD/loop ~/.local/bin/loop;
