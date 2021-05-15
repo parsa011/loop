@@ -1,5 +1,6 @@
+#include "../src/console.h"
 #include "unit_test.h"
-#include <sstream>
+#include <iostream>
 
 void UnitTest::test(bool passed)
 {
@@ -9,16 +10,15 @@ void UnitTest::test(bool passed)
     if (!passed)
         lineColor = "\x1b[0;91m";
 
-    std::cout
-        << lineColor
-        << "┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐" << std::endl
+    out << lineColor
+        << "┌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┐\n"
         << "  "
-        << "\x1b[0;1m" << testName << std::endl
+        << "\x1b[0;1m" << testName << '\n'
         << "  "
         << "\x1b[0;92mPassed:\x1b[0m " << passedTests
-        << "\x1b[0;91m Failed:\x1b[0m " << failedTests << std::endl
+        << "\x1b[0;91m Failed:\x1b[0m " << failedTests << '\n'
         << lineColor
-        << "└╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘" << std::endl;
+        << "└╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌┘\n";
     passedTests = 0;
     failedTests = 0;
 }

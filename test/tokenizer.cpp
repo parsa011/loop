@@ -49,6 +49,8 @@ bool TokenizerTest::tokenizeOperators()
     testName = "Tokenize Operators";
     assert(getTokenizerToken("test") == T_ID);
     assert(getTokenizerToken("'Hello World'") == T_STRING);
+    assert(getTokenizerToken("true") == T_BOOLEAN);
+    assert(getTokenizerToken("true") == T_BOOLEAN);
     assert(getTokenizerToken("1") == T_UINT);
     assert(getTokenizerToken("-1") == T_INT);
     assert(getTokenizerToken("1.0") == T_FLOAT);
@@ -200,7 +202,7 @@ bool TokenizerTest::ThrowInvalidUnicodeError()
     return verify();
 }
 
-// !(Ali) STOPPED FOR BAD SUPPORT IN TOKENIZER
+// !(Ali) STOPPED FOR INCOMPLETE SUPPORT IN TOKENIZER
 // bool TokenizerTest::ThrowInvalidNumberError()
 // {
 //     testName = "Throw Invalid Number Error";
