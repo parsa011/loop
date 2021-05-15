@@ -203,6 +203,17 @@ bool TokenizerTest::ThrowInvalidUnicodeError()
     return verify();
 }
 
+// !(Ali) STOPPED FOR INCOMPLETE SUPPORT IN TOKENIZER
+// bool TokenizerTest::ThrowInvalidNumberError()
+// {
+//     testName = "Throw Invalid Number Error";
+//     tokenizer.tokenize("2147483648");
+//     assert(werror.errors.size() == 1);
+//     assert(werror.errors[0].code == E_INVALID_NUMBER);
+//     assert(strcmp(werror.errors[0].message, "Invalid Number") == 0);
+//     return verify();
+// }
+
 bool TokenizerTest::ThrowUnrecognizedTokenError()
 {
     testName = "Throw Unrecognized Token Error";
