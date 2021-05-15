@@ -51,7 +51,7 @@ bool TokenizerTest::tokenizeOperators()
     assert(getTokenizerToken("test") == T_ID);
     assert(getTokenizerToken("'Hello World'") == T_STRING);
     assert(getTokenizerToken("true") == T_BOOLEAN);
-    assert(getTokenizerToken("true") == T_BOOLEAN);
+    assert(getTokenizerToken("false") == T_BOOLEAN);
     assert(getTokenizerToken("1") == T_UINT);
     assert(getTokenizerToken("-1") == T_INT);
     assert(getTokenizerToken("1.0") == T_FLOAT);
