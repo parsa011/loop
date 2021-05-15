@@ -26,8 +26,6 @@ void TokenizerTest::runAll()
 bool TokenizerTest::tokenizeKeywords()
 {
     testName = "Tokenize Keywords";
-    assert(getTokenizerToken("true") == T_BOOLEAN);
-    assert(getTokenizerToken("false") == T_BOOLEAN);
     assert(getTokenizerToken("module") == T_MODULE);
     assert(getTokenizerToken("import") == T_IMPORT);
     assert(getTokenizerToken("fn") == T_FUNCTION);
