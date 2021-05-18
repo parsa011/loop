@@ -18,6 +18,8 @@ debug:
 release:
 	$(COMPILER) $(SRC) $(WARNINGS) $(FLAGS_RELEASE) $(LDFLAGS) -o loop
 
+all: debug test
+
 clean:
 	rm -f -- loop
 	rm -f -- loop-test

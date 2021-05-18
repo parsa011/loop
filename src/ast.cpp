@@ -4,7 +4,7 @@ AST::Id::Id(std::string id, int size)
 {
     if (size <= 0)
     {
-        werror.compilerError(E_INVALID_IDENTIFIER_SIZE, "Invalid Size, has to be greater than zero");
+        werror.compileError(E_INVALID_IDENTIFIER_SIZE, "Invalid Size, has to be greater than zero");
     }
     std::string astId = id;
     this->id = astId, this->size = size;

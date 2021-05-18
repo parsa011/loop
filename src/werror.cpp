@@ -8,6 +8,12 @@ void WError::compilerError(ErrorCode code, const char *message)
     exit(1);
 }
 
+void WError::compileError(ErrorCode code, const char *message)
+{
+    Error error{code, message, NULL, 0, 0};
+    errors.push_back(error);
+}
+
 void WError::syntaxError(ErrorCode code, const char *message, const char *file_path, size_t index)
 {
     Error error{code, message, file_path, index, index};

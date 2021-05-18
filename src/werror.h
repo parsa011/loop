@@ -56,6 +56,7 @@ struct WError
     std::vector<Error> errors;
     std::vector<Warning> warnings;
     void syntaxError(ErrorCode code, const char *message, const char *file_path, size_t index);
+    void compileError(ErrorCode code, const char *message);
     void compilerError(ErrorCode code, const char *message);
     void syntaxWarning(WarningCode code, const char *message, const char *file_path, size_t index);
     void compilerWarning(WarningCode code, const char *message);

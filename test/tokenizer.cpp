@@ -113,6 +113,7 @@ bool TokenizerTest::tokenizeDataTypes()
 
 bool TokenizerTest::ThrowCloseCommentError()
 {
+    werror.errors.clear();
     testName = "Throw Close Comment Error";
     Tokenizer tokenizer;
     tokenizer.tokenize("/* Comment ");
@@ -124,6 +125,7 @@ bool TokenizerTest::ThrowCloseCommentError()
 
 bool TokenizerTest::ThrowMissingQuotationMarkError()
 {
+    werror.errors.clear();
     testName = "Throw Missing Quotation Mark Error";
     tokenizer.tokenize("'Invalid String");
     assert(werror.errors.size() == 1);
@@ -133,6 +135,7 @@ bool TokenizerTest::ThrowMissingQuotationMarkError()
 }
 bool TokenizerTest::ThrowOutOfRangeHexError()
 {
+    werror.errors.clear();
     testName = "Throw Out Of Range Hex Error";
     tokenizer.tokenize("0xFFFFFFFFFF");
     assert(werror.errors.size() == 1);
@@ -143,6 +146,7 @@ bool TokenizerTest::ThrowOutOfRangeHexError()
 
 bool TokenizerTest::ThrowInvalidHexError()
 {
+    werror.errors.clear();
     testName = "Throw Invalid Hex Error";
     tokenizer.tokenize("0xLOOP");
     assert(werror.errors.size() == 1);
@@ -153,6 +157,7 @@ bool TokenizerTest::ThrowInvalidHexError()
 
 bool TokenizerTest::ThrowInvalidHexAndOutOfRangeHexError()
 {
+    werror.errors.clear();
     testName = "Throw Invalid Hex And Out Of Range Hex Error";
     tokenizer.tokenize("0xr");
     assert(werror.errors.size() == 2);
@@ -165,6 +170,7 @@ bool TokenizerTest::ThrowInvalidHexAndOutOfRangeHexError()
 
 bool TokenizerTest::ThrowOutOfRangeBinaryError()
 {
+    werror.errors.clear();
     testName = "Throw Invalid Binary Out Of Range Error";
     tokenizer.tokenize("0b1111111111");
     assert(werror.errors.size() == 1);
@@ -175,6 +181,7 @@ bool TokenizerTest::ThrowOutOfRangeBinaryError()
 
 bool TokenizerTest::ThrowInvalidBinaryError()
 {
+    werror.errors.clear();
     testName = "Throw Invalid Binary Error";
     tokenizer.tokenize("0bLOOP");
     assert(werror.errors.size() == 1);
@@ -189,6 +196,7 @@ bool TokenizerTest::ThrowInvalidBinaryError()
 
 bool TokenizerTest::ThrowInvalidUnicodeError()
 {
+    werror.errors.clear();
     testName = "Throw Invalid Unicode Error";
     tokenizer.tokenize("0uFFFFFFF");
     assert(werror.errors.size() == 1);
@@ -201,19 +209,9 @@ bool TokenizerTest::ThrowInvalidUnicodeError()
     return verify();
 }
 
-// !(Ali) STOPPED FOR INCOMPLETE SUPPORT IN TOKENIZER
-// bool TokenizerTest::ThrowInvalidNumberError()
-// {
-//     testName = "Throw Invalid Number Error";
-//     tokenizer.tokenize("2147483648");
-//     assert(werror.errors.size() == 1);
-//     assert(werror.errors[0].code == E_INVALID_NUMBER);
-//     assert(strcmp(werror.errors[0].message, "Invalid Number") == 0);
-//     return verify();
-// }
-
 bool TokenizerTest::ThrowUnrecognizedTokenError()
 {
+    werror.errors.clear();
     testName = "Throw Unrecognized Token Error";
     tokenizer.tokenize("~");
     assert(werror.errors.size() == 1);
