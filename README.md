@@ -8,7 +8,7 @@
 
 <img src="https://img.shields.io/github/last-commit/loop-lang/loop?label=Last%20Commit"/>
 <img src="https://img.shields.io/github/license/loop-lang/loop?label=License" />
-<img src="https://img.shields.io/github/downloads/loop-lang/loop/total?label=Downlaods" />
+<img src="https://img.shields.io/github/downloads/loop-lang/loop/total?label=Downloads" />
 <img src="https://img.shields.io/github/languages/code-size/loop-lang/loop?label=Code%20Size" />
 <img src="https://img.shields.io/github/stars/loop-lang/loop?label=Stars&logo=github" />
 <a href="https://discord.gg/4JRxNKMvtb">
