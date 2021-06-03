@@ -36,5 +36,5 @@ c.cpp
 # Folders
 .vscode/
 .idea/
-[Bb]uild
-cmake-build
+[Bb]uild/
+cmake-build/
