@@ -1,9 +1,8 @@
 #include <iostream>
-#include <loop/console.hpp>
 #include <loop/werror.hpp>
 
 void WError::compilerError(ErrorCode code, const char *message) {
-    outerr << "\033[0;91;1mE" << std::setfill('0') << std::setw(2) << code << "\033[0;1m: " << message << '\n';
+    std::cerr << "\033[0;91;1mE" << std::setfill('0') << std::setw(2) << code << "\033[0;1m: " << message << '\n';
     exit(1);
 }
 
