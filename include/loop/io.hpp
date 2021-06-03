@@ -1,19 +1,18 @@
 #ifndef IO_H
 #define IO_H
-#include <vector>
-#include <string>
-#include <fstream>
 #include <filesystem>
-#include "global.h"
+#include <fstream>
+#include <string>
+#include <vector>
 
-struct File
-{
-    std::string path;
+#include "global.hpp"
+
+struct File {
+    std::filesystem::path path;
     std::string data;
 };
 
-struct IO
-{
+struct IO {
     std::fstream fStream;
     std::vector<File> reads;
     void read(const char *path);

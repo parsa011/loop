@@ -2,7 +2,7 @@
 #define TOKENIZER_H
 #include <string>
 #include <vector>
-#include "global.h"
+#include "global.hpp"
 
 enum TOKEN
 {
@@ -96,7 +96,6 @@ struct Token
 
 struct Tokenizer
 {
-public:
     size_t index = 0;
     std::string src;
     char lastChar;
@@ -104,8 +103,8 @@ public:
     std::vector<Token> tokens;
     bool isEOF();
     bool isLCOF();
-    char peek(int offset);
-    void advance(int offset);
+    char peek(std::size_t offset);
+    void advance(std::size_t offset);
     void pushChar();
     void tokenize(std::string data);
 };

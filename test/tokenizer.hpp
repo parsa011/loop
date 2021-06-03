@@ -1,16 +1,15 @@
 #ifndef TOKENIZER_TEST_H
 #define TOKENIZER_TEST_H
 
-#include "unit_test.h"
-#include "../src/global.h"
-#include "../src/tokenizer.h"
+#include <loop/global.hpp>
+#include <loop/tokenizer.hpp>
 
-class TokenizerTest : public UnitTest
-{
-public:
+#include "unit_test.h"
+
+class TokenizerTest : public UnitTest {
+   public:
     Tokenizer tokenizer;
-    TokenizerTest()
-    {
+    TokenizerTest() {
         runAll();
     }
     void runAll();

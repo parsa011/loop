@@ -30,11 +30,11 @@ c.cpp
 
 # Executables
 *.exe
-loop
-loop-test
 *.out
 *.app
 
 # Folders
 .vscode/
 .idea/
+[Bb]uild/
+cmake-build/
