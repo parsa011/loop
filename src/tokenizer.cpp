@@ -1,4 +1,5 @@
 #include <loop/tokenizer.hpp>
+#include <iostream>
 
 bool Tokenizer::isEOF() {
     if (index < src.length() && lastChar != '\0' && lastChar != char(-1)) { return false; }
@@ -30,6 +31,7 @@ char Tokenizer::peek(std::size_t offset) {
 }
 
 void Tokenizer::tokenize(std::string data) {
+        std::cout << "F";
     werror.errors.clear();
     werror.warnings.clear();
     tokens.clear();

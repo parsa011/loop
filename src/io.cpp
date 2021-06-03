@@ -14,6 +14,11 @@ void IO::read(const char *path) {
 
     std::string content;
     std::ifstream file(path);
-    file.read(content.data(), content.size());
+    file.seekg(0, std::ios::end);
+    content.resize((size_t)file.tellg());
+    file.seekg(0);
+    file.read(content.data(), (int)content.size());
+    file.close();
+    
     reads.push_back({path, content});
 }

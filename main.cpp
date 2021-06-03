@@ -1,3 +1,4 @@
+#include <iostream>
 #include <loop/ast.hpp>
 #include <loop/global.hpp>
 #include <loop/io.hpp>
@@ -22,7 +23,7 @@ int main(int argc, const char *argv[]) {
             if (werror.errors.size() > 0) { exit(1); }
 
             for (Token token : tokenizer.tokens) {
-                if (token.kind != T_NEWLINE) out << token.kind << ':' << token.value << '\n';
+                if (token.kind != T_NEWLINE) std::cout << token.kind << ':' << token.value << '\n';
             }
 
             std::cout << "Tokenization was \033[92;1mSuccessful\033[0;1m (" << tokenizer.tokens.size() << " tokens found)"
