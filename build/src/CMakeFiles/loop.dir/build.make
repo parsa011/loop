@@ -60,113 +60,99 @@ include src/CMakeFiles/loop.dir/flags.make
 src/CMakeFiles/loop.dir/ast.cpp.o: src/CMakeFiles/loop.dir/flags.make
 src/CMakeFiles/loop.dir/ast.cpp.o: ../src/ast.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/loop.dir/ast.cpp.o"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/ast.cpp.o -c /home/ubuntu/loop/src/ast.cpp
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/ast.cpp.o -c /home/ubuntu/loop/src/ast.cpp
 
 src/CMakeFiles/loop.dir/ast.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/loop.dir/ast.cpp.i"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/ast.cpp > CMakeFiles/loop.dir/ast.cpp.i
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/ast.cpp > CMakeFiles/loop.dir/ast.cpp.i
 
 src/CMakeFiles/loop.dir/ast.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/loop.dir/ast.cpp.s"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/ast.cpp -o CMakeFiles/loop.dir/ast.cpp.s
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/ast.cpp -o CMakeFiles/loop.dir/ast.cpp.s
 
 src/CMakeFiles/loop.dir/console.cpp.o: src/CMakeFiles/loop.dir/flags.make
 src/CMakeFiles/loop.dir/console.cpp.o: ../src/console.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/loop.dir/console.cpp.o"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/console.cpp.o -c /home/ubuntu/loop/src/console.cpp
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/console.cpp.o -c /home/ubuntu/loop/src/console.cpp
 
 src/CMakeFiles/loop.dir/console.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/loop.dir/console.cpp.i"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/console.cpp > CMakeFiles/loop.dir/console.cpp.i
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/console.cpp > CMakeFiles/loop.dir/console.cpp.i
 
 src/CMakeFiles/loop.dir/console.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/loop.dir/console.cpp.s"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/console.cpp -o CMakeFiles/loop.dir/console.cpp.s
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/console.cpp -o CMakeFiles/loop.dir/console.cpp.s
 
 src/CMakeFiles/loop.dir/io.cpp.o: src/CMakeFiles/loop.dir/flags.make
 src/CMakeFiles/loop.dir/io.cpp.o: ../src/io.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/loop.dir/io.cpp.o"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/io.cpp.o -c /home/ubuntu/loop/src/io.cpp
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/io.cpp.o -c /home/ubuntu/loop/src/io.cpp
 
 src/CMakeFiles/loop.dir/io.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/loop.dir/io.cpp.i"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/io.cpp > CMakeFiles/loop.dir/io.cpp.i
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/io.cpp > CMakeFiles/loop.dir/io.cpp.i
 
 src/CMakeFiles/loop.dir/io.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/loop.dir/io.cpp.s"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/io.cpp -o CMakeFiles/loop.dir/io.cpp.s
-
-src/CMakeFiles/loop.dir/loop.cpp.o: src/CMakeFiles/loop.dir/flags.make
-src/CMakeFiles/loop.dir/loop.cpp.o: ../src/loop.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/loop.dir/loop.cpp.o"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/loop.cpp.o -c /home/ubuntu/loop/src/loop.cpp
-
-src/CMakeFiles/loop.dir/loop.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/loop.dir/loop.cpp.i"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/loop.cpp > CMakeFiles/loop.dir/loop.cpp.i
-
-src/CMakeFiles/loop.dir/loop.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/loop.dir/loop.cpp.s"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/loop.cpp -o CMakeFiles/loop.dir/loop.cpp.s
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/io.cpp -o CMakeFiles/loop.dir/io.cpp.s
 
 src/CMakeFiles/loop.dir/parser.cpp.o: src/CMakeFiles/loop.dir/flags.make
 src/CMakeFiles/loop.dir/parser.cpp.o: ../src/parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/loop.dir/parser.cpp.o"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/parser.cpp.o -c /home/ubuntu/loop/src/parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/loop.dir/parser.cpp.o"
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/parser.cpp.o -c /home/ubuntu/loop/src/parser.cpp
 
 src/CMakeFiles/loop.dir/parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/loop.dir/parser.cpp.i"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/parser.cpp > CMakeFiles/loop.dir/parser.cpp.i
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/parser.cpp > CMakeFiles/loop.dir/parser.cpp.i
 
 src/CMakeFiles/loop.dir/parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/loop.dir/parser.cpp.s"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/parser.cpp -o CMakeFiles/loop.dir/parser.cpp.s
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/parser.cpp -o CMakeFiles/loop.dir/parser.cpp.s
 
 src/CMakeFiles/loop.dir/tokenizer.cpp.o: src/CMakeFiles/loop.dir/flags.make
 src/CMakeFiles/loop.dir/tokenizer.cpp.o: ../src/tokenizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/loop.dir/tokenizer.cpp.o"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/tokenizer.cpp.o -c /home/ubuntu/loop/src/tokenizer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object src/CMakeFiles/loop.dir/tokenizer.cpp.o"
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/tokenizer.cpp.o -c /home/ubuntu/loop/src/tokenizer.cpp
 
 src/CMakeFiles/loop.dir/tokenizer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/loop.dir/tokenizer.cpp.i"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/tokenizer.cpp > CMakeFiles/loop.dir/tokenizer.cpp.i
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/tokenizer.cpp > CMakeFiles/loop.dir/tokenizer.cpp.i
 
 src/CMakeFiles/loop.dir/tokenizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/loop.dir/tokenizer.cpp.s"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/tokenizer.cpp -o CMakeFiles/loop.dir/tokenizer.cpp.s
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/tokenizer.cpp -o CMakeFiles/loop.dir/tokenizer.cpp.s
 
 src/CMakeFiles/loop.dir/utils.cpp.o: src/CMakeFiles/loop.dir/flags.make
 src/CMakeFiles/loop.dir/utils.cpp.o: ../src/utils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/loop.dir/utils.cpp.o"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/utils.cpp.o -c /home/ubuntu/loop/src/utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object src/CMakeFiles/loop.dir/utils.cpp.o"
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/utils.cpp.o -c /home/ubuntu/loop/src/utils.cpp
 
 src/CMakeFiles/loop.dir/utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/loop.dir/utils.cpp.i"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/utils.cpp > CMakeFiles/loop.dir/utils.cpp.i
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/utils.cpp > CMakeFiles/loop.dir/utils.cpp.i
 
 src/CMakeFiles/loop.dir/utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/loop.dir/utils.cpp.s"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/utils.cpp -o CMakeFiles/loop.dir/utils.cpp.s
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/utils.cpp -o CMakeFiles/loop.dir/utils.cpp.s
 
 src/CMakeFiles/loop.dir/werror.cpp.o: src/CMakeFiles/loop.dir/flags.make
 src/CMakeFiles/loop.dir/werror.cpp.o: ../src/werror.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/CMakeFiles/loop.dir/werror.cpp.o"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/werror.cpp.o -c /home/ubuntu/loop/src/werror.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object src/CMakeFiles/loop.dir/werror.cpp.o"
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/loop.dir/werror.cpp.o -c /home/ubuntu/loop/src/werror.cpp
 
 src/CMakeFiles/loop.dir/werror.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/loop.dir/werror.cpp.i"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/werror.cpp > CMakeFiles/loop.dir/werror.cpp.i
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/loop/src/werror.cpp > CMakeFiles/loop.dir/werror.cpp.i
 
 src/CMakeFiles/loop.dir/werror.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/loop.dir/werror.cpp.s"
-	cd /home/ubuntu/loop/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/werror.cpp -o CMakeFiles/loop.dir/werror.cpp.s
+	cd /home/ubuntu/loop/build/src && /usr/bin/clang++-11 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/loop/src/werror.cpp -o CMakeFiles/loop.dir/werror.cpp.s
 
 # Object files for target loop
 loop_OBJECTS = \
 "CMakeFiles/loop.dir/ast.cpp.o" \
 "CMakeFiles/loop.dir/console.cpp.o" \
 "CMakeFiles/loop.dir/io.cpp.o" \
-"CMakeFiles/loop.dir/loop.cpp.o" \
 "CMakeFiles/loop.dir/parser.cpp.o" \
 "CMakeFiles/loop.dir/tokenizer.cpp.o" \
 "CMakeFiles/loop.dir/utils.cpp.o" \
@@ -178,14 +164,13 @@ loop_EXTERNAL_OBJECTS =
 src/libloop.a: src/CMakeFiles/loop.dir/ast.cpp.o
 src/libloop.a: src/CMakeFiles/loop.dir/console.cpp.o
 src/libloop.a: src/CMakeFiles/loop.dir/io.cpp.o
-src/libloop.a: src/CMakeFiles/loop.dir/loop.cpp.o
 src/libloop.a: src/CMakeFiles/loop.dir/parser.cpp.o
 src/libloop.a: src/CMakeFiles/loop.dir/tokenizer.cpp.o
 src/libloop.a: src/CMakeFiles/loop.dir/utils.cpp.o
 src/libloop.a: src/CMakeFiles/loop.dir/werror.cpp.o
 src/libloop.a: src/CMakeFiles/loop.dir/build.make
 src/libloop.a: src/CMakeFiles/loop.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libloop.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/loop/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libloop.a"
 	cd /home/ubuntu/loop/build/src && $(CMAKE_COMMAND) -P CMakeFiles/loop.dir/cmake_clean_target.cmake
 	cd /home/ubuntu/loop/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/loop.dir/link.txt --verbose=$(VERBOSE)
 

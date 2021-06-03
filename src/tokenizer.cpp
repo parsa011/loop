@@ -10,9 +10,9 @@ bool Tokenizer::isLCOF() {
     return true;
 }
 
-void Tokenizer::advance(int offset) {
-    if ((size_t)offset + index < src.length()) {
-        index += (size_t)offset;
+void Tokenizer::advance(size_t offset) {
+    if (offset + index < src.length()) {
+        index += offset;
     } else {
         index = src.length();
     }
@@ -24,8 +24,8 @@ void Tokenizer::pushChar() {
     advance(1);
 }
 
-char Tokenizer::peek(int offset) {
-    if ((size_t)offset + index < src.length()) { return src[index + (size_t)offset]; }
+char Tokenizer::peek(std::size_t offset) {
+    if (offset + index < src.length()) { return src[index + offset]; }
     return src[src.length()];
 }
 

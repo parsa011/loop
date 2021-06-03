@@ -2,8 +2,8 @@
 #include <iostream>
 #include <loop/global.hpp>
 
-#include "ast.h"
-#include "tokenizer.h"
+#include "ast.hpp"
+#include "tokenizer.hpp"
 
 WError werror;
 int main() {

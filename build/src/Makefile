@@ -206,33 +206,6 @@ io.cpp.s:
 	cd /home/ubuntu/loop/build && $(MAKE) -f src/CMakeFiles/loop.dir/build.make src/CMakeFiles/loop.dir/io.cpp.s
 .PHONY : io.cpp.s
 
-loop.o: loop.cpp.o
-
-.PHONY : loop.o
-
-# target to build an object file
-loop.cpp.o:
-	cd /home/ubuntu/loop/build && $(MAKE) -f src/CMakeFiles/loop.dir/build.make src/CMakeFiles/loop.dir/loop.cpp.o
-.PHONY : loop.cpp.o
-
-loop.i: loop.cpp.i
-
-.PHONY : loop.i
-
-# target to preprocess a source file
-loop.cpp.i:
-	cd /home/ubuntu/loop/build && $(MAKE) -f src/CMakeFiles/loop.dir/build.make src/CMakeFiles/loop.dir/loop.cpp.i
-.PHONY : loop.cpp.i
-
-loop.s: loop.cpp.s
-
-.PHONY : loop.s
-
-# target to generate assembly for a file
-loop.cpp.s:
-	cd /home/ubuntu/loop/build && $(MAKE) -f src/CMakeFiles/loop.dir/build.make src/CMakeFiles/loop.dir/loop.cpp.s
-.PHONY : loop.cpp.s
-
 parser.o: parser.cpp.o
 
 .PHONY : parser.o
@@ -359,9 +332,6 @@ help:
 	@echo "... io.o"
 	@echo "... io.i"
 	@echo "... io.s"
-	@echo "... loop.o"
-	@echo "... loop.i"
-	@echo "... loop.s"
 	@echo "... parser.o"
 	@echo "... parser.i"
 	@echo "... parser.s"

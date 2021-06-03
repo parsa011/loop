@@ -1,4 +1,6 @@
 #include <filesystem>
+#include <string>
+#include <fstream>
 #include <loop/io.hpp>
 
 void IO::read(const char *path) {
@@ -12,11 +14,6 @@ void IO::read(const char *path) {
 
     std::string content;
     std::ifstream file(path);
-    file.seekg(0, std::ios::end);
-    content.resize((size_t)file.tellg());
-    file.seekg(0);
-    file.read(content.data(), (int)content.size());
-    file.close();
-
+    file.read(content.data(), content.size());
     reads.push_back({path, content});
 }

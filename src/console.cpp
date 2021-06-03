@@ -1,4 +1,5 @@
 #include <loop/console.hpp>
+#include <iostream>
 
 void console::fmtOSCmp() {
 #ifdef _WIN32

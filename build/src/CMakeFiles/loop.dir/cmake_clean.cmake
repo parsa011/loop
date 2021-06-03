@@ -2,7 +2,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/loop.dir/ast.cpp.o"
   "CMakeFiles/loop.dir/console.cpp.o"
   "CMakeFiles/loop.dir/io.cpp.o"
-  "CMakeFiles/loop.dir/loop.cpp.o"
   "CMakeFiles/loop.dir/parser.cpp.o"
   "CMakeFiles/loop.dir/tokenizer.cpp.o"
   "CMakeFiles/loop.dir/utils.cpp.o"

@@ -3,14 +3,19 @@
 
 src/CMakeFiles/loop.dir/ast.cpp.o: ../src/ast.cpp
 
+src/CMakeFiles/loop.dir/console.cpp.o: ../include/loop/console.hpp
 src/CMakeFiles/loop.dir/console.cpp.o: ../src/console.cpp
 
+src/CMakeFiles/loop.dir/io.cpp.o: ../include/loop/global.hpp
+src/CMakeFiles/loop.dir/io.cpp.o: ../include/loop/io.hpp
+src/CMakeFiles/loop.dir/io.cpp.o: ../include/loop/werror.hpp
 src/CMakeFiles/loop.dir/io.cpp.o: ../src/io.cpp
-
-src/CMakeFiles/loop.dir/loop.cpp.o: ../src/loop.cpp
 
 src/CMakeFiles/loop.dir/parser.cpp.o: ../src/parser.cpp
 
+src/CMakeFiles/loop.dir/tokenizer.cpp.o: ../include/loop/global.hpp
+src/CMakeFiles/loop.dir/tokenizer.cpp.o: ../include/loop/tokenizer.hpp
+src/CMakeFiles/loop.dir/tokenizer.cpp.o: ../include/loop/werror.hpp
 src/CMakeFiles/loop.dir/tokenizer.cpp.o: ../src/tokenizer.cpp
 
 src/CMakeFiles/loop.dir/utils.cpp.o: ../src/utils.cpp

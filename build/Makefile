@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/ubuntu/loop/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named loopi
+
+# Build rule for target.
+loopi: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 loopi
+.PHONY : loopi
+
+# fast build rule for target.
+loopi/fast:
+	$(MAKE) -f CMakeFiles/loopi.dir/build.make CMakeFiles/loopi.dir/build
+.PHONY : loopi/fast
+
+#=============================================================================
 # Target rules for targets named loop
 
 # Build rule for target.
@@ -123,15 +136,102 @@ loop/fast:
 	$(MAKE) -f src/CMakeFiles/loop.dir/build.make src/CMakeFiles/loop.dir/build
 .PHONY : loop/fast
 
+#=============================================================================
+# Target rules for targets named unit_test
+
+# Build rule for target.
+unit_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 unit_test
+.PHONY : unit_test
+
+# fast build rule for target.
+unit_test/fast:
+	$(MAKE) -f test/CMakeFiles/unit_test.dir/build.make test/CMakeFiles/unit_test.dir/build
+.PHONY : unit_test/fast
+
+#=============================================================================
+# Target rules for targets named test
+
+# Build rule for target.
+test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test
+.PHONY : test
+
+# fast build rule for target.
+test/fast:
+	$(MAKE) -f test/CMakeFiles/test.dir/build.make test/CMakeFiles/test.dir/build
+.PHONY : test/fast
+
+#=============================================================================
+# Target rules for targets named tokenizer
+
+# Build rule for target.
+tokenizer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tokenizer
+.PHONY : tokenizer
+
+# fast build rule for target.
+tokenizer/fast:
+	$(MAKE) -f test/CMakeFiles/tokenizer.dir/build.make test/CMakeFiles/tokenizer.dir/build
+.PHONY : tokenizer/fast
+
+#=============================================================================
+# Target rules for targets named ast
+
+# Build rule for target.
+ast: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ast
+.PHONY : ast
+
+# fast build rule for target.
+ast/fast:
+	$(MAKE) -f test/CMakeFiles/ast.dir/build.make test/CMakeFiles/ast.dir/build
+.PHONY : ast/fast
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/loopi.dir/build.make CMakeFiles/loopi.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/loopi.dir/build.make CMakeFiles/loopi.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/loopi.dir/build.make CMakeFiles/loopi.dir/main.cpp.s
+.PHONY : main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... loopi"
 	@echo "... loop"
+	@echo "... unit_test"
+	@echo "... test"
+	@echo "... tokenizer"
+	@echo "... ast"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

@@ -10,7 +10,7 @@ WError werror;
 int main(int argc, const char *argv[]) {
     if (argc > 0) {
         IO io;
-        for (size_t i = 0; (int)i < argc - 1; i++) {
+        for (int i = 0; i < argc - 1; i++) {
             io.read(argv[i + 1]);
             Tokenizer tokenizer;
             tokenizer.tokenize(io.reads[i].data);
