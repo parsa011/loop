@@ -187,6 +187,9 @@ LOOP_BINARY_DIR:STATIC=/data/data/com.termux/files/home/loop/build
 //Value Computed by CMake
 LOOP_SOURCE_DIR:STATIC=/data/data/com.termux/files/home/loop
 
+//Dependencies for the target
+loop_LIB_DEPENDS:STATIC=general;c++fs;
+
 //compile unit tests
 tests:BOOL=OFF
 
