@@ -1,4 +1,4 @@
-import Std.Console;h;-2
+import Std.Console
 
 fn Main() {
   Console.Writeln('Hello World')
