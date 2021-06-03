@@ -1,2 +1,2 @@
-/data/data/com.termux/files/usr/bin/ar qc libloop.a CMakeFiles/loop.dir/ast.cpp.o CMakeFiles/loop.dir/console.cpp.o CMakeFiles/loop.dir/io.cpp.o CMakeFiles/loop.dir/loop.cpp.o CMakeFiles/loop.dir/parser.cpp.o CMakeFiles/loop.dir/tokenizer.cpp.o CMakeFiles/loop.dir/utils.cpp.o CMakeFiles/loop.dir/werror.cpp.o
-/data/data/com.termux/files/usr/bin/ranlib libloop.a
+/usr/bin/ar qc libloop.a  CMakeFiles/loop.dir/ast.cpp.o CMakeFiles/loop.dir/console.cpp.o CMakeFiles/loop.dir/io.cpp.o CMakeFiles/loop.dir/loop.cpp.o CMakeFiles/loop.dir/parser.cpp.o CMakeFiles/loop.dir/tokenizer.cpp.o CMakeFiles/loop.dir/utils.cpp.o CMakeFiles/loop.dir/werror.cpp.o
+/usr/bin/ranlib libloop.a

@@ -1,5 +1,5 @@
-/data/data/com.termux/files/home/loop/build/CMakeFiles/rebuild_cache.dir
-/data/data/com.termux/files/home/loop/build/CMakeFiles/edit_cache.dir
-/data/data/com.termux/files/home/loop/build/src/CMakeFiles/rebuild_cache.dir
-/data/data/com.termux/files/home/loop/build/src/CMakeFiles/edit_cache.dir
-/data/data/com.termux/files/home/loop/build/src/CMakeFiles/loop.dir
+/home/ubuntu/loop/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/loop/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/loop/build/src/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/loop/build/src/CMakeFiles/edit_cache.dir
+/home/ubuntu/loop/build/src/CMakeFiles/loop.dir

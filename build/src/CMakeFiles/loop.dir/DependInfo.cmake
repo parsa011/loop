@@ -1,21 +1,23 @@
-
-# Consider dependencies only in project.
-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
-
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
   )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ubuntu/loop/src/ast.cpp" "/home/ubuntu/loop/build/src/CMakeFiles/loop.dir/ast.cpp.o"
+  "/home/ubuntu/loop/src/console.cpp" "/home/ubuntu/loop/build/src/CMakeFiles/loop.dir/console.cpp.o"
+  "/home/ubuntu/loop/src/io.cpp" "/home/ubuntu/loop/build/src/CMakeFiles/loop.dir/io.cpp.o"
+  "/home/ubuntu/loop/src/loop.cpp" "/home/ubuntu/loop/build/src/CMakeFiles/loop.dir/loop.cpp.o"
+  "/home/ubuntu/loop/src/parser.cpp" "/home/ubuntu/loop/build/src/CMakeFiles/loop.dir/parser.cpp.o"
+  "/home/ubuntu/loop/src/tokenizer.cpp" "/home/ubuntu/loop/build/src/CMakeFiles/loop.dir/tokenizer.cpp.o"
+  "/home/ubuntu/loop/src/utils.cpp" "/home/ubuntu/loop/build/src/CMakeFiles/loop.dir/utils.cpp.o"
+  "/home/ubuntu/loop/src/werror.cpp" "/home/ubuntu/loop/build/src/CMakeFiles/loop.dir/werror.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# The set of dependency files which are needed:
-set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/data/data/com.termux/files/home/loop/src/ast.cpp" "src/CMakeFiles/loop.dir/ast.cpp.o" "gcc" "src/CMakeFiles/loop.dir/ast.cpp.o.d"
-  "/data/data/com.termux/files/home/loop/src/console.cpp" "src/CMakeFiles/loop.dir/console.cpp.o" "gcc" "src/CMakeFiles/loop.dir/console.cpp.o.d"
-  "/data/data/com.termux/files/home/loop/src/io.cpp" "src/CMakeFiles/loop.dir/io.cpp.o" "gcc" "src/CMakeFiles/loop.dir/io.cpp.o.d"
-  "/data/data/com.termux/files/home/loop/src/loop.cpp" "src/CMakeFiles/loop.dir/loop.cpp.o" "gcc" "src/CMakeFiles/loop.dir/loop.cpp.o.d"
-  "/data/data/com.termux/files/home/loop/src/parser.cpp" "src/CMakeFiles/loop.dir/parser.cpp.o" "gcc" "src/CMakeFiles/loop.dir/parser.cpp.o.d"
-  "/data/data/com.termux/files/home/loop/src/tokenizer.cpp" "src/CMakeFiles/loop.dir/tokenizer.cpp.o" "gcc" "src/CMakeFiles/loop.dir/tokenizer.cpp.o.d"
-  "/data/data/com.termux/files/home/loop/src/utils.cpp" "src/CMakeFiles/loop.dir/utils.cpp.o" "gcc" "src/CMakeFiles/loop.dir/utils.cpp.o.d"
-  "/data/data/com.termux/files/home/loop/src/werror.cpp" "src/CMakeFiles/loop.dir/werror.cpp.o" "gcc" "src/CMakeFiles/loop.dir/werror.cpp.o.d"
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../include"
   )
 
 # Targets to which this target links.

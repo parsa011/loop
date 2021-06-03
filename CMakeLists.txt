@@ -24,6 +24,7 @@ function(enable_warns src)
 endfunction()
 
 add_subdirectory(src)
+
 if(tests)
     add_subdirectory(test)
 endif()
