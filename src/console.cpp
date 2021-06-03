@@ -1,7 +1,6 @@
-#include "console.h"
+#include <loop/console.hpp>
 
-void console::fmtOSCmp()
-{
+void console::fmtOSCmp() {
 #ifdef _WIN32
     result = std::regex_replace(stream.str(), std::regex("\033(.*)m"), "");
 #else
@@ -9,14 +8,12 @@ void console::fmtOSCmp()
 #endif
 }
 
-cOut::~cOut()
-{
+cOut::~cOut() {
     fmtOSCmp();
     std::cout << result;
 }
 
-cErr::~cErr()
-{
+cErr::~cErr() {
     fmtOSCmp();
     std::cerr << result;
 }

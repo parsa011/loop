@@ -1,14 +1,13 @@
-#include "tokenizer.h"
+#include "tokenizer.hpp"
+
 #include <string.h>
 
-TOKEN TokenizerTest::getTokenizerToken(const char *token)
-{
+TOKEN TokenizerTest::getTokenizerToken(const char *token) {
     tokenizer.tokenize(token);
     return tokenizer.lastToken.kind;
 }
 
-void TokenizerTest::runAll()
-{
+void TokenizerTest::runAll() {
     test(tokenizeKeywords());
     test(tokenizeOperators());
     test(tokenizeDataTypes());
@@ -23,8 +22,7 @@ void TokenizerTest::runAll()
     test(ThrowUnrecognizedTokenError());
 }
 
-bool TokenizerTest::tokenizeKeywords()
-{
+bool TokenizerTest::tokenizeKeywords() {
     testName = "Tokenize Keywords";
     assert(getTokenizerToken("module") == T_MODULE);
     assert(getTokenizerToken("import") == T_IMPORT);
@@ -43,8 +41,7 @@ bool TokenizerTest::tokenizeKeywords()
     return verify();
 }
 
-bool TokenizerTest::tokenizeOperators()
-{
+bool TokenizerTest::tokenizeOperators() {
     testName = "Tokenize Operators";
     assert(getTokenizerToken("test") == T_ID);
     assert(getTokenizerToken("'Hello World'") == T_STRING);
@@ -90,8 +87,7 @@ bool TokenizerTest::tokenizeOperators()
     return verify();
 }
 
-bool TokenizerTest::tokenizeDataTypes()
-{
+bool TokenizerTest::tokenizeDataTypes() {
     testName = "Tokenize Data Types";
     assert(getTokenizerToken("byte") == T_BYTE_TYPE);
     assert(getTokenizerToken("string") == T_STRING_TYPE);
@@ -111,8 +107,7 @@ bool TokenizerTest::tokenizeDataTypes()
     return verify();
 }
 
-bool TokenizerTest::ThrowCloseCommentError()
-{
+bool TokenizerTest::ThrowCloseCommentError() {
     werror.errors.clear();
     testName = "Throw Close Comment Error";
     Tokenizer tokenizer;
@@ -123,8 +118,7 @@ bool TokenizerTest::ThrowCloseCommentError()
     return verify();
 }
 
-bool TokenizerTest::ThrowMissingQuotationMarkError()
-{
+bool TokenizerTest::ThrowMissingQuotationMarkError() {
     werror.errors.clear();
     testName = "Throw Missing Quotation Mark Error";
     tokenizer.tokenize("'Invalid String");
@@ -133,8 +127,7 @@ bool TokenizerTest::ThrowMissingQuotationMarkError()
     assert(strcmp(werror.errors[0].message, "Quated String Must Be Finished") == 0);
     return verify();
 }
-bool TokenizerTest::ThrowOutOfRangeHexError()
-{
+bool TokenizerTest::ThrowOutOfRangeHexError() {
     werror.errors.clear();
     testName = "Throw Out Of Range Hex Error";
     tokenizer.tokenize("0xFFFFFFFFFF");
@@ -144,8 +137,7 @@ bool TokenizerTest::ThrowOutOfRangeHexError()
     return verify();
 }
 
-bool TokenizerTest::ThrowInvalidHexError()
-{
+bool TokenizerTest::ThrowInvalidHexError() {
     werror.errors.clear();
     testName = "Throw Invalid Hex Error";
     tokenizer.tokenize("0xLOOP");
@@ -155,8 +147,7 @@ bool TokenizerTest::ThrowInvalidHexError()
     return verify();
 }
 
-bool TokenizerTest::ThrowInvalidHexAndOutOfRangeHexError()
-{
+bool TokenizerTest::ThrowInvalidHexAndOutOfRangeHexError() {
     werror.errors.clear();
     testName = "Throw Invalid Hex And Out Of Range Hex Error";
     tokenizer.tokenize("0xr");
@@ -168,8 +159,7 @@ bool TokenizerTest::ThrowInvalidHexAndOutOfRangeHexError()
     return verify();
 }
 
-bool TokenizerTest::ThrowOutOfRangeBinaryError()
-{
+bool TokenizerTest::ThrowOutOfRangeBinaryError() {
     werror.errors.clear();
     testName = "Throw Invalid Binary Out Of Range Error";
     tokenizer.tokenize("0b1111111111");
@@ -179,8 +169,7 @@ bool TokenizerTest::ThrowOutOfRangeBinaryError()
     return verify();
 }
 
-bool TokenizerTest::ThrowInvalidBinaryError()
-{
+bool TokenizerTest::ThrowInvalidBinaryError() {
     werror.errors.clear();
     testName = "Throw Invalid Binary Error";
     tokenizer.tokenize("0bLOOP");
@@ -194,8 +183,7 @@ bool TokenizerTest::ThrowInvalidBinaryError()
     return verify();
 }
 
-bool TokenizerTest::ThrowInvalidUnicodeError()
-{
+bool TokenizerTest::ThrowInvalidUnicodeError() {
     werror.errors.clear();
     testName = "Throw Invalid Unicode Error";
     tokenizer.tokenize("0uFFFFFFF");
@@ -209,8 +197,7 @@ bool TokenizerTest::ThrowInvalidUnicodeError()
     return verify();
 }
 
-bool TokenizerTest::ThrowUnrecognizedTokenError()
-{
+bool TokenizerTest::ThrowUnrecognizedTokenError() {
     werror.errors.clear();
     testName = "Throw Unrecognized Token Error";
     tokenizer.tokenize("~");

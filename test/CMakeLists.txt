@@ -1,0 +1,8 @@
+file(GLOB test_sources "*.cpp")
+foreach(file_ ${test_sources})
+    string(REPLACE ".cpp" "" filename file_)
+    add_executable(filename file_)
+    target_link_libraries(filename loop)
+    target_link_options(filename cxx_std_20)
+    enable_warns(filename)
+endforeach()
