@@ -30,8 +30,6 @@ c.cpp
 
 # Executables
 *.exe
-loop
-loop-test
 *.out
 *.app
 
