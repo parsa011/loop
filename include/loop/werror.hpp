@@ -1,7 +1,6 @@
 #ifndef WERROR_H
 #define WERROR_H
 #include <vector>
-#include <iomanip>
 
 enum ErrorCode
 {
