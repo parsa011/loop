@@ -31,7 +31,6 @@ char Tokenizer::peek(std::size_t offset) {
 }
 
 void Tokenizer::tokenize(std::string data) {
-        std::cout << "F";
     werror.errors.clear();
     werror.warnings.clear();
     tokens.clear();

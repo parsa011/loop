@@ -7,8 +7,7 @@
 
 #include "unit_test.hpp"
 
-class AstTest : public UnitTest {
-   public:
+struct AstTest : UnitTest {
     Tokenizer tokenizer;
     AstTest() {
         runAll();
