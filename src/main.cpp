@@ -38,8 +38,6 @@ int main(int argc, const char *argv[])
 
             std::cout << "Tokenization was \033[92;1mSuccessful\033[0;1m (" << lexer.tokensArray.size() << " tokens found)"
                       << '\n';
-            //Parser p;
-            //p.parse(&lexer.tokensArray);
         }
     }
 }

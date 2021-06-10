@@ -201,6 +201,17 @@ TokensArray Lexer::lex(std::string data)
                 lastToken.kind = T_RIGHT_ANGLE_BRACKET;
             }
             break;
+        case '<':
+            if (peek(1) == '=')
+            {
+                lastToken.kind = T_EQUAL_LESSER_BRACKET;
+                pushChar();
+            }
+            else
+            {
+                lastToken.kind = T_LEFT_ANGLE_BRACKET;
+            }
+            break;
         case '&':
             if (peek(1) == '&')
             {
@@ -482,15 +493,15 @@ TokensArray Lexer::lex(std::string data)
 
                     goto independent;
                 }
-                if (lastToken.kind == T_UNRECOGNIZED)
-                {
-                    werror.syntaxError(E_UNRECOGNIZED_TOKEN, "Unrecognized Token", "here", index);
-                    return tokensArray;
-                }
             }
             break;
         }
 
+        if (lastToken.kind == T_UNRECOGNIZED)
+        {
+            werror.syntaxError(E_UNRECOGNIZED_TOKEN, "Unrecognized Token", "here", index);
+            return tokensArray;
+        }
         pushChar();
     independent:
         lastToken.index = index - lastToken.value.length();
