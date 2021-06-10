@@ -20,11 +20,7 @@
 </div>
 
 # Loop
-Loop is a multi-paradigm programming language.
-
-<p align="center">
-  <img style="text-align:center" src="https://raw.githubusercontent.com/loop-lang/loop/1ade63df7e95e2198fe54e410d5a99dae8854033/documentation/assets/images/tokenized_example_code.png" width="60%">
-</p>
+Loop is a  functional programming language.
 
 ## What will make loop special?
 - Better loops 
