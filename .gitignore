@@ -38,5 +38,3 @@ loop-test
 # Folders
 .vscode/
 .idea/
-[Bb]uild/
-cmake-build/

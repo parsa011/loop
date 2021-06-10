@@ -15,9 +15,6 @@ $ git clone https://github.com/loop-lang/loop && cd loop
 
 ## Build and Run Loop
 ```sh
-$ cmake . -B build 
-$ cd build && make 
-$ ./loopi <file>
-# building tests
-$ cmake . -B build -Dtests=on
+$ make
+$ ./loop <file>
 ```
