@@ -29,6 +29,8 @@ c.cpp
 *.lib
 
 # Executables
+loop
+loop-test
 *.exe
 *.out
 *.app

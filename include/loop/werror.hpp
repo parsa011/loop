@@ -9,7 +9,7 @@ enum ErrorCode
     E_FILE_NOT_FOUND,
     E_IS_DIRECTORY,
     E_IST_REGULAR_FILE,
-    // Tokenizer
+    // Lexer
     E_NO_NULL_CHAR,
     E_MORE_THAN_ONE_BYTE,
     E_UNRECOGNIZED_TOKEN,
